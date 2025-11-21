@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import './AppointmentBooking.css';
+import API_URL from '../config/api';
 
 export default function AppointmentBooking() {
   const [departments, setDepartments] = useState([]);
@@ -51,7 +52,7 @@ export default function AppointmentBooking() {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-    fetch('http://localhost:5000/api/departments', { signal: controller.signal })
+    fetch(`${API_URL}/api/departments`, { signal: controller.signal })
       .then(res => {
         clearTimeout(timeoutId);
         if (!res.ok) throw new Error(`Failed to fetch departments (${res.status})`);
@@ -73,7 +74,7 @@ export default function AppointmentBooking() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000);
 
-      fetch(`http://localhost:5000/api/time-slots/${selectedDate}`, { signal: controller.signal })
+      fetch(`${API_URL}/api/time-slots/${selectedDate}`, { signal: controller.signal })
         .then(res => {
           clearTimeout(timeoutId);
           if (!res.ok) throw new Error(`Failed to fetch time slots (${res.status})`);
@@ -99,7 +100,7 @@ export default function AppointmentBooking() {
     setEmailTestResult('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/test-email', {
+      const response = await fetch(`${API_URL}/api/test-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +147,7 @@ export default function AppointmentBooking() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // Increased to 30 seconds
 
-      const response = await fetch('http://localhost:5000/api/appointments', {
+      const response = await fetch(`${API_URL}/api/appointments`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
