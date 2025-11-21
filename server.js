@@ -14,6 +14,8 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:5173',
     'https://aarunya-health-care-oew3j56z3-mohan-gtihubs-projects.vercel.app',
+    'https://aarunya-health-care-a3uwhv3dd-mohan-gtihubs-projects.vercel.app',
+    'https://aarunya-health-care-d9q2gohro-mohan-gtihubs-projects.vercel.app',
     'https://aarunya-health-care.vercel.app',
     process.env.FRONTEND_URL
   ].filter(Boolean),
@@ -76,6 +78,21 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
   }
+});
+
+// Root route - Health check
+app.get('/', (req, res) => {
+  res.json({
+    status: 'running',
+    message: 'Aarunya Health Care API Server',
+    version: '1.0.0',
+    endpoints: {
+      departments: '/api/departments',
+      timeSlots: '/api/time-slots/:date',
+      appointments: '/api/appointments',
+      testEmail: '/api/test-email'
+    }
+  });
 });
 
 // API Routes
