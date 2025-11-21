@@ -1,0 +1,162 @@
+.rehabilitation-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+  background: 
+    radial-gradient(ellipse at top left, rgba(75, 0, 130, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 140, 0, 0.3) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.rehabilitation-section .section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.rehabilitation-section .section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--neutral-50);
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rehabilitation-section .title-highlight {
+  color: var(--brand-gold);
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rehab-intro {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.rehab-intro .rehab-description {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--neutral-300);
+  max-width: 700px;
+  margin: 0 auto;
+  font-weight: 500;
+}
+
+.rehab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.rehab-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.rehab-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-gold));
+}
+
+.rehab-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(91, 30, 166, 0.15);
+}
+
+.rehab-icon-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.rehab-icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+  color: var(--brand-purple);
+}
+
+.icon-check {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: var(--brand-gold);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(91, 30, 166, 0.3);
+}
+
+.rehab-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--neutral-50);
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.rehab-card .rehab-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--neutral-300);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .rehabilitation-section {
+    padding: 60px 0;
+  }
+  
+  .rehabilitation-section .section-title {
+    font-size: 2rem;
+  }
+  
+  .rehab-intro .rehab-description {
+    font-size: 1.1rem;
+    padding: 0 20px;
+  }
+  
+  .rehab-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+  
+  .rehab-card {
+    padding: 30px 20px;
+  }
+  
+  .rehab-icon {
+    font-size: 2.5rem;
+  }
+  
+  .rehab-title {
+    font-size: 1.1rem;
+  }
+}

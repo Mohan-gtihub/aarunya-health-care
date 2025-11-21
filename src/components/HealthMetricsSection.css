@@ -1,0 +1,662 @@
+/* PMX Health Inspired Health Metrics Section */
+.pmx-health-metrics-section {
+  padding: 6rem 0;
+  background: white;
+  position: relative;
+}
+
+/* Section Header */
+.pmx-section-header {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--accent), var(--primary-light));
+  color: white;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.pmx-section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pmx-section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Metrics Controls */
+.pmx-metrics-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background: rgba(10, 110, 90, 0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.pmx-category-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pmx-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: white;
+  border: 2px solid rgba(10, 110, 90, 0.1);
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pmx-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.pmx-filter-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(10, 110, 90, 0.2);
+}
+
+.pmx-filter-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pmx-time-range-selector {
+  display: flex;
+  gap: 0.25rem;
+  background: white;
+  padding: 0.25rem;
+  border-radius: 12px;
+  border: 1px solid rgba(10, 110, 90, 0.1);
+}
+
+.pmx-time-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pmx-time-btn:hover {
+  background: rgba(10, 110, 90, 0.05);
+}
+
+.pmx-time-btn.active {
+  background: var(--primary);
+  color: white;
+}
+
+/* Metrics Grid */
+.pmx-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.pmx-metric-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid rgba(10, 110, 90, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pmx-metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.pmx-metric-card:hover::before {
+  transform: scaleX(1);
+}
+
+.pmx-metric-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(10, 110, 90, 0.15);
+  border-color: var(--primary);
+}
+
+/* Metric Header */
+.pmx-metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.pmx-metric-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(10, 110, 90, 0.2);
+}
+
+.pmx-metric-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Metric Content */
+.pmx-metric-content {
+  margin-bottom: 1.5rem;
+}
+
+.pmx-metric-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.pmx-metric-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pmx-value-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+}
+
+.pmx-value-unit {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.pmx-metric-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Metric Footer */
+.pmx-metric-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(10, 110, 90, 0.08);
+}
+
+.pmx-metric-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.pmx-trend-text {
+  text-transform: capitalize;
+}
+
+.pmx-btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Analytics Dashboard */
+.pmx-analytics-dashboard {
+  background: linear-gradient(135deg, #f8fafb 0%, #f1f5f9 100%);
+  border-radius: 24px;
+  padding: 3rem;
+  margin-bottom: 4rem;
+}
+
+.pmx-dashboard-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.pmx-dashboard-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.pmx-dashboard-header p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+}
+
+.pmx-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.pmx-dashboard-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  transition: all 0.3s ease;
+}
+
+.pmx-dashboard-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(10, 110, 90, 0.1);
+}
+
+.pmx-dashboard-card h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+
+/* Score Display */
+.pmx-score-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.pmx-score-circle {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(10, 110, 90, 0.3);
+}
+
+.pmx-score-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.pmx-score-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.pmx-score-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Trends List */
+.pmx-trends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pmx-trend-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pmx-trend-item:hover {
+  background: rgba(10, 110, 90, 0.02);
+}
+
+.pmx-trend-item.positive {
+  border-left: 4px solid var(--success);
+}
+
+.pmx-trend-item.negative {
+  border-left: 4px solid var(--warning);
+}
+
+.pmx-trend-item.stable {
+  border-left: 4px solid var(--text-secondary);
+}
+
+.pmx-trend-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.pmx-trend-item.positive .pmx-trend-icon {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.pmx-trend-item.negative .pmx-trend-icon {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+
+.pmx-trend-item.stable .pmx-trend-icon {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--text-secondary);
+}
+
+.pmx-trend-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pmx-trend-metric {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pmx-trend-change {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Recommendations */
+.pmx-recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pmx-recommendation-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: rgba(10, 110, 90, 0.02);
+  transition: all 0.3s ease;
+}
+
+.pmx-recommendation-item:hover {
+  background: rgba(10, 110, 90, 0.05);
+}
+
+.pmx-rec-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pmx-rec-content h5 {
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.pmx-rec-content p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* CTA Section */
+.pmx-metrics-cta {
+  background: linear-gradient(135deg, var(--accent), var(--primary-light));
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.pmx-metrics-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.pmx-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-metrics-cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pmx-metrics-cta p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pmx-cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pmx-metrics-cta .pmx-btn-primary {
+  background: white;
+  color: var(--primary);
+  border-color: white;
+}
+
+.pmx-metrics-cta .pmx-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.pmx-metrics-cta .pmx-btn-outline {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.pmx-metrics-cta .pmx-btn-outline:hover {
+  background: white;
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pmx-section-title {
+    font-size: 2.5rem;
+  }
+  
+  .pmx-metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  
+  .pmx-metrics-controls {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .pmx-category-filters {
+    justify-content: center;
+  }
+  
+  .pmx-time-range-selector {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .pmx-health-metrics-section {
+    padding: 4rem 0;
+  }
+  
+  .pmx-section-title {
+    font-size: 2rem;
+  }
+  
+  .pmx-metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pmx-analytics-dashboard {
+    padding: 2rem 1.5rem;
+  }
+  
+  .pmx-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pmx-metrics-cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  .pmx-metrics-cta h3 {
+    font-size: 1.5rem;
+  }
+  
+  .pmx-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .pmx-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pmx-health-metrics-section {
+    padding: 3rem 0;
+  }
+  
+  .pmx-section-title {
+    font-size: 1.75rem;
+  }
+  
+  .pmx-section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .pmx-metrics-controls {
+    padding: 1rem;
+  }
+  
+  .pmx-filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  
+  .pmx-metric-card,
+  .pmx-dashboard-card {
+    padding: 1.5rem;
+  }
+  
+  .pmx-value-number {
+    font-size: 2rem;
+  }
+  
+  .pmx-score-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .pmx-score-value {
+    font-size: 2rem;
+  }
+  
+  .pmx-analytics-dashboard {
+    padding: 1.5rem 1rem;
+  }
+  
+  .pmx-metrics-cta {
+    padding: 1.5rem 1rem;
+  }
+}

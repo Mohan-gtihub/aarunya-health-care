@@ -1,0 +1,89 @@
+.appointment-form-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.appointment-form {
+  background: var(--card);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.required {
+  color: var(--danger);
+}
+
+.form-error {
+  color: var(--danger);
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+.form-error-box {
+  background: rgba(224, 36, 36, 0.1);
+  color: var(--danger);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--danger);
+  margin-bottom: 1.5rem;
+}
+
+.form-success {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--success);
+  margin-bottom: 1.5rem;
+}
+
+.form-success svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn-block {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.form-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
+.form-note svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .appointment-form {
+    padding: 1.5rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

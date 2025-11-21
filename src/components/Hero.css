@@ -1,0 +1,846 @@
+/* Advanced Hero Section */
+.thrive-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--bg-dark);
+  padding: 8rem 0 4rem;
+}
+
+/* Advanced Background */
+.thrive-hero__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.thrive-hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 50%, rgba(91, 30, 166, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 70% 50%, rgba(225, 182, 59, 0.15) 0%, transparent 60%);
+  animation: gradientShift 20s ease-in-out infinite;
+  transition: transform 0.3s ease-out;
+}
+
+@keyframes gradientShift {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.thrive-hero__mesh-gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg, transparent 30%, rgba(225, 182, 59, 0.03) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(91, 30, 166, 0.03) 50%, transparent 70%);
+  background-size: 200% 200%;
+  animation: meshMove 15s ease infinite;
+}
+
+@keyframes meshMove {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Particles */
+.thrive-hero__particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--brand-gold);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 10s infinite;
+  box-shadow: 0 0 10px rgba(225, 182, 59, 0.5);
+}
+
+@keyframes particleFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(1);
+  }
+}
+
+/* Content */
+.thrive-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+/* Badge */
+.thrive-hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.75rem;
+  background: rgba(225, 182, 59, 0.1);
+  border: 2px solid rgba(225, 182, 59, 0.3);
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brand-gold);
+  margin-bottom: 2rem;
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.badge-icon {
+  font-size: 1.25rem;
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+.badge-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: badgeShine 3s infinite;
+}
+
+@keyframes badgeShine {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 200%;
+  }
+}
+
+/* Specialties Scroll */
+.thrive-hero__specialties {
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.specialties-scroll {
+  display: flex;
+  gap: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: scrollSpecialties 20s linear infinite;
+  white-space: nowrap;
+}
+
+.specialty-dot {
+  color: var(--brand-gold);
+  opacity: 0.5;
+}
+
+@keyframes scrollSpecialties {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Title */
+.thrive-hero__title {
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.thrive-hero__title-gradient {
+  display: block;
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 50%, var(--brand-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientFlow 8s ease-in-out infinite;
+}
+
+@keyframes gradientFlow {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.title-underline {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--brand-gold), transparent);
+  border-radius: 2px;
+  animation: underlinePulse 2s ease-in-out infinite;
+}
+
+@keyframes underlinePulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    width: 200px;
+  }
+
+  50% {
+    opacity: 1;
+    width: 300px;
+  }
+}
+
+/* Tagline Container */
+.thrive-hero__tagline-container {
+  position: relative;
+  height: 60px;
+  margin-bottom: 3rem;
+}
+
+.thrive-hero__tagline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.thrive-hero__tagline.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CTAs */
+.thrive-hero__ctas {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.thrive-btn {
+  position: relative;
+  padding: 1.25rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-icon {
+  font-size: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.thrive-btn:hover .btn-icon {
+  transform: translateX(5px);
+}
+
+.thrive-btn--primary {
+  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 100%);
+  color: var(--bg-dark);
+  box-shadow: 0 12px 40px rgba(225, 182, 59, 0.4);
+}
+
+.btn-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.thrive-btn--primary:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 50px rgba(225, 182, 59, 0.5);
+}
+
+.thrive-btn--primary:hover .btn-glow {
+  transform: translateX(100%);
+}
+
+.thrive-btn--ghost {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  backdrop-filter: blur(10px);
+}
+
+.thrive-btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--brand-gold);
+  color: var(--brand-gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Stats Section - Simple Text Design */
+.thrive-hero__stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin-top: 4rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: default;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.stat-content {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #FFD700;
+  line-height: 1.1;
+  text-shadow:
+    0 0 30px rgba(255, 215, 0, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.02em;
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.stat-helper {
+  display: none;
+}
+
+.stat-glow {
+  display: none;
+}
+
+/* Responsive Design for Stats */
+@media (max-width: 968px) {
+  .thrive-hero__stats {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 0;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+
+  .stat-label {
+    font-size: 1.125rem;
+  }
+}
+
+/* Biomarker Visualization */
+.thrive-hero__biomarker {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.biomarker-container {
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(225, 182, 59, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.biomarker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.biomarker-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand-gold);
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-gold);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.biomarker-time {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-family: 'Courier New', monospace;
+}
+
+.biomarker-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
+}
+
+.grid-line {
+  position: absolute;
+  background: var(--brand-gold);
+}
+
+.grid-line.horizontal {
+  width: 100%;
+  height: 1px;
+}
+
+.grid-line.vertical {
+  width: 1px;
+  height: 100%;
+}
+
+.grid-line.horizontal:nth-child(1) {
+  top: 20%;
+}
+
+.grid-line.horizontal:nth-child(2) {
+  top: 40%;
+}
+
+.grid-line.horizontal:nth-child(3) {
+  top: 60%;
+}
+
+.grid-line.horizontal:nth-child(4) {
+  top: 80%;
+}
+
+.grid-line.vertical:nth-child(5) {
+  left: 20%;
+}
+
+.grid-line.vertical:nth-child(6) {
+  left: 40%;
+}
+
+.grid-line.vertical:nth-child(7) {
+  left: 60%;
+}
+
+.grid-line.vertical:nth-child(8) {
+  left: 80%;
+}
+
+/* ECG Wave */
+.ecg-container {
+  margin: 1.5rem 0;
+  position: relative;
+}
+
+.ecg-wave {
+  width: 100%;
+  height: 60px;
+}
+
+.ecg-path {
+  animation: ecgPulse 2s linear infinite;
+}
+
+@keyframes ecgPulse {
+  0% {
+    stroke-dasharray: 0, 1000;
+  }
+
+  100% {
+    stroke-dasharray: 1000, 0;
+  }
+}
+
+.ecg-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Heart Rate */
+.biomarker-circle {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 1.5rem auto;
+}
+
+.pulse-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--brand-gold);
+  border-radius: 50%;
+  animation: ringPulse 2s ease-out infinite;
+}
+
+.pulse-ring:nth-child(2) {
+  animation-delay: 1s;
+}
+
+@keyframes ringPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
+
+.pulse-center {
+  position: absolute;
+  inset: 10px;
+  background: rgba(225, 182, 59, 0.2);
+  border: 2px solid var(--brand-gold);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pulse-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--brand-gold);
+}
+
+.pulse-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+}
+
+/* Activity Graph */
+.biomarker-graph {
+  margin: 1.5rem 0;
+}
+
+.graph-bars {
+  display: flex;
+  gap: 4px;
+  height: 60px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.bar {
+  flex: 1;
+  background: linear-gradient(180deg, var(--brand-gold), rgba(225, 182, 59, 0.3));
+  border-radius: 2px 2px 0 0;
+  animation: barGrow 1.5s ease-out forwards;
+  transform-origin: bottom;
+}
+
+@keyframes barGrow {
+  from {
+    transform: scaleY(0);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.graph-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* DNA Strand */
+.biomarker-dna {
+  margin: 1.5rem 0;
+}
+
+.dna-strand {
+  position: relative;
+  height: 60px;
+}
+
+.dna-helix {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg,
+      transparent,
+      transparent 10px,
+      rgba(225, 182, 59, 0.2) 10px,
+      rgba(225, 182, 59, 0.2) 12px);
+  animation: dnaRotate 4s linear infinite;
+}
+
+@keyframes dnaRotate {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(24px);
+  }
+}
+
+.dna-base-pairs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.base-pair {
+  height: 2px;
+  background: var(--brand-gold);
+  opacity: 0.5;
+}
+
+.dna-label {
+  font-size: 0.7rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Floating Dots */
+.biomarker-dots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin: 1.5rem 0;
+}
+
+.biomarker-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-gold);
+  border-radius: 50%;
+  animation: dotFloat 3s ease-in-out infinite;
+}
+
+.biomarker-dot:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
+@keyframes dotFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+  z-index: 10;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  color: var(--brand-gold);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .thrive-hero__biomarker {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .thrive-hero {
+    min-height: 85vh;
+    padding: 6rem 0 3rem;
+  }
+
+  .thrive-hero__ctas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .thrive-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .thrive-hero__stats {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

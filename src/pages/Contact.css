@@ -1,0 +1,129 @@
+.contact-content {
+  padding: 5rem 0;
+  background: var(--bg);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-info h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.contact-info > p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text);
+  margin-bottom: 3rem;
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.contact-method {
+  display: flex;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem;
+  background: white;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.contact-method:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.method-icon {
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 119, 200, 0.3);
+}
+
+.method-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-method h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+  color: var(--primary);
+  font-weight: var(--fw-semibold);
+}
+
+.contact-method p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-method p:first-of-type {
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  font-size: 1.05rem;
+}
+
+.map-placeholder {
+  margin-top: 3rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border: 3px solid white;
+}
+
+.contact-form {
+  padding: 3rem;
+  background: white;
+}
+
+.contact-form h2 {
+  margin-bottom: 2rem;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+@media (max-width: 900px) {
+  .contact-content {
+    padding: 3rem 0;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .contact-form {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-method {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .method-icon {
+    margin: 0 auto;
+  }
+}

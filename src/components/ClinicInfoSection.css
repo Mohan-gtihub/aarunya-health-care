@@ -1,0 +1,120 @@
+.clinic-info {
+  background: transparent;
+}
+
+.clinic-info .section-head {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.clinic-info__stage {
+  position: relative;
+  min-height: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+  overflow: visible;
+}
+
+.clinic-info__halo {
+  position: absolute;
+  width: clamp(320px, 50vw, 560px);
+  height: clamp(320px, 50vw, 560px);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(91, 30, 166, 0.35), rgba(9, 10, 19, 0.9));
+  filter: blur(2px);
+  box-shadow: 0 0 80px rgba(91, 30, 166, 0.35);
+}
+
+.clinic-core {
+  max-width: 520px;
+  text-align: center;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clinic-core h3 {
+  margin: 1rem 0;
+}
+
+.clinic-card-floating {
+  position: absolute;
+  width: min(360px, 90vw);
+  border-radius: 28px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+  z-index: 10;
+}
+
+.clinic-card-floating--diag {
+  top: -20px;
+  left: max(5%, 40px);
+}
+
+.clinic-card-floating--special {
+  bottom: -20px;
+  right: max(5%, 40px);
+}
+
+.clinic-subtext {
+  margin: 0;
+  color: var(--text-tertiary);
+}
+
+.clinic-info__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.clinic-card {
+  border-radius: 24px;
+}
+
+.clinic-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  font-family: var(--font-family-primary);
+  color: var(--text-secondary);
+}
+
+.clinic-card ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.clinic-card ul li span {
+  font-size: 1.25rem;
+}
+
+.clinic-label {
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  margin-bottom: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .clinic-card-floating {
+    position: relative;
+    top: auto;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    margin-bottom: 1rem;
+  }
+
+  .clinic-info__stage {
+    flex-direction: column;
+  }
+}
+

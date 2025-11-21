@@ -1,0 +1,429 @@
+:root {
+  --brand-purple: #5b1ea6; 
+  --brand-gold: #ff8c00;   
+  --brand-purple-light: #7c4dff; 
+  --brand-gold-light: #ffa726;  
+  --neutral-900: #030510; /* Ultra-dark background */
+  --neutral-50: #ffffff; 
+  --neutral-300: #cccccc;
+  --glow-color: var(--brand-purple-light); 
+  --accent-color: var(--brand-gold-light); 
+}
+
+/* --- Section Container & Background --- */
+
+.preventive-care-section {
+  padding: 100px 0;
+  background: var(--neutral-900);
+  position: relative;
+  overflow: hidden;
+  color: var(--neutral-50);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Floating background elements for depth */
+.floating-circle {
+  opacity: 0.05 !important; /* Extremely subtle */
+  filter: blur(100px); 
+  pointer-events: none;
+}
+
+/* --- Header --- */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  /* Deep Blue/Purple Gradient Text with strong outline effect */
+  background: linear-gradient(90deg, var(--glow-color), var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(124, 77, 255, 0.5); 
+}
+
+.section-subtitle {
+  font-size: 1.3rem;
+  color: var(--neutral-300);
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: monospace; /* Tech/UI look */
+}
+
+/* --- Services Container (Grid Layout defined by lines) --- */
+
+.services-container {
+  display: grid;
+  grid-template-columns: 280px 1fr; /* Navigation on left, Content on right */
+  gap: 0; /* No gap for a seamless look */
+  min-height: 600px;
+  
+  /* Define the main area with subtle, transparent borders */
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 15, 30, 0.1); /* Subtle, flowing background */
+  position: relative;
+}
+
+/* --- Services Navigation (Left Vertical Data Tabs) --- */
+
+.services-navigation {
+  padding: 40px 0;
+  border-right: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.service-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-out;
+  border-left: 3px solid transparent;
+}
+
+.service-nav-item:hover {
+  background-color: rgba(124, 77, 255, 0.05);
+}
+
+.service-nav-item.active {
+  background-color: rgba(124, 77, 255, 0.1);
+  border-left-color: var(--glow-color); /* Active line on the left */
+}
+
+.service-nav-icon {
+  font-size: 1.5rem;
+  margin-right: 15px;
+  transition: color 0.2s ease;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
+}
+
+.service-nav-text h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--neutral-50);
+}
+
+.service-nav-text p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--neutral-300);
+  opacity: 0.8;
+}
+
+.active-indicator {
+  /* This is handled by border-left in the active class now, but keeping layoutId for Framer Motion */
+  display: none !important;
+}
+
+/* --- Service Detail (The Flowing Data View) --- */
+
+.service-detail {
+  display: flex;
+  padding: 50px 60px;
+  gap: 40px;
+}
+
+.service-graphic {
+  flex-shrink: 0;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* Defining the graphic area with subtle lines, not a box */
+  border: 1px solid rgba(124, 77, 255, 0.15); 
+  border-width: 0 1px 0 0;
+  padding-right: 40px;
+}
+
+.service-content {
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+/* --- Content Styling --- */
+
+.service-header {
+  margin-bottom: 25px;
+}
+
+.service-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  /* No background, just a pulsing border effect */
+  background: none; 
+  border: 2px solid;
+  border-color: var(--glow-color);
+  border-radius: 50%;
+  margin-bottom: 15px;
+  animation: pulse-border 1.5s infinite alternate;
+}
+
+.service-icon-wrapper .service-icon {
+  font-size: 1.8rem;
+  color: var(--glow-color);
+}
+
+@keyframes pulse-border {
+    from { box-shadow: 0 0 0 0px var(--glow-color)80; }
+    to { box-shadow: 0 0 0 6px transparent; }
+}
+
+.service-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent-color); 
+}
+
+.service-subtitle {
+  font-size: 1rem;
+  color: var(--neutral-300);
+  margin: 5px 0 0 0;
+}
+
+.service-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--neutral-300);
+  margin-bottom: 30px;
+}
+
+/* --- Features and Actions --- */
+
+.service-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.feature-tag {
+  background-color: transparent;
+  padding: 6px 10px;
+  border-radius: 0; /* No radius */
+  font-size: 0.9rem;
+  color: var(--neutral-300);
+  border-bottom: 1px dotted var(--glow-color); /* Dotted line effect */
+}
+
+.feature-check {
+  margin-right: 5px;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.service-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.primary-btn, .secondary-btn {
+  padding: 12px 25px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.primary-btn {
+  color: var(--neutral-50);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.primary-btn:hover {
+  background-color: transparent;
+  color: var(--accent-color);
+  box-shadow: 0 0 15px var(--accent-color)50;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--glow-color);
+  border-color: var(--glow-color);
+}
+
+.secondary-btn:hover {
+  background-color: var(--glow-color);
+  color: var(--neutral-900);
+}
+
+/* --- Graphic (Abstract Data Visualization) --- */
+
+.graphic-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Grid overlay for a system readout effect */
+.graphic-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.graphic-icon {
+  font-size: 8rem;
+  position: absolute;
+  opacity: 0.05; /* Extremely faded background icon */
+  color: var(--glow-color);
+  z-index: 2;
+}
+
+/* Pulse / Data Lines for Visuals */
+.pulse-circle, .rotating-circle, .ripple-circle {
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.8;
+  width: 60%;
+  height: 60%;
+  border: 3px solid;
+  background: none;
+  animation: none;
+  z-index: 3;
+}
+
+/* Custom visual effects for data flow */
+.pulse-circle {
+  border-color: var(--accent-color);
+  transform: rotate(45deg);
+  /* Linear scan animation */
+  animation: data-scan 4s infinite linear;
+}
+
+.rotating-circle {
+  width: 70%;
+  height: 70%;
+  border-color: var(--glow-color);
+  border-style: dashed;
+  animation: rotate-data 15s infinite linear reverse;
+}
+
+.ripple-circle {
+  width: 80%;
+  height: 80%;
+  border-color: var(--glow-color);
+  opacity: 0.2;
+}
+
+@keyframes data-scan {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 5%, 0 5%); }
+    100% { clip-path: polygon(0 95%, 100% 95%, 100% 100%, 0 100%); }
+}
+@keyframes rotate-data {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --- Progress Indicator (Mobile Navigation) --- */
+
+.progress-indicator {
+  display: none; /* Hide for this design, rely on full navigation */
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 1024px) {
+  .services-container {
+    grid-template-columns: 1fr; /* Stack */
+    border: none;
+    background: none;
+  }
+
+  .services-navigation {
+    border-right: none;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+  }
+  
+  .service-nav-item {
+    flex-shrink: 0;
+    min-width: 150px;
+    margin-right: 15px;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .service-nav-item.active {
+    border-bottom-color: var(--glow-color);
+    border-left: none;
+  }
+
+  .service-detail {
+    flex-direction: column-reverse;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+  
+  .service-graphic {
+    width: 100%;
+    min-width: 0;
+    height: 300px;
+    border: none;
+    padding-right: 0;
+  }
+  
+  .service-content {
+    text-align: center;
+  }
+  
+  .service-header {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .service-actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .service-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .primary-btn, .secondary-btn {
+    width: 100%;
+  }
+}

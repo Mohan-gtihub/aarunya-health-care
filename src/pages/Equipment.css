@@ -1,0 +1,174 @@
+.equipment-content {
+  padding: 4rem 0;
+}
+
+.equipment-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.equipment-tabs .tab {
+  padding: 0.875rem 2rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: white;
+  color: var(--text);
+  font-weight: var(--fw-semibold);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.equipment-tabs .tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.equipment-tabs .tab.active {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border-color: transparent;
+}
+
+.equipment-section h2 {
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+
+.equipment-card {
+  margin-bottom: 2rem;
+  padding: 2rem;
+}
+
+.equipment-card h3 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.equipment-type {
+  color: var(--accent);
+  font-weight: var(--fw-semibold);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.workflow-section,
+.features-section,
+.tests-section {
+  margin-top: 1.5rem;
+}
+
+.workflow-section h4,
+.features-section h4,
+.tests-section h4 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.workflow-steps {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.workflow-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+}
+
+.step-number {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: var(--fw-bold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.workflow-step p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.features-list li {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.features-list svg {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.test-item {
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+}
+
+.test-item:last-child {
+  margin-bottom: 0;
+}
+
+.test-item h5 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.test-item p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .equipment-content {
+    padding: 3rem 0;
+  }
+
+  .equipment-tabs {
+    gap: 0.5rem;
+  }
+
+  .equipment-tabs .tab {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .equipment-card {
+    padding: 1.5rem;
+  }
+
+  .workflow-step {
+    flex-direction: column;
+  }
+
+  .step-number {
+    align-self: flex-start;
+  }
+}

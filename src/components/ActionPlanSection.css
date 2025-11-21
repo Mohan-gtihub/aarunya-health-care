@@ -1,0 +1,716 @@
+/* PMX Health Inspired Action Plan Section */
+.pmx-action-plan-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #f8fafb 0%, #f1f5f9 100%);
+  position: relative;
+}
+
+/* Section Header */
+.pmx-section-header {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  color: white;
+  border-radius: 50px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.pmx-section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--text), var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pmx-section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Category Tabs */
+.pmx-category-tabs {
+  margin-bottom: 3rem;
+}
+
+.pmx-tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  flex-wrap: wrap;
+}
+
+.pmx-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.pmx-tab-btn:hover {
+  background: rgba(10, 110, 90, 0.05);
+  color: var(--primary);
+}
+
+.pmx-tab-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  box-shadow: 0 4px 12px rgba(10, 110, 90, 0.2);
+}
+
+.pmx-tab-icon {
+  font-size: 1rem;
+}
+
+.pmx-tab-label {
+  font-weight: 600;
+}
+
+/* Plans Grid */
+.pmx-plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.pmx-plan-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  position: relative;
+}
+
+.pmx-plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(10, 110, 90, 0.15);
+  border-color: var(--primary);
+}
+
+/* Plan Header */
+.pmx-plan-header {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.pmx-plan-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pmx-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.pmx-image-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  opacity: 0.9;
+}
+
+.pmx-weight-management::after {
+  content: '⚖️';
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-heart-health::after {
+  content: '❤️';
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-mental-wellness::after {
+  content: '🧘';
+  font-size: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-image-overlay {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.pmx-category-badge {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--primary);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+.pmx-plan-meta {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.pmx-duration-badge,
+.pmx-difficulty-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
+/* Plan Content */
+.pmx-plan-content {
+  padding: 2rem;
+}
+
+.pmx-plan-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.pmx-plan-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+/* Progress Section */
+.pmx-progress-section {
+  margin-bottom: 1.5rem;
+}
+
+.pmx-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.pmx-progress-label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.pmx-progress-value {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 0.875rem;
+}
+
+.pmx-progress-bar {
+  height: 8px;
+  background: rgba(10, 110, 90, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.pmx-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Goals Section */
+.pmx-goals-section {
+  margin-bottom: 1.5rem;
+}
+
+.pmx-goals-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.pmx-goals-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pmx-goal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  color: var(--text);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.pmx-goal-item svg {
+  flex-shrink: 0;
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+/* Milestones Section */
+.pmx-milestones-section {
+  margin-bottom: 1.5rem;
+}
+
+.pmx-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(10, 110, 90, 0.02);
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  border-radius: 12px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pmx-expand-btn:hover {
+  background: rgba(10, 110, 90, 0.05);
+  border-color: var(--primary);
+}
+
+.pmx-chevron {
+  transition: transform 0.3s ease;
+  color: var(--primary);
+}
+
+.pmx-chevron.expanded {
+  transform: rotate(180deg);
+}
+
+.pmx-milestones-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pmx-milestone-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: white;
+  border: 1px solid rgba(10, 110, 90, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pmx-milestone-item:hover {
+  background: rgba(10, 110, 90, 0.02);
+}
+
+.pmx-milestone-item.completed {
+  background: rgba(16, 185, 129, 0.05);
+  border-color: var(--success);
+}
+
+.pmx-milestone-marker {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pmx-milestone-item:not(.completed) .pmx-milestone-marker {
+  background: rgba(10, 110, 90, 0.1);
+  color: var(--primary);
+}
+
+.pmx-milestone-item.completed .pmx-milestone-marker {
+  background: var(--success);
+  color: white;
+}
+
+.pmx-milestone-content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pmx-milestone-week {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pmx-milestone-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* Plan Footer */
+.pmx-plan-footer {
+  padding: 1.5rem 2rem;
+  border-top: 1px solid rgba(10, 110, 90, 0.08);
+  background: rgba(10, 110, 90, 0.02);
+}
+
+.pmx-next-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.pmx-action-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pmx-action-text {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.pmx-plan-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.pmx-btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Create Plan CTA */
+.pmx-create-plan-cta {
+  background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.pmx-create-plan-cta::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.pmx-cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.pmx-cta-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.pmx-create-plan-cta h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.pmx-create-plan-cta p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pmx-cta-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pmx-create-plan-cta .pmx-btn-primary {
+  background: white;
+  color: var(--secondary);
+  border-color: white;
+}
+
+.pmx-create-plan-cta .pmx-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+.pmx-create-plan-cta .pmx-btn-outline {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.pmx-create-plan-cta .pmx-btn-outline:hover {
+  background: white;
+  color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* Features Showcase */
+.pmx-features-showcase {
+  background: white;
+  border-radius: 24px;
+  padding: 3rem;
+}
+
+.pmx-features-header {
+  margin-bottom: 3rem;
+}
+
+.pmx-features-header h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.pmx-features-header p {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+}
+
+.pmx-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.pmx-feature-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.pmx-feature-card:hover {
+  background: rgba(10, 110, 90, 0.02);
+  transform: translateY(-4px);
+}
+
+.pmx-feature-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(10, 110, 90, 0.2);
+}
+
+.pmx-feature-card h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+}
+
+.pmx-feature-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .pmx-section-title {
+    font-size: 2.5rem;
+  }
+  
+  .pmx-plans-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+  
+  .pmx-tabs-container {
+    padding: 0.25rem;
+  }
+  
+  .pmx-tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pmx-action-plan-section {
+    padding: 4rem 0;
+  }
+  
+  .pmx-section-title {
+    font-size: 2rem;
+  }
+  
+  .pmx-plans-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pmx-plan-content {
+    padding: 1.5rem;
+  }
+  
+  .pmx-plan-footer {
+    padding: 1rem 1.5rem;
+  }
+  
+  .px-create-plan-cta {
+    padding: 2rem 1.5rem;
+  }
+  
+  .px-features-showcase {
+    padding: 2rem 1.5rem;
+  }
+  
+  .px-features-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .px-cta-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .px-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pmx-action-plan-section {
+    padding: 3rem 0;
+  }
+  
+  .pmx-section-title {
+    font-size: 1.75rem;
+  }
+  
+  .pmx-section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .pmx-tabs-container {
+    gap: 0.25rem;
+  }
+  
+  .pmx-tab-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .pmx-tab-icon {
+    font-size: 0.875rem;
+  }
+  
+  .pmx-plan-content,
+  .pmx-plan-footer {
+    padding: 1rem;
+  }
+  
+  .pmx-plan-title {
+    font-size: 1.25rem;
+  }
+  
+  .px-create-plan-cta {
+    padding: 1.5rem 1rem;
+  }
+  
+  .px-features-showcase {
+    padding: 1.5rem 1rem;
+  }
+  
+  .px-feature-card {
+    padding: 1.5rem 1rem;
+  }
+}
