@@ -20,7 +20,6 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'build')));
 
 // Data storage (in production, use a proper database)
 let appointments = [];
@@ -528,13 +527,6 @@ function generateCancellationEmailTemplate(appointment) {
     </body>
     </html>
   `;
-}
-
-// Serve React app in production
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
 }
 
 // Error handling middleware
