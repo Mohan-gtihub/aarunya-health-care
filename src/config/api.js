@@ -1,9 +1,6 @@
 // API Configuration
-// In development, use relative URLs (Vite proxy will handle it)
-// In production, use the full Render URL
-const API_URL = import.meta.env.MODE === 'production'
-    ? 'https://aarunya-health-care.onrender.com'
-    : '';
+// Always use production URL
+// In local dev, Vite proxy will intercept /api calls
+const API_URL = 'https://aarunya-health-care.onrender.com';
 
 export default API_URL;
-
