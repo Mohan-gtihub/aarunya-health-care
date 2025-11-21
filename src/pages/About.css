@@ -96,13 +96,12 @@
 }
 
 .stat-card {
-  background: white;
   padding: 2.5rem 2rem;
   border-radius: var(--radius);
   text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: var(--transition);
-  border-top: 4px solid var(--primary);
+  /* border-top: 4px solid var(--primary); */
 }
 
 .stat-card:hover {
