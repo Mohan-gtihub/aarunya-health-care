@@ -8,7 +8,7 @@ const navLinks = [
   { label: 'FAQ', hash: '#faq' },
   { label: 'About', route: '/about' },
   { label: 'Doctors', route: '/doctors' },
-  { label: 'Contact Us', hash: '#contact-cta' }
+  { label: 'Contact Us', route: '/contact' }
 ];
 
 export default function Header() {

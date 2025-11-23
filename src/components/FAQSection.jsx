@@ -3,20 +3,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const faqList = [
   {
-    question: 'Do you accept walk-ins or only appointments?',
-    answer: 'Both. Walk-ins are welcome for general consults, while specialty clinics are best reserved ahead of time to avoid queues.'
+    question: 'What services does Aarunya Health Care Clinics offer?',
+    answer: 'We offer multidisciplinary care across Internal Medicine, Diabetology, Oncology, Psychiatry, Physiotherapy, Daycare, and Diagnostic services. Our focus is on prevention, treatment, rehabilitation, and long-term health monitoring.'
   },
   {
-    question: 'How soon will I receive my lab reports?',
-    answer: 'Most investigations are reported within the same day. Comprehensive panels are shared on email/WhatsApp within 24 hours.'
+    question: 'Do I need an appointment to visit?',
+    answer: 'Walk-ins are allowed for basic services, but prior appointment is recommended to reduce waiting time and ensure specialist availability.'
   },
   {
-    question: 'Do you provide cashless/insurance support?',
-    answer: 'Yes, our billing desk works with leading TPAs. Share your card before the visit and we will coordinate pre-authorisations.'
+    question: 'Do you provide physiotherapy after surgery or cancer treatment?',
+    answer: 'Yes. Our physiotherapy team specializes in post-surgical, orthopedic, and oncology rehabilitation to enhance recovery and mobility.'
   },
   {
-    question: 'Is home sample collection or physiotherapy available?',
-    answer: 'Absolutely. Call our care desk before 6 pm and we will schedule at-home phlebotomy or physio sessions the next morning.'
+    question: 'Do you offer preventive health check-ups?',
+    answer: 'Yes, we offer customized health packages focusing on diabetes, heart health, metabolic evaluation, cancer screening, and general wellness.'
+  },
+  {
+    question: 'Are teleconsultations available?',
+    answer: 'Yes, online consultations are available for select departments including internal medicine, diabetology, and psychiatry.'
+  },
+  {
+    question: 'Do you have diagnostic and daycare facilities?',
+    answer: 'Yes. Our in-house diagnostic lab and daycare center enable quick evaluation and short-stay procedures.'
+  },
+  {
+    question: 'What should I bring for my first visit?',
+    answer: 'Please carry your previous medical records, list of medications, and any diagnostic reports if available.'
   }
 ];
 
@@ -28,7 +40,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section style={{
+    <section id="faq" style={{
       background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)',
       padding: '80px 0',
       position: 'relative',
@@ -102,7 +114,7 @@ const FAQSection = () => {
           margin: '0 auto'
         }}>
           {faqList.map((faq, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +145,7 @@ const FAQSection = () => {
                   fontSize: '1.1rem',
                   fontWeight: 500
                 }}
-                whileHover={{ 
+                whileHover={{
                   background: 'rgba(255, 255, 255, 0.03)',
                 }}
               >
@@ -164,7 +176,7 @@ const FAQSection = () => {
                 {openIndex === index && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
-                    animate={{ 
+                    animate={{
                       height: 'auto',
                       opacity: 1,
                       transition: {
@@ -172,7 +184,7 @@ const FAQSection = () => {
                         opacity: { duration: 0.2, delay: 0.1 }
                       }
                     }}
-                    exit={{ 
+                    exit={{
                       height: 0,
                       opacity: 0,
                       transition: {
@@ -221,7 +233,7 @@ const FAQSection = () => {
             background: 'radial-gradient(circle, rgba(124, 77, 255, 0.15) 0%, transparent 70%)',
             borderRadius: '50%'
           }}></div>
-          
+
           <h3 style={{
             fontSize: '1.8rem',
             fontWeight: 700,

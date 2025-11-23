@@ -63,7 +63,7 @@ const TeamSection = () => {
 
   if (loading) {
     return (
-      <section style={{ 
+      <section style={{
         padding: '80px 20px',
         textAlign: 'center',
         background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)'
@@ -75,7 +75,7 @@ const TeamSection = () => {
 
   if (error) {
     return (
-      <section style={{ 
+      <section style={{
         padding: '80px 20px',
         textAlign: 'center',
         background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)',
@@ -87,14 +87,17 @@ const TeamSection = () => {
   }
 
   return (
-    <section style={{ 
-      padding: '80px 0',
-      background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)'
-    }}>
-      <div style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 20px' 
+    <section
+      id="team"
+      style={{
+        padding: '80px 0',
+        background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)'
+      }}
+    >
+      <div style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 20px'
       }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -122,8 +125,8 @@ const TeamSection = () => {
               onClick={() => setActiveDoctor(doctor)}
             >
               <div style={styles.imageContainer}>
-                <img 
-                  src={doctor.image} 
+                <img
+                  src={doctor.image}
                   alt={doctor.name}
                   style={styles.image}
                   loading="lazy"
@@ -159,33 +162,33 @@ const TeamSection = () => {
               style={styles.modalContent}
               onClick={e => e.stopPropagation()}
             >
-              <button 
+              <button
                 style={styles.closeButton}
                 onClick={() => setActiveDoctor(null)}
                 aria-label="Close"
               >
                 &times;
               </button>
-              
+
               <div style={styles.modalGrid}>
                 <div style={styles.modalImageContainer}>
-                  <img 
-                    src={activeDoctor.image} 
+                  <img
+                    src={activeDoctor.image}
                     alt={activeDoctor.name}
                     style={styles.modalImage}
                   />
                 </div>
-                
+
                 <div style={styles.modalInfo}>
                   <h3 style={styles.modalName}>{activeDoctor.name}</h3>
                   <p style={styles.modalRole}>{activeDoctor.role}</p>
                   <p style={styles.modalSpecialty}>{activeDoctor.specialty} • {activeDoctor.location}</p>
-                  
+
                   <div style={styles.modalSection}>
                     <h4 style={styles.sectionTitle}>About</h4>
                     <p>{activeDoctor.bio}</p>
                   </div>
-                  
+
                   <div style={styles.modalSection}>
                     <h4 style={styles.sectionTitle}>Experience</h4>
                     <p>{activeDoctor.experience} of experience</p>

@@ -2,6 +2,7 @@
 import SpecialtiesSection from '../components/SpecialtiesSection';
 import RehabilitationSection from '../components/RehabilitationSection';
 import PreventiveCareSection from '../components/PreventiveCareSection';
+import HealthPackagesSection from '../components/HealthPackagesSection';
 import WhyChooseSection from '../components/WhyChooseSection';
 import ClinicInfoSection from '../components/ClinicInfoSection';
 import ActionPlanJourney from '../components/ActionPlanJourney';
@@ -17,6 +18,7 @@ export default function Home() {
       <SpecialtiesSection />
       <RehabilitationSection />
       <PreventiveCareSection />
+      <HealthPackagesSection />
       <WhyChooseSection />
       <ClinicInfoSection />
       <ActionPlanJourney />

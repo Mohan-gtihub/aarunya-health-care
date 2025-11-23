@@ -14,7 +14,16 @@ const allDoctors = [
     location: 'SR Nagar',
     image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80',
     available: true,
-    bio: 'Completed MBBS from Deccan College of Medical Sciences and MD in Paediatrics from Prathima Institute. Awarded MRCPCH from Royal College of Paediatrics and Child Health, UK. Completed post graduate programmes in paediatric nutrition and vaccination.'
+    bio: 'Completed MBBS from Deccan College of Medical Sciences and MD in Paediatrics from Prathima Institute. Awarded MRCPCH from Royal College of Paediatrics and Child Health, UK. Completed post graduate programmes in paediatric nutrition and vaccination.',
+    clinicalExpertise: [
+      'Pediatric nutrition and growth monitoring',
+      'Vaccination and immunization programs',
+      'Childhood infectious diseases',
+      'Developmental pediatrics'
+    ],
+    philosophy: 'I believe healthcare begins with listening, treating with precision, and guiding parents toward long-term health for their children.',
+    languages: ['English', 'Hindi', 'Telugu', 'Urdu'],
+    teleconsultation: true
   },
   {
     id: 2,
@@ -25,7 +34,16 @@ const allDoctors = [
     location: 'SR Nagar',
     image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
     available: true,
-    bio: 'Associate Consultant specializing in Complex Orthopaedic Trauma, Joint Replacements, and Sports Medicine. Fellowship in Hip & Pelviacetabular Trauma (AO Trauma Austria). Certified in Robotic Knee Replacement and Advanced Knee and Shoulder Arthroscopy.'
+    bio: 'Associate Consultant specializing in Complex Orthopaedic Trauma, Joint Replacements, and Sports Medicine. Fellowship in Hip & Pelviacetabular Trauma (AO Trauma Austria). Certified in Robotic Knee Replacement and Advanced Knee and Shoulder Arthroscopy.',
+    clinicalExpertise: [
+      'Complex orthopedic trauma management',
+      'Total joint replacements (Hip, Knee)',
+      'Sports medicine and arthroscopy',
+      'Robotic-assisted knee surgery'
+    ],
+    philosophy: 'Precision in surgery, compassion in care, and commitment to restoring mobility and quality of life.',
+    languages: ['English', 'Hindi', 'Telugu'],
+    teleconsultation: false
   },
   // Bachupally Clinic
   {
@@ -37,7 +55,16 @@ const allDoctors = [
     location: 'Bachupally',
     image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
     available: true,
-    bio: 'Accomplished obstetrician and gynecologist with MS from Gandhi Medical College. Fellowship in Minimal Access Surgery (FMAS) from World Laparoscopy Hospital, New Delhi. Advanced Diploma in Assisted Reproductive Technology (ART) from Germany.'
+    bio: 'Accomplished obstetrician and gynecologist with MS from Gandhi Medical College. Fellowship in Minimal Access Surgery (FMAS) from World Laparoscopy Hospital, New Delhi. Advanced Diploma in Assisted Reproductive Technology (ART) from Germany.',
+    clinicalExpertise: [
+      'High-risk pregnancy management',
+      'Laparoscopic gynecological surgery',
+      'Infertility treatment and ART',
+      'Women\'s health and wellness'
+    ],
+    philosophy: 'Empowering women through comprehensive care, advanced treatments, and compassionate support at every life stage.',
+    languages: ['English', 'Hindi', 'Telugu'],
+    teleconsultation: true
   },
   {
     id: 4,
@@ -48,7 +75,16 @@ const allDoctors = [
     location: 'Bachupally',
     image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80',
     available: true,
-    bio: 'Distinguished consultant Orthopaedic surgeon specializing in Arthroscopy, Joint Replacement, and Trauma Surgeries. MS from Manipal University. Fellowship in Sports Medicine and Arthroplasty from Seoul, South Korea.'
+    bio: 'Distinguished consultant Orthopaedic surgeon specializing in Arthroscopy, Joint Replacement, and Trauma Surgeries. MS from Manipal University. Fellowship in Sports Medicine and Arthroplasty from Seoul, South Korea.',
+    clinicalExpertise: [
+      'Arthroscopic surgery (Knee, Shoulder)',
+      'Primary and revision joint replacements',
+      'Trauma and fracture management',
+      'Sports injury rehabilitation'
+    ],
+    philosophy: 'Excellence in orthopedic care through advanced techniques, personalized treatment, and patient-centered recovery.',
+    languages: ['English', 'Hindi', 'Telugu'],
+    teleconsultation: false
   },
   {
     id: 5,
@@ -59,7 +95,16 @@ const allDoctors = [
     location: 'Bachupally',
     image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80',
     available: true,
-    bio: 'Provides full range of services for critically ill patients with acute surgical emergencies, sepsis, shock, respiratory failure and multisystem organ failures. Expert in treating surgical emergencies, infections, and trauma cases.'
+    bio: 'Provides full range of services for critically ill patients with acute surgical emergencies, sepsis, shock, respiratory failure and multisystem organ failures. Expert in treating surgical emergencies, infections, and trauma cases.',
+    clinicalExpertise: [
+      'Critical care and emergency management',
+      'Acute surgical emergencies',
+      'Sepsis and shock management',
+      'Trauma and multi-organ failure care'
+    ],
+    philosophy: 'Every second counts in emergency care - swift action, expert judgment, and compassionate treatment save lives.',
+    languages: ['English', 'Hindi', 'Telugu'],
+    teleconsultation: false
   },
   {
     id: 6,
@@ -70,7 +115,17 @@ const allDoctors = [
     location: 'Both Locations',
     image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80',
     available: true,
-    bio: 'Experienced physiotherapist specializing in pre and post surgery rehabilitation. Expert in Orthopaedic, Neurological Disorders, Sports Injuries, Chronic Pain Management, Pediatric and Geriatric Care, and Women\'s Health.'
+    bio: 'Experienced physiotherapist specializing in pre and post surgery rehabilitation. Expert in Orthopaedic, Neurological Disorders, Sports Injuries, Chronic Pain Management, Pediatric and Geriatric Care, and Women\'s Health.',
+    clinicalExpertise: [
+      'Post-surgical rehabilitation',
+      'Neurological disorder management',
+      'Sports injury recovery',
+      'Chronic pain management',
+      'Geriatric and pediatric physiotherapy'
+    ],
+    philosophy: 'Movement is medicine - restoring function, reducing pain, and empowering patients to reclaim their active lives.',
+    languages: ['English', 'Hindi', 'Telugu'],
+    teleconsultation: true
   }
 ];
 

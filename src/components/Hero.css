@@ -809,27 +809,155 @@
 
 @media (max-width: 768px) {
   .thrive-hero {
-    min-height: 85vh;
-    padding: 6rem 0 3rem;
+    min-height: auto;
+    padding: 5rem 0 2rem;
   }
 
+  .thrive-hero__content {
+    padding: 0 1.5rem;
+  }
+
+  /* Badge */
+  .thrive-hero__badge {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-icon {
+    font-size: 1rem;
+  }
+
+  /* Title */
+  .thrive-hero__title {
+    font-size: clamp(1.75rem, 8vw, 2.5rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* Tagline */
+  .thrive-hero__tagline-container {
+    height: auto;
+    min-height: 50px;
+    margin-bottom: 2rem;
+  }
+
+  .thrive-hero__tagline {
+    font-size: 1rem;
+    line-height: 1.5;
+    position: static;
+  }
+
+  /* CTAs */
   .thrive-hero__ctas {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
   }
 
   .thrive-btn {
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 0.875rem;
   }
 
+  /* Stats */
   .thrive-hero__stats {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    margin-top: 2.5rem;
+    gap: 2rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
   }
 
   .scroll-indicator {
     display: none;
+  }
+
+  /* Background elements - reduce on mobile */
+  .thrive-hero__gradient {
+    opacity: 0.5;
+  }
+
+  .particle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .thrive-hero {
+    padding: 4rem 0 1.5rem;
+  }
+
+  .thrive-hero__content {
+    padding: 0 1rem;
+  }
+
+  /* Badge */
+  .thrive-hero__badge {
+    padding: 0.625rem 1rem;
+    font-size: 0.7rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Title */
+  .thrive-hero__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Tagline */
+  .thrive-hero__tagline-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .thrive-hero__tagline {
+    font-size: 0.9rem;
+  }
+
+  /* CTAs */
+  .thrive-hero__ctas {
+    gap: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  .thrive-btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-icon {
+    font-size: 1rem;
+  }
+
+  /* Stats */
+  .thrive-hero__stats {
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .stat-value {
+    font-size: 1.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+  }
+
+  /* Specialties scroll */
+  .thrive-hero__specialties {
+    margin-bottom: 1.5rem;
+  }
+
+  .specialties-scroll {
+    font-size: 0.85rem;
   }
 }
 
