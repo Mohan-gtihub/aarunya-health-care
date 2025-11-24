@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 import './Hero.css';
 
 const bannerTaglines = [
@@ -171,14 +172,14 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="thrive-hero__ctas"
           >
-            <button
+            <Link
+              href="/appointment"
               className="thrive-btn thrive-btn--primary"
-              onClick={() => scrollToTarget('#contact-cta')}
             >
               <span className="btn-text">Start Your Health Journey</span>
               <span className="btn-icon">→</span>
               <span className="btn-glow" />
-            </button>
+            </Link>
             <button
               className="thrive-btn thrive-btn--ghost"
               onClick={() => scrollToTarget('#clinic-info')}

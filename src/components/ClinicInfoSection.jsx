@@ -16,7 +16,7 @@ const ClinicInfoSection = () => {
   ];
 
   return (
-    <section style={{
+    <section id="clinic-info" style={{
       background: 'linear-gradient(to bottom, #0a0a1a 0%, #1a1a2e 100%)',
       padding: '80px 0',
       position: 'relative',
@@ -192,7 +192,7 @@ const ClinicInfoSection = () => {
                 background: 'radial-gradient(circle at 30% 50%, rgba(124, 77, 255, 0.05) 0%, transparent 50%)',
                 zIndex: 1
               }}></div>
-              
+
               <div style={{
                 position: 'relative',
                 zIndex: 2,
@@ -235,13 +235,13 @@ const ClinicInfoSection = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ 
-                        duration: 0.3, 
+                      transition={{
+                        duration: 0.3,
                         delay: index * 0.05,
                         type: 'spring',
                         stiffness: 100
                       }}
-                      whileHover={{ 
+                      whileHover={{
                         y: -3,
                         boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
                       }}
