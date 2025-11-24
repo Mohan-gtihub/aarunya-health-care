@@ -1,6 +1,6 @@
 // API Configuration
-// Always use production URL
-// In local dev, Vite proxy will intercept /api calls
-const API_URL = 'https://aarunya-health-care.onrender.com';
+// In Next.js, we use relative paths for API routes
+// All API routes are under /api/*
+const API_URL = '';
 
 export default API_URL;

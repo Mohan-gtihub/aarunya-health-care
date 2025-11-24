@@ -810,71 +810,121 @@
 @media (max-width: 768px) {
   .thrive-hero {
     min-height: auto;
-    padding: 5rem 0 2rem;
+    padding: 6rem 0 3rem;
+    /* Increased top padding to clear navbar */
+    display: block;
+    /* Remove flex centering to prevent overflow issues */
   }
 
   .thrive-hero__content {
     padding: 0 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
   }
 
   /* Badge */
   .thrive-hero__badge {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
     margin-bottom: 1.5rem;
+    white-space: normal;
+    /* Allow text wrap */
+    text-align: center;
   }
 
   .badge-icon {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   /* Title */
   .thrive-hero__title {
-    font-size: clamp(1.75rem, 8vw, 2.5rem);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    padding: 0 0.5rem;
   }
 
   /* Tagline */
   .thrive-hero__tagline-container {
     height: auto;
-    min-height: 50px;
+    min-height: 40px;
     margin-bottom: 2rem;
+    padding: 0 1rem;
   }
 
   .thrive-hero__tagline {
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 0.9rem;
+    line-height: 1.4;
     position: static;
   }
 
-  /* CTAs */
+  /* CTAs - Side by Side */
   .thrive-hero__ctas {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
     margin-bottom: 2.5rem;
+    padding: 0 0.5rem;
   }
 
   .thrive-btn {
-    width: 100%;
+    width: auto;
+    flex: 1 1 auto;
+    /* Allow grow and shrink */
+    min-width: 140px;
     max-width: 100%;
-    padding: 1rem 1.5rem;
-    font-size: 0.875rem;
+    /* Prevent overflowing container */
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    white-space: normal;
+    /* Allow text wrap */
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    height: auto;
+    /* Allow height to grow with text */
   }
 
-  /* Stats */
+  /* Stats - Side by Side Grid */
   .thrive-hero__stats {
-    margin-top: 2.5rem;
-    gap: 2rem;
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    /* Subtle background for visibility */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .stat-content {
+    align-items: center;
+    text-align: center;
+    gap: 0.25rem;
+    width: 100%;
   }
 
   .stat-value {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    word-break: break-word;
+    /* Prevent overflow */
   }
 
   .stat-label {
-    font-size: 0.875rem;
+    font-size: 0.7rem;
+    white-space: normal;
   }
 
   .scroll-indicator {
@@ -893,71 +943,34 @@
 
 @media (max-width: 480px) {
   .thrive-hero {
-    padding: 4rem 0 1.5rem;
+    padding: 5rem 0 2rem;
   }
 
   .thrive-hero__content {
     padding: 0 1rem;
   }
 
-  /* Badge */
-  .thrive-hero__badge {
-    padding: 0.625rem 1rem;
-    font-size: 0.7rem;
-    margin-bottom: 1.25rem;
-  }
-
-  /* Title */
   .thrive-hero__title {
-    font-size: clamp(1.5rem, 7vw, 2rem);
-    margin-bottom: 1.25rem;
-  }
-
-  /* Tagline */
-  .thrive-hero__tagline-container {
-    margin-bottom: 1.5rem;
-  }
-
-  .thrive-hero__tagline {
-    font-size: 0.9rem;
-  }
-
-  /* CTAs */
-  .thrive-hero__ctas {
-    gap: 0.875rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .thrive-btn {
-    padding: 0.875rem 1.25rem;
-    font-size: 0.8rem;
-  }
-
-  .btn-icon {
-    font-size: 1rem;
-  }
-
-  /* Stats */
-  .thrive-hero__stats {
-    gap: 1.5rem;
-    margin-top: 2rem;
+    padding: 0.7rem 0.8rem;
+    font-size: 0.75rem;
+    min-width: 120px;
   }
 
   .stat-value {
-    font-size: 1.35rem;
+    font-size: 1.1rem;
   }
 
   .stat-label {
-    font-size: 0.8rem;
+    font-size: 0.65rem;
   }
 
-  /* Specialties scroll */
-  .thrive-hero__specialties {
-    margin-bottom: 1.5rem;
-  }
-
-  .specialties-scroll {
-    font-size: 0.85rem;
+  .thrive-hero__stats {
+    gap: 0.75rem;
   }
 }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import AarunyaLogo from '../assets/aarunya-logo.svg';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import './Header.css';
 
 const navLinks = [
@@ -14,8 +14,8 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
-  const navigate = useNavigate();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const scrollToTarget = useCallback((hash) => {
     const target = document.querySelector(hash);
@@ -28,8 +28,8 @@ export default function Header() {
     event.preventDefault();
     setMenuOpen(false);
 
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (pathname !== '/') {
+      router.push('/');
       setTimeout(() => scrollToTarget(hash), 120);
     } else {
       scrollToTarget(hash);
@@ -69,8 +69,8 @@ export default function Header() {
   return (
     <header className={`thrive-header ${scrolled ? 'is-scrolled' : ''}`} aria-label="Primary navigation">
       <div className="thrive-header__inner">
-        <Link to="/" className="thrive-logo" aria-label="Aarunya Healthcare Clinics - Best Multispeciality Clinic">
-          <img src={AarunyaLogo} alt="Aarunya Healthcare Clinics - Best Healthcare Clinic with Diabetologist, Internal Medicine Specialist, Oncology Consultation" className="thrive-logo__img" />
+        <Link href="/" className="thrive-logo" aria-label="Aarunya Healthcare Clinics - Best Multispeciality Clinic">
+          <img src="/aarunya-logo.svg" alt="Aarunya Healthcare Clinics - Best Healthcare Clinic with Diabetologist, Internal Medicine Specialist, Oncology Consultation" className="thrive-logo__img" />
           <div className="thrive-logo__text">
             <span className="thrive-logo__title">Aarunya Healthcare Clinics</span>
             <span className="thrive-logo__tagline">Empathy · Expertise · Excellence</span>
@@ -99,7 +99,7 @@ export default function Header() {
                     {link.label}
                   </a>
                 ) : (
-                  <Link className="thrive-nav__link" to={link.route} onClick={() => setMenuOpen(false)}>
+                  <Link className="thrive-nav__link" href={link.route} onClick={() => setMenuOpen(false)}>
                     {link.label}
                   </Link>
                 )}
@@ -108,14 +108,14 @@ export default function Header() {
           </ul>
 
           <div className="thrive-header__cta thrive-header__cta--mobile">
-            <Link to="/appointment" className="thrive-btn thrive-btn--primary" onClick={() => setMenuOpen(false)}>
+            <Link href="/appointment" className="thrive-btn thrive-btn--primary" onClick={() => setMenuOpen(false)}>
               Request Callback
             </Link>
           </div>
         </nav>
 
         <div className="thrive-header__cta thrive-header__cta--desktop">
-          <Link to="/appointment" className="thrive-btn thrive-btn--primary">
+          <Link href="/appointment" className="thrive-btn thrive-btn--primary">
             Book Appointment
           </Link>
         </div>

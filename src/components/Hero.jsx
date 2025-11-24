@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const bannerTaglines = [
@@ -35,10 +34,16 @@ const stats = [
 export default function Hero() {
   const [currentTagline, setCurrentTagline] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mounted, setMounted] = useState(false);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  // Prevent hydration errors
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToTarget = (selector) => {
     const target = document.querySelector(selector);
@@ -82,7 +87,7 @@ export default function Hero() {
           }}
         />
         <div className="thrive-hero__particles">
-          {[...Array(30)].map((_, i) => (
+          {mounted && [...Array(30)].map((_, i) => (
             <div key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -218,7 +223,7 @@ export default function Hero() {
               VITAL SIGNS MONITOR
             </div>
             <div className="biomarker-time">
-              {new Date().toLocaleTimeString('en-US', { hour12: false })}
+              {mounted ? new Date().toLocaleTimeString('en-US', { hour12: false }) : '00:00:00'}
             </div>
           </div>
 

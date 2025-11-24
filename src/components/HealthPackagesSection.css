@@ -325,41 +325,164 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .health-packages-section .section-title {
-        font-size: 2rem;
-    }
-
+@media (max-width: 1024px) {
     .packages-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
     }
+}
 
+@media (max-width: 768px) {
+    .health-packages-section {
+        padding: 30px 0;
+    }
+
+    .health-packages-section .section-header {
+        margin-bottom: 25px;
+        padding: 0 10px;
+    }
+
+    .health-packages-section .section-title {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    .health-packages-section .section-subtitle {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    /* Side-by-side grid for mobile */
+    .packages-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* Force 2 columns */
+        gap: 10px;
+        /* Tighter gap */
+        margin-bottom: 30px;
+        padding: 0 10px;
+    }
+
+    /* Ultra-compact card for side-by-side view */
+    .package-card {
+        padding: 12px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .package-header {
+        margin-bottom: 10px;
+    }
+
+    .package-icon {
+        font-size: 1.5rem;
+        /* Smaller icon */
+        margin-bottom: 8px;
+    }
+
+    .package-name {
+        font-size: 0.9rem;
+        /* Much smaller title */
+        line-height: 1.2;
+        margin-bottom: 4px;
+        min-height: 2.4em;
+        /* Ensure alignment */
+    }
+
+    .package-ideal-for {
+        font-size: 0.65rem;
+        line-height: 1.2;
+        opacity: 0.8;
+    }
+
+    .package-price {
+        padding: 8px 0;
+        margin-bottom: 8px;
+        border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .price-amount {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+
+    .price-label {
+        font-size: 0.6rem;
+    }
+
+    .package-includes {
+        margin-bottom: 10px;
+    }
+
+    .package-includes h4 {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+
+    .includes-list {
+        margin-bottom: 10px;
+    }
+
+    .includes-list li {
+        font-size: 0.65rem;
+        margin-bottom: 4px;
+        gap: 4px;
+        line-height: 1.2;
+    }
+
+    .includes-list li svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .package-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+        border-radius: 6px;
+        width: 100%;
+    }
+
+    /* Popular badge adjustments */
+    .popular-badge {
+        top: 8px;
+        right: 8px;
+        padding: 3px 6px;
+        font-size: 0.55rem;
+        border-radius: 10px;
+    }
+
+    /* CTA Section adjustments */
     .packages-cta {
-        padding: 40px 25px;
+        padding: 25px 15px;
+        margin: 0 10px;
     }
 
     .cta-content h3 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .cta-actions {
-        flex-direction: column;
+        gap: 10px;
     }
 
     .cta-actions .btn-primary,
     .cta-actions .btn-secondary {
+        padding: 8px 16px;
+        font-size: 0.85rem;
         width: 100%;
         justify-content: center;
     }
 }
 
-@media (max-width: 480px) {
-    .package-name {
-        font-size: 1.3rem;
-    }
+@media (max-width: 360px) {
 
-    .price-amount {
-        font-size: 2rem;
+    /* Fallback for very small screens */
+    .packages-grid {
+        grid-template-columns: 1fr;
+        /* Stack on tiny screens */
     }
 }

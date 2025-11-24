@@ -3,37 +3,37 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // Icons replaced with inline SVGs to ensure compatibility
 /* SVG Definitions for Service Icons (Fa equivalents) */
-const HeartbeatSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.29 13.5L7 17l6-6 4 4"/></svg>;
-const ClinicMedicalSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l8-8 8 8V21a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><path d="M12 5v12"/></svg>;
-const UserMdSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="7" r="4"/><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><path d="M19 14v4"/><path d="M22 16h-6"/></svg>;
-const ChartLineSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="M18 17l-3-3-3 3-4-4-2 2"/></svg>;
+const HeartbeatSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /><path d="M3.29 13.5L7 17l6-6 4 4" /></svg>;
+const ClinicMedicalSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 11l8-8 8 8V21a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><path d="M9 22V12h6v10" /><path d="M12 5v12" /></svg>;
+const UserMdSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="7" r="4" /><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><path d="M19 14v4" /><path d="M22 16h-6" /></svg>;
+const ChartLineSVG = <svg className="service-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18" /><path d="M18 17l-3-3-3 3-4-4-2 2" /></svg>;
 
 // --- Helper component for image integration ---
 const ResponsiveImage = ({ src, alt, color }) => {
-    const errorFallback = "https://placehold.co/400x400/333333/FFFFFF?text=Image+Load+Error";
-    const containerStyle = {
-        borderColor: color,
-        boxShadow: `0 0 20px ${color}40`,
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderRadius: '8px',
-    };
+  const errorFallback = "https://placehold.co/400x400/333333/FFFFFF?text=Image+Load+Error";
+  const containerStyle = {
+    borderColor: color,
+    boxShadow: `0 0 20px ${color}40`,
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '8px',
+  };
 
-    return (
-        <div className="responsive-image-wrapper" style={containerStyle}>
-            <img 
-                src={src} 
-                alt={alt} 
-                className="responsive-image"
-                onError={(e) => { e.target.onerror = null; e.target.src = errorFallback; }}
-            />
-        </div>
-    );
+  return (
+    <div className="responsive-image-wrapper" style={containerStyle}>
+      <img
+        src={src}
+        alt={alt}
+        className="responsive-image"
+        onError={(e) => { e.target.onerror = null; e.target.src = errorFallback; }}
+      />
+    </div>
+  );
 };
 
 // --- CSS Styles Integrated Below (No separate CSS file required) ---
@@ -53,16 +53,16 @@ const styles = `
 /* --- Section Container & Background --- */
 
 .preventive-care-section {
-  padding: 80px 0;
+  padding: 60px 0;
   background: var(--neutral-900);
   position: relative;
   overflow: hidden;
   color: var(--neutral-50);
-  min-height: 800px;
+  min-height: 600px;
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
   position: relative;
@@ -72,7 +72,7 @@ const styles = `
 /* Floating background circles (for atmospheric effect) */
 .floating-circle {
   opacity: 0.05 !important; 
-  filter: blur(100px); 
+  filter: blur(80px); 
   pointer-events: none;
 }
 
@@ -80,14 +80,14 @@ const styles = `
 
 .section-header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .section-title {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   /* Glowing Text */
   background: linear-gradient(90deg, var(--glow-color), var(--brand-gold));
   -webkit-background-clip: text;
@@ -97,9 +97,9 @@ const styles = `
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--neutral-300);
-  max-width: 600px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -110,7 +110,7 @@ const styles = `
   flex-direction: column;
   align-items: center;
   position: relative;
-  min-height: 550px;
+  min-height: 500px;
 }
 
 /* --- Navigation (Top Horizontal Stepper) --- */
@@ -119,8 +119,8 @@ const styles = `
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 900px;
-  margin-bottom: 50px;
+  max-width: 800px;
+  margin-bottom: 40px;
   position: relative;
   padding: 0 5%; 
 }
@@ -152,18 +152,18 @@ const styles = `
 /* Stepper Node/Dot */
 .service-nav-item::after {
     content: '';
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.2);
-    border: 3px solid var(--neutral-900);
-    margin-top: 10px;
+    border: 2px solid var(--neutral-900);
+    margin-top: 8px;
     transition: all 0.3s ease;
 }
 
 .service-nav-item.active::after {
     background-color: var(--brand-gold); 
-    box-shadow: 0 0 10px var(--brand-gold);
+    box-shadow: 0 0 8px var(--brand-gold);
     transform: scale(1.1);
 }
 .service-nav-item:hover::after {
@@ -173,7 +173,7 @@ const styles = `
 
 .service-nav-text h4 {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--neutral-300);
   text-align: center;
@@ -190,9 +190,9 @@ const styles = `
   display: flex;
   flex-direction: row; 
   width: 100%;
-  max-width: 1000px; 
-  padding: 40px;
-  gap: 60px; 
+  max-width: 900px; 
+  padding: 30px;
+  gap: 40px; 
   
   position: relative;
   border-top: 1px dashed rgba(255, 255, 255, 0.1);
@@ -203,9 +203,9 @@ const styles = `
 /* --- Graphic Area & Image Responsiveness (CRITICAL) --- */
 .service-graphic {
   flex-shrink: 0;
-  width: 50%;
-  min-width: 400px;
-  height: 400px;
+  width: 45%;
+  min-width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,7 +213,7 @@ const styles = `
   
   /* Vertical dividing line effect */
   border-right: 1px solid rgba(255, 255, 255, 0.1);
-  padding-right: 40px; 
+  padding-right: 30px; 
 }
 
 /* Styles to make the image responsive and cover the container */
@@ -233,25 +233,25 @@ const styles = `
 
 .service-content {
   flex-grow: 1;
-  max-width: 450px;
-  padding-left: 20px;
+  max-width: 400px;
+  padding-left: 10px;
 }
 
 .service-header {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .service-icon-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 55px;
-  height: 55px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border: 2px solid;
   animation: pulse-wrapper 2s infinite alternate;
 }
@@ -262,12 +262,12 @@ const styles = `
 }
 
 .service-icon-wrapper .service-icon {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--neutral-50);
 }
 
 .service-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin: 0;
   line-height: 1.2;
@@ -275,26 +275,26 @@ const styles = `
 }
 
 .service-subtitle {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: var(--glow-color);
   margin: 5px 0 0 0;
   text-transform: uppercase;
-  letter-spacing: 1.5px; 
+  letter-spacing: 1.2px; 
   font-weight: 500;
 }
 
 .service-description {
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--neutral-300);
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
 .feature-tag {
   background-color: transparent; 
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 3px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--neutral-300);
   border: 1px solid rgba(255, 255, 255, 0.1); 
   transition: all 0.2s;
@@ -312,19 +312,19 @@ const styles = `
 /* --- Buttons --- */
 .service-actions {
   display: flex;
-  gap: 20px;
+  gap: 15px;
 }
 
 .primary-btn, .secondary-btn {
-  padding: 12px 25px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .primary-btn {
@@ -339,7 +339,7 @@ const styles = `
 
 .secondary-btn {
   background: transparent;
-  border: 2px solid; 
+  border: 1px solid; 
   color: var(--brand-purple-light);
   box-shadow: none;
 }
@@ -355,15 +355,15 @@ const styles = `
   /* Content stacking */
   .service-detail {
     flex-direction: column-reverse;
-    gap: 30px;
-    padding: 30px 20px;
+    gap: 25px;
+    padding: 25px 15px;
     max-width: 95%;
   }
   
   .service-graphic {
     width: 100%;
     min-width: 0;
-    height: 300px;
+    height: 250px;
     border-right: none;
     padding-right: 0;
   }
@@ -383,17 +383,17 @@ const styles = `
 }
 
 @media (max-width: 600px) {
-    .section-title { font-size: 2.2rem; }
+    .section-title { font-size: 1.8rem; }
     
     .service-actions {
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
     .primary-btn, .secondary-btn {
         width: 100%;
     }
     .service-nav-text h4 {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 }
 `;
@@ -417,7 +417,7 @@ const AnimatedCircle = ({ color, size, top, left, delay }) => {
         scale: [1, 1.05, 1],
       }}
       transition={{
-        duration: 4 + Math.random() * 2,
+        duration: 5, // Fixed duration to avoid hydration mismatch
         repeat: Infinity,
         repeatType: 'reverse',
         delay: delay || 0,
@@ -451,9 +451,9 @@ const PreventiveCareSection = () => {
       color: 'var(--brand-purple)',
       features: ['Full body checkup', 'Lifestyle analysis', 'Nutrition assessment', 'Stress evaluation'],
       graphic: (
-        <ResponsiveImage 
-          src="https://c7.alamy.com/comp/2XAD2P6/holistic-health-framework-infographic-diagram-chart-illustration-banner-template-with-icon-set-vector-has-physical-mental-social-spiritual-intelle-2XAD2P6.jpg" 
-          alt="Holistic Health Data" 
+        <ResponsiveImage
+          src="https://c7.alamy.com/comp/2XAD2P6/holistic-health-framework-infographic-diagram-chart-illustration-banner-template-with-icon-set-vector-has-physical-mental-social-spiritual-intelle-2XAD2P6.jpg"
+          alt="Holistic Health Data"
           color="var(--brand-purple)"
         />
       )
@@ -466,9 +466,9 @@ const PreventiveCareSection = () => {
       description: 'State-of-the-art diagnostic tests to detect health issues before symptoms appear, enabling timely intervention.',
       features: ['Cancer screening', 'Cardiac evaluation', 'Metabolic testing', 'Genetic risk assessment'],
       graphic: (
-        <ResponsiveImage 
-          src="https://img.freepik.com/free-vector/flat-design-hand-drawn-patient-taking-medical-examination_23-2149251499.jpg?semt=ais_hybrid&w=740&q=80" 
-          alt="Preventive Screening Report" 
+        <ResponsiveImage
+          src="https://img.freepik.com/free-vector/flat-design-hand-drawn-patient-taking-medical-examination_23-2149251499.jpg?semt=ais_hybrid&w=740&q=80"
+          alt="Preventive Screening Report"
           color="var(--brand-gold)"
         />
       )
@@ -481,9 +481,9 @@ const PreventiveCareSection = () => {
       description: 'Custom health strategies designed around your unique genetic makeup, lifestyle, and health goals.',
       features: ['Custom nutrition', 'Exercise programs', 'Stress management', 'Sleep optimization'],
       graphic: (
-        <ResponsiveImage 
-          src="https://personalizedhealth.duke.edu/sites/default/files/2023-06/CPHC%206.15.23%20v2.png" 
-          alt="Personalized Care Plan" 
+        <ResponsiveImage
+          src="https://personalizedhealth.duke.edu/sites/default/files/2023-06/CPHC%206.15.23%20v2.png"
+          alt="Personalized Care Plan"
           color="var(--brand-purple-light)"
         />
       )
@@ -496,9 +496,9 @@ const PreventiveCareSection = () => {
       description: 'Ongoing monitoring and adaptive strategies to maintain and enhance your healthspan and vitality.',
       features: ['Progress tracking', 'Regular check-ins', 'Lifestyle coaching', 'Preventive therapies'],
       graphic: (
-        <ResponsiveImage 
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUddw5RqPe7EISqThs-vMOA3RoMF-C3_tLEQ&s" 
-          alt="Long Term Wellness Progress" 
+        <ResponsiveImage
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUddw5RqPe7EISqThs-vMOA3RoMF-C3_tLEQ&s"
+          alt="Long Term Wellness Progress"
           color="var(--brand-gold-light)"
         />
       )
@@ -510,9 +510,9 @@ const PreventiveCareSection = () => {
   return (
     <>
       <style>{styles}</style>
-      <section 
+      <section
         ref={sectionRef}
-        className={`preventive-care-section ${isVisible ? 'visible' : ''}`} 
+        className={`preventive-care-section ${isVisible ? 'visible' : ''}`}
         id="preventive-care"
       >
         <div className="container">
@@ -520,9 +520,9 @@ const PreventiveCareSection = () => {
           <AnimatedCircle color="var(--brand-purple)" size="300px" top="10%" left="5%" delay={0.2} />
           <AnimatedCircle color="var(--brand-gold)" size="250px" top="60%" left="80%" delay={0.4} />
           <AnimatedCircle color="var(--brand-purple-light)" size="150px" top="85%" left="15%" delay={0.6} />
-          
+
           <div className="section-header">
-            <motion.h2 
+            <motion.h2
               className="section-title"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -530,7 +530,7 @@ const PreventiveCareSection = () => {
             >
               The <span className="title-highlight">Dynamic Stepper</span> Flow
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="section-subtitle"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -544,29 +544,29 @@ const PreventiveCareSection = () => {
 
             {/* 1. NAVIGATION (Top Horizontal Stepper) */}
             <div className="services-navigation">
-                {preventiveServices.map((service, index) => (
-                  <motion.div
-                    key={index}
-                    className={`service-nav-item ${index === activeIndex ? 'active' : ''}`}
-                    onClick={() => setActiveIndex(index)}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.4, delay: 0.1 * index }}
-                  >
-                    <div className="service-nav-text">
-                      <h4>{service.title}</h4>
-                    </div>
-                  </motion.div>
-                ))}
+              {preventiveServices.map((service, index) => (
+                <motion.div
+                  key={index}
+                  className={`service-nav-item ${index === activeIndex ? 'active' : ''}`}
+                  onClick={() => setActiveIndex(index)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.1 * index }}
+                >
+                  <div className="service-nav-text">
+                    <h4>{service.title}</h4>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
 
             {/* 2. CONTENT AREA */}
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
                 key={activeIndex}
                 className="service-detail"
-                initial={{ opacity: 0, y: 20 }} 
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4 }}
@@ -576,12 +576,12 @@ const PreventiveCareSection = () => {
                 </div>
                 <div className="service-content">
                   <div className="service-header">
-                    <div 
+                    <div
                       className="service-icon-wrapper"
-                      style={{ 
-                          // Dynamic border color and shadow for the icon wrapper
-                          borderColor: currentService.color,
-                          boxShadow: `0 0 15px ${currentService.color}50`
+                      style={{
+                        // Dynamic border color and shadow for the icon wrapper
+                        borderColor: currentService.color,
+                        boxShadow: `0 0 15px ${currentService.color}50`
                       }}
                     >
                       {currentService.icon}
@@ -595,28 +595,28 @@ const PreventiveCareSection = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <p className="service-description">
                     {currentService.description}
                   </p>
-                  
+
                   <div className="service-features">
                     {currentService.features.map((feature, i) => (
-                      <div 
-                          key={i} 
-                          className="feature-tag"
-                          style={{ borderColor: currentService.color }}
+                      <div
+                        key={i}
+                        className="feature-tag"
+                        style={{ borderColor: currentService.color }}
                       >
                         <span className="feature-check" style={{ color: currentService.color }}>✓</span>
                         {feature}
                       </div>
                     ))}
                   </div>
-                  
+
                   <div className="service-actions">
-                    <button 
+                    <button
                       className="primary-btn"
-                      style={{ 
+                      style={{
                         backgroundColor: currentService.color,
                         boxShadow: `0 4px 20px ${currentService.color}80`
                       }}
@@ -624,9 +624,9 @@ const PreventiveCareSection = () => {
                       Learn More
                       <span className="btn-arrow">→</span>
                     </button>
-                    <button 
-                        className="secondary-btn"
-                        style={{ borderColor: currentService.color, color: currentService.color }}
+                    <button
+                      className="secondary-btn"
+                      style={{ borderColor: currentService.color, color: currentService.color }}
                     >
                       Book Consultation
                     </button>
@@ -634,7 +634,7 @@ const PreventiveCareSection = () => {
                 </div>
               </motion.div>
             </AnimatePresence>
-            
+
           </div>
         </div>
       </section>
