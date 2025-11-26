@@ -4,6 +4,5 @@
   "/_document": "pages/_document.js",
   "/appointment": "pages/appointment.js",
   "/api/time-slots/[date]": "pages/api/time-slots/[date].js",
-  "/api/appointments": "pages/api/appointments.js",
   "/api/departments": "pages/api/departments.js"
 }

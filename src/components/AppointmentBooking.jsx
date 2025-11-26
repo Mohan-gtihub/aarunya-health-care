@@ -200,24 +200,18 @@ export default function AppointmentBooking() {
         </div>
 
         {error && (
-          <div className="error-message">
-            <div className="error-content">
-              <div className="error-icon">
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <span>{error}</span>
-            </div>
+          <div className="message error">
+            <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{error}</span>
           </div>
         )}
 
         {success && (
-          <div className="success-message">
-            <div className="success-content">
-              <span className="success-icon">✅</span>
-              <span>{success}</span>
-            </div>
+          <div className="message success">
+            <span>✅</span>
+            <span>{success}</span>
           </div>
         )}
 
