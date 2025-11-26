@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './AwardsCarousel.css';
+
 
 export default function AwardsCarousel({ awards }) {
   const [currentIndex, setCurrentIndex] = useState(0);

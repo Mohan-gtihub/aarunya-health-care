@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import './Equipment.css';
+
 
 export default function Equipment() {
   const [activeCategory, setActiveCategory] = useState('laboratory');
@@ -330,7 +330,7 @@ export default function Equipment() {
                       {item.features.map((feature, idx) => (
                         <li key={idx}>
                           <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           {feature}
                         </li>

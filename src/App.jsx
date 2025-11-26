@@ -6,6 +6,7 @@ import About from './pages/About';
 import Departments from './pages/Departments';
 import Equipment from './pages/Equipment';
 import Doctors from './pages/Doctors';
+import Services from './pages/Services';
 import Contact from './pages/Contact';
 import AppointmentPage from './pages/AppointmentPage';
 import PatientPortal from './pages/PatientPortal';
@@ -19,6 +20,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/departments" element={<Departments />} />
             <Route path="/equipment" element={<Equipment />} />
             <Route path="/doctors" element={<Doctors />} />

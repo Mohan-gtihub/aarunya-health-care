@@ -1,4 +1,4 @@
-import './PillarsSection.css';
+
 
 const pillars = [
   {

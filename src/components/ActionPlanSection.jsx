@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ActionPlanSection.css';
+
 
 const actionPlans = [
   {
@@ -92,8 +92,8 @@ export default function ActionPlanSection() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [expandedPlan, setExpandedPlan] = useState(null);
 
-  const filteredPlans = selectedCategory === 'all' 
-    ? actionPlans 
+  const filteredPlans = selectedCategory === 'all'
+    ? actionPlans
     : actionPlans.filter(plan => plan.category.toLowerCase() === selectedCategory);
 
   const togglePlanExpansion = (planId) => {
@@ -148,17 +148,17 @@ export default function ActionPlanSection() {
                 <div className="pmx-plan-meta">
                   <span className="pmx-duration-badge">
                     <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <circle cx="12" cy="12" r="10"/>
-                      <path d="M12 6v6l4 2"/>
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M12 6v6l4 2" />
                     </svg>
                     {plan.duration}
                   </span>
-                  <span 
-                    className="pmx-difficulty-badge" 
+                  <span
+                    className="pmx-difficulty-badge"
                     style={{ color: difficultyLevels[plan.difficulty].color }}
                   >
                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
                     {difficultyLevels[plan.difficulty].label}
                   </span>
@@ -169,7 +169,7 @@ export default function ActionPlanSection() {
               <div className="pmx-plan-content">
                 <h3 className="pmx-plan-title">{plan.title}</h3>
                 <p className="pmx-plan-description">{plan.description}</p>
-                
+
                 {/* Progress Bar */}
                 <div className="pmx-progress-section">
                   <div className="pmx-progress-header">
@@ -177,8 +177,8 @@ export default function ActionPlanSection() {
                     <span className="pmx-progress-value">{plan.progress}%</span>
                   </div>
                   <div className="pmx-progress-bar">
-                    <div 
-                      className="pmx-progress-fill" 
+                    <div
+                      className="pmx-progress-fill"
                       style={{ width: `${plan.progress}%` }}
                     ></div>
                   </div>
@@ -191,7 +191,7 @@ export default function ActionPlanSection() {
                     {plan.goals.map((goal, index) => (
                       <li key={index} className="pmx-goal-item">
                         <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                          <path d="M5 13l4 4L19 7"/>
+                          <path d="M5 13l4 4L19 7" />
                         </svg>
                         <span>{goal}</span>
                       </li>
@@ -201,24 +201,24 @@ export default function ActionPlanSection() {
 
                 {/* Expandable Milestones */}
                 <div className="pmx-milestones-section">
-                  <button 
+                  <button
                     className="pmx-expand-btn"
                     onClick={() => togglePlanExpansion(plan.id)}
                   >
                     <span>View Milestones</span>
-                    <svg 
-                      width="20" 
-                      height="20" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      strokeWidth="2" 
+                    <svg
+                      width="20"
+                      height="20"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       className={`pmx-chevron ${expandedPlan === plan.id ? 'expanded' : ''}`}
                     >
-                      <path d="M6 9l6 6 6-6"/>
+                      <path d="M6 9l6 6 6-6" />
                     </svg>
                   </button>
-                  
+
                   {expandedPlan === plan.id && (
                     <div className="pmx-milestones-list">
                       {plan.milestones.map((milestone, index) => (
@@ -226,11 +226,11 @@ export default function ActionPlanSection() {
                           <div className="pmx-milestone-marker">
                             {milestone.completed ? (
                               <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                               </svg>
                             ) : (
                               <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10"/>
+                                <circle cx="12" cy="12" r="10" />
                               </svg>
                             )}
                           </div>
@@ -269,7 +269,7 @@ export default function ActionPlanSection() {
           <div className="pmx-cta-content">
             <div className="pmx-cta-icon">
               <svg width="48" height="48" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M12 4v16m8-8H4"/>
+                <path d="M12 4v16m8-8H4" />
               </svg>
             </div>
             <h3>Ready to Start Your Health Journey?</h3>
@@ -291,42 +291,42 @@ export default function ActionPlanSection() {
             <h3>Why Choose Our Action Plans?</h3>
             <p>Comprehensive wellness programs designed by healthcare experts</p>
           </div>
-          
+
           <div className="pmx-features-grid">
             <div className="pmx-feature-card">
               <div className="pmx-feature-icon">
                 <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <h4>Expert-Designed</h4>
               <p>All plans created by certified healthcare professionals and wellness experts</p>
             </div>
-            
+
             <div className="pmx-feature-card">
               <div className="pmx-feature-icon">
                 <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
               <h4>Personalized for You</h4>
               <p>Customized based on your health profile, goals, and lifestyle preferences</p>
             </div>
-            
+
             <div className="pmx-feature-card">
               <div className="pmx-feature-icon">
                 <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <h4>Track Progress</h4>
               <p>Monitor your journey with detailed progress tracking and milestone celebrations</p>
             </div>
-            
+
             <div className="pmx-feature-card">
               <div className="pmx-feature-icon">
                 <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
               </div>
               <h4>Continuous Support</h4>

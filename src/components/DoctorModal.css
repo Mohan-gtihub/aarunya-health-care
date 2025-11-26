@@ -43,7 +43,7 @@
   top: 1rem;
   right: 1rem;
   background: rgba(255, 255, 255, 0.95);
-  border: 2px solid var(--border);
+  border: 2px solid var(--neutral-200);
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -57,11 +57,11 @@
 }
 
 .modal-close:hover {
-  background: var(--danger);
-  border-color: var(--danger);
+  background: var(--brand-red);
+  border-color: var(--brand-red);
   color: white;
   transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 6px 20px rgba(224, 36, 36, 0.4);
+  box-shadow: 0 6px 20px rgba(210, 31, 60, 0.4);
 }
 
 .modal-close svg {
@@ -75,7 +75,7 @@
 }
 
 .modal-header {
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-light));
   padding: 3rem 2.5rem 2rem;
   position: relative;
   border-radius: 16px 16px 0 0;
@@ -104,12 +104,12 @@
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--success);
+  background: var(--brand-green);
   color: white;
   padding: 0.5rem 1.25rem;
   border-radius: 20px;
   font-size: 0.85rem;
-  font-weight: var(--fw-bold);
+  font-weight: 700;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border: 2px solid white;
 }
@@ -123,12 +123,12 @@
   color: white;
   font-size: 2.25rem;
   line-height: 1.2;
-  font-weight: var(--fw-bold);
+  font-weight: 700;
 }
 
 .modal-title {
   color: rgba(255, 255, 255, 0.95);
-  font-weight: var(--fw-medium);
+  font-weight: 500;
   font-size: 1.15rem;
   margin: 0 0 0.5rem 0;
   opacity: 0.95;
@@ -139,7 +139,7 @@
   background: rgba(255, 255, 255, 0.2);
   color: white;
   font-size: 1.1rem;
-  font-weight: var(--fw-semibold);
+  font-weight: 600;
   margin: 0.5rem 0 0 0;
   padding: 0.5rem 1.5rem;
   border-radius: 25px;
@@ -163,13 +163,13 @@
   gap: 1.25rem;
   padding: 1.75rem;
   background: white;
-  border: 2px solid var(--border);
+  border: 2px solid var(--neutral-200);
   border-radius: 12px;
-  transition: var(--transition);
+  transition: var(--transition-normal);
 }
 
 .detail-item:hover {
-  border-color: var(--accent);
+  border-color: var(--brand-aqua);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
 }
@@ -178,12 +178,12 @@
   width: 48px;
   height: 48px;
   min-width: 48px;
-  background: linear-gradient(135deg, rgba(0, 119, 200, 0.1), rgba(0, 191, 166, 0.1));
+  background: linear-gradient(135deg, rgba(62, 198, 224, 0.1), rgba(60, 179, 113, 0.1));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--accent);
+  color: var(--brand-aqua);
 }
 
 .detail-icon svg {
@@ -197,24 +197,24 @@
 
 .detail-content h4 {
   margin: 0 0 0.5rem 0;
-  color: var(--primary);
+  color: var(--brand-purple);
   font-size: 0.95rem;
-  font-weight: var(--fw-semibold);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .detail-content p {
   margin: 0;
-  color: var(--text);
+  color: var(--text-primary);
   font-size: 1.15rem;
-  font-weight: var(--fw-medium);
+  font-weight: 500;
   line-height: 1.4;
 }
 
 .bio-section {
-  background: linear-gradient(135deg, rgba(0, 119, 200, 0.05), rgba(0, 191, 166, 0.05));
-  border: 2px solid var(--primary);
+  background: linear-gradient(135deg, rgba(62, 198, 224, 0.05), rgba(60, 179, 113, 0.05));
+  border: 2px solid var(--brand-purple);
   border-radius: 12px;
   padding: 2rem;
 }
@@ -225,24 +225,24 @@
   gap: 1rem;
   margin-bottom: 1.25rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid rgba(0, 119, 200, 0.15);
+  border-bottom: 2px solid rgba(62, 198, 224, 0.15);
 }
 
 .bio-header svg {
-  color: var(--primary);
+  color: var(--brand-purple);
   flex-shrink: 0;
 }
 
 .bio-header h3 {
   margin: 0;
-  color: var(--primary);
+  color: var(--brand-purple);
   font-size: 1.35rem;
-  font-weight: var(--fw-bold);
+  font-weight: 700;
 }
 
 .bio-section p {
   margin: 0;
-  color: var(--text);
+  color: var(--text-primary);
   line-height: 1.9;
   font-size: 1.05rem;
 }

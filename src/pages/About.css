@@ -1,27 +1,49 @@
+/* About Page - Light Theme */
 .about-page {
   min-height: 100vh;
+  background: var(--bg-primary);
 }
 
 .about-hero {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark));
   color: white;
-  padding: 4rem 0;
+  padding: 6rem 0 4rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 140, 0, 0.2), transparent 70%);
+  pointer-events: none;
 }
 
 .about-hero h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .about-hero .lead {
   font-size: 1.25rem;
   opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .about-content {
   padding: 5rem 0;
-  background: var(--bg);
+  background: var(--bg-primary);
 }
 
 .about-grid {
@@ -35,12 +57,12 @@
 }
 
 .about-text h2 {
-  color: var(--primary);
+  color: var(--brand-purple);
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
   padding-bottom: 0.5rem;
-  border-bottom: 3px solid var(--accent);
+  border-bottom: 3px solid var(--brand-gold);
   display: inline-block;
 }
 
@@ -50,14 +72,14 @@
 
 .about-text p {
   line-height: 1.9;
-  color: var(--text);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
 }
 
 .about-text strong {
-  color: var(--primary);
-  font-weight: var(--fw-semibold);
+  color: var(--brand-purple);
+  font-weight: 600;
 }
 
 .values-list {
@@ -70,20 +92,21 @@
 
 .values-list li {
   padding: 1.25rem;
-  background: white;
-  border-radius: var(--radius);
-  border-left: 4px solid var(--accent);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: var(--transition);
+  background: #ffffff;
+  border-radius: 12px;
+  border-left: 4px solid var(--brand-gold);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .values-list li:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .values-list li strong {
-  color: var(--primary);
+  color: var(--brand-purple);
   display: block;
   margin-bottom: 0.25rem;
 }
@@ -97,36 +120,39 @@
 
 .stat-card {
   padding: 2.5rem 2rem;
-  border-radius: var(--radius);
+  border-radius: 16px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  transition: var(--transition);
-  /* border-top: 4px solid var(--primary); */
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(91, 30, 166, 0.1);
 }
 
 .stat-card h3 {
   font-size: 2.5rem;
-  color: var(--primary);
+  color: var(--brand-purple);
   margin-bottom: 0.5rem;
-  font-weight: var(--fw-bold);
+  font-weight: 800;
 }
 
 .stat-card p {
-  color: var(--text-light);
+  color: var(--text-secondary);
   font-size: 1rem;
-  font-weight: var(--fw-medium);
+  font-weight: 500;
 }
 
 /* Founder Section */
 .founder-section {
-  background: white;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
   padding: 5rem 0;
   margin: 4rem 0;
+  position: relative;
 }
 
 .founder-container {
@@ -147,20 +173,9 @@
   aspect-ratio: 1;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
   border: 5px solid white;
   position: relative;
-}
-
-.founder-image::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 119, 200, 0.1), rgba(0, 191, 166, 0.1));
-  z-index: 1;
 }
 
 .founder-image img {
@@ -174,42 +189,40 @@
   bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-light));
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  box-shadow: 0 8px 24px rgba(0, 119, 200, 0.3);
-  font-weight: var(--fw-bold);
+  box-shadow: 0 8px 24px rgba(91, 30, 166, 0.3);
+  font-weight: 700;
   font-size: 1.1rem;
   z-index: 2;
-}
-
-.founder-badge svg {
-  width: 24px;
-  height: 24px;
+  white-space: nowrap;
 }
 
 .founder-content h2 {
-  color: var(--primary);
+  color: var(--brand-purple);
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  font-weight: var(--fw-bold);
+  font-weight: 800;
 }
 
 .founder-content h3 {
-  color: var(--text);
+  color: var(--text-primary);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .founder-title {
-  color: var(--accent);
+  color: var(--brand-gold);
   font-size: 1.25rem;
-  font-weight: var(--fw-semibold);
+  font-weight: 600;
   margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .founder-message,
@@ -219,10 +232,10 @@
 
 .founder-message h4,
 .founder-bio h4 {
-  color: var(--primary);
+  color: var(--brand-purple);
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  font-weight: var(--fw-bold);
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -233,13 +246,13 @@
   content: '';
   width: 4px;
   height: 30px;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--brand-gold);
   border-radius: 2px;
 }
 
 .founder-message p,
 .founder-bio p {
-  color: var(--text);
+  color: var(--text-secondary);
   line-height: 1.9;
   font-size: 1.05rem;
   margin-bottom: 1rem;
@@ -247,23 +260,24 @@
 
 .founder-message p {
   font-style: italic;
-  background: linear-gradient(135deg, rgba(0, 119, 200, 0.05), rgba(0, 191, 166, 0.05));
+  background: rgba(91, 30, 166, 0.03);
   padding: 1.5rem;
-  border-left: 4px solid var(--accent);
+  border-left: 4px solid var(--brand-gold);
   border-radius: 8px;
 }
 
 .about-features {
-  background: white;
+  background: #ffffff;
   padding: 4rem 0;
   margin-top: 3rem;
 }
 
 .about-features h2 {
   text-align: center;
-  color: var(--primary);
+  color: var(--brand-purple);
   margin-bottom: 3rem;
   font-size: 2rem;
+  font-weight: 700;
 }
 
 .features-grid {
@@ -275,66 +289,39 @@
 .feature-item {
   text-align: center;
   padding: 2.5rem 2rem;
-  background: var(--bg);
-  border-radius: var(--radius);
-  transition: var(--transition);
+  background: #ffffff;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .feature-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: rgba(91, 30, 166, 0.1);
 }
 
 .feature-item h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  color: var(--text);
+  color: var(--brand-purple);
+  font-weight: 600;
 }
 
 .feature-item p {
-  color: var(--text-light);
+  color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1rem;
 }
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 3rem 0;
+    padding: 4rem 0 3rem;
   }
 
   .about-hero h1 {
-    font-size: 1.75rem;
-  }
-
-  .about-content {
-    padding: 3rem 0;
-  }
-
-  .about-grid {
-    gap: 2rem;
-  }
-
-  .about-text h2 {
-    font-size: 1.5rem;
-  }
-
-  .about-stats {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .feature-item {
-    padding: 2rem 1.5rem;
-  }
-
-  .founder-section {
-    padding: 3rem 0;
-    margin: 2rem 0;
+    font-size: 2rem;
   }
 
   .founder-container {
@@ -351,16 +338,8 @@
     font-size: 2rem;
   }
 
-  .founder-content h3 {
-    font-size: 1.5rem;
-  }
-
-  .founder-title {
-    font-size: 1.1rem;
-  }
-
-  .founder-message h4,
-  .founder-bio h4 {
-    font-size: 1.25rem;
+  .founder-badge {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
 }

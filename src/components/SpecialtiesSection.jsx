@@ -1,122 +1,107 @@
-// SpecialtiesSection.jsx
-import React, { useState } from 'react';
-import './SpecialtiesSection.css';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
 
 const specialties = [
   {
     id: 1,
-    title: 'Cardiology',
-    description: 'Expert heart care with advanced diagnostics and treatment plans for all cardiac conditions. Our team provides comprehensive care using the latest technology and evidence-based practices.',
-    icon: '❤️',
-    category: 'Heart Care',
-    color: '#7A288A' // Purple accent
+    title: 'Oncology',
+    description: 'Comprehensive cancer care utilizing advanced therapies and a multidisciplinary approach for diagnosis, treatment, and survivorship.',
+    icon: '🎗️',
+    category: 'Cancer Care',
+    color: '#FF4500' // Orange-red
   },
   {
     id: 2,
-    title: 'Neurology',
-    description: 'Comprehensive care for nervous system disorders including stroke, epilepsy, and neurodegenerative diseases. Our specialists use cutting-edge diagnostic tools for accurate treatment.',
-    icon: '🧠',
-    category: 'Brain Health',
-    color: '#5C176F' // Dark purple accent
+    title: 'Internal Medicine',
+    description: 'Primary care focusing on prevention, diagnosis, and treatment of common and complex diseases to promote long-term health.',
+    icon: '🩺',
+    category: 'Adult Health',
+    color: '#1E90FF' // Dodger Blue
   },
   {
     id: 3,
-    title: 'Pediatrics',
-    description: 'Specialized healthcare for infants, children, and adolescents. We provide compassionate care in a child-friendly environment with a focus on growth, development, and wellness.',
-    icon: '👶',
-    category: 'Child Care',
-    color: '#A34DCC' // Light purple accent
+    title: 'Psychiatry',
+    description: 'Specialized mental health care offering therapy, medication management, and support for emotional and behavioral well-being.',
+    icon: '🧠',
+    category: 'Mental Health',
+    color: '#8A2BE2' // Blue Violet
+  },
+  {
+    id: 4,
+    title: 'Physiotherapy',
+    description: 'Rehabilitation services to restore movement, reduce pain, and prevent disability through manual therapy and education.',
+    icon: '🚶',
+    category: 'Rehabilitation',
+    color: '#32CD32' // Lime Green
   }
 ];
 
 const SpecialtiesSection = () => {
-  const [activeSpecialty, setActiveSpecialty] = useState(0);
-
   return (
     <section className="specialties-section">
       <div className="container">
         <div className="section-header">
-          <h2>Our Specialties</h2>
-          <p>Comprehensive healthcare services across multiple specialties</p>
+          <span className="section-subtitle">Departments</span>
+          <h2>Centers of Excellence</h2>
+          <p>World-class specialized care tailored to your needs</p>
         </div>
 
-        <div className="specialties-container">
-          <div className="specialty-list">
-            {specialties.map((specialty, index) => (
-              <div
-                key={specialty.id}
-                className={`specialty-item ${activeSpecialty === index ? 'active' : ''}`}
-                onClick={() => setActiveSpecialty(index)}
-                style={{ '--accent': specialty.color }}
-              >
-                <div className="specialty-icon" style={{ background: `linear-gradient(135deg, ${specialty.color}, ${specialty.color}90)` }}>
+        <div className="specialties-list">
+          {specialties.map((specialty, index) => (
+            <motion.div
+              key={specialty.id}
+              className="specialty-row"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="specialty-visual">
+                <div
+                  className="icon-box"
+                  style={{
+                    background: `linear-gradient(135deg, ${specialty.color}10, ${specialty.color}20)`,
+                    color: specialty.color,
+                    borderColor: `${specialty.color}30`
+                  }}
+                >
                   {specialty.icon}
                 </div>
-                <div className="specialty-info">
-                  <h3>{specialty.title}</h3>
-                  <span className="specialty-category">{specialty.category}</span>
+              </div>
+
+              <div className="specialty-content">
+                <span className="category-tag" style={{ color: specialty.color }}>
+                  {specialty.category}
+                </span>
+                <h3 className="specialty-title">{specialty.title}</h3>
+                <p className="specialty-desc">{specialty.description}</p>
+
+                <div className="specialty-meta">
+                  <div className="meta-item">
+                    <span className="dot" style={{ background: specialty.color }}></span>
+                    Advanced Care
+                  </div>
+                  <div className="meta-item">
+                    <span className="dot" style={{ background: specialty.color }}></span>
+                    Expert Team
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
 
-          <div className="specialty-details">
-            {specialties[activeSpecialty] && (
-              <div className="detail-content">
-                <div className="detail-header">
-                  <div 
-                    className="detail-icon" 
-                    style={{ 
-                      background: `linear-gradient(135deg, ${specialties[activeSpecialty].color}, ${specialties[activeSpecialty].color}90)`,
-                      color: 'white',
-                      boxShadow: `0 4px 15px ${specialties[activeSpecialty].color}40`
-                    }}
-                  >
-                    {specialties[activeSpecialty].icon}
-                  </div>
-                  <div>
-                    <h3>{specialties[activeSpecialty].title}</h3>
-                    <p className="specialty-category">{specialties[activeSpecialty].category}</p>
-                  </div>
-                </div>
-                <p className="specialty-description">
-                  {specialties[activeSpecialty].description}
-                </p>
-                <div className="specialty-features">
-                  <div className="feature">
-                    <div className="feature-icon">🏥</div>
-                    <div className="feature-content">
-                      <h4>Advanced Diagnostics</h4>
-                      <p>State-of-the-art equipment for accurate diagnosis</p>
-                    </div>
-                  </div>
-                  <div className="feature">
-                    <div className="feature-icon">👨‍⚕️</div>
-                    <div className="feature-content">
-                      <h4>Expert Specialists</h4>
-                      <p>Board-certified doctors with years of experience</p>
-                    </div>
-                  </div>
-                  <div className="feature">
-                    <div className="feature-icon">💊</div>
-                    <div className="feature-content">
-                      <h4>Personalized Care</h4>
-                      <p>Treatment plans tailored to your specific needs</p>
-                    </div>
-                  </div>
-                </div>
-                <button 
-  className="cta-button" 
-  style={{ 
-    background: `linear-gradient(135deg, ${specialties[activeSpecialty].color}, ${specialties[activeSpecialty].color}90)`
-  }}
->
-                  Book an Appointment
-                  <span className="arrow">→</span>
+              <div className="specialty-action">
+                <button
+                  className="action-btn"
+                  style={{ color: specialty.color }}
+                >
+                  <span className="btn-text">Explore</span>
+                  <span className="btn-icon" style={{ background: `${specialty.color}15` }}>
+                    <FaArrowRight />
+                  </span>
                 </button>
               </div>
-            )}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

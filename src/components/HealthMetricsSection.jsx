@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './HealthMetricsSection.css';
+
 
 const healthMetrics = [
   {
@@ -10,7 +10,7 @@ const healthMetrics = [
     status: 'normal',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+        <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
     ),
     description: 'Optimal range for cardiovascular health',
@@ -24,7 +24,7 @@ const healthMetrics = [
     status: 'normal',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     ),
     description: 'Resting heart rate within healthy range',
@@ -38,8 +38,8 @@ const healthMetrics = [
     status: 'normal',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H9z"/>
-        <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H9z"/>
+        <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H9z" />
+        <path d="M9 2a2 2 0 00-2 2v8a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H9z" />
       </svg>
     ),
     description: 'Fasting glucose level is normal',
@@ -53,7 +53,7 @@ const healthMetrics = [
     status: 'normal',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
       </svg>
     ),
     description: 'Healthy body mass index',
@@ -67,8 +67,8 @@ const healthMetrics = [
     status: 'warning',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 6v6l4 2"/>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
       </svg>
     ),
     description: 'Borderline high - monitor closely',
@@ -82,7 +82,7 @@ const healthMetrics = [
     status: 'normal',
     icon: (
       <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     ),
     description: 'Excellent oxygen saturation level',
@@ -97,7 +97,7 @@ const biomarkerCategories = [
     color: 'cardio',
     icon: (
       <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
       </svg>
     )
   },
@@ -107,8 +107,8 @@ const biomarkerCategories = [
     color: 'metabolic',
     icon: (
       <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M12 6v6l4 2"/>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 6v6l4 2" />
       </svg>
     )
   },
@@ -118,7 +118,7 @@ const biomarkerCategories = [
     color: 'respiratory',
     icon: (
       <svg width="32" height="32" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
       </svg>
     )
   }
@@ -128,17 +128,17 @@ export default function HealthMetricsSection() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [timeRange, setTimeRange] = useState('week');
 
-  const filteredMetrics = selectedCategory === 'all' 
-    ? healthMetrics 
+  const filteredMetrics = selectedCategory === 'all'
+    ? healthMetrics
     : healthMetrics.filter(metric => {
-        const category = biomarkerCategories.find(cat => 
-          cat.metrics.includes(metric.name)
-        );
-        return category && category.title.toLowerCase() === selectedCategory;
-      });
+      const category = biomarkerCategories.find(cat =>
+        cat.metrics.includes(metric.name)
+      );
+      return category && category.title.toLowerCase() === selectedCategory;
+    });
 
   const getStatusColor = (status) => {
-    switch(status) {
+    switch (status) {
       case 'normal': return 'var(--success)';
       case 'warning': return 'var(--warning)';
       case 'critical': return 'var(--danger)';
@@ -147,29 +147,29 @@ export default function HealthMetricsSection() {
   };
 
   const getTrendIcon = (trend) => {
-    switch(trend) {
+    switch (trend) {
       case 'improving':
         return (
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7 14l5-5 5 5z"/>
+            <path d="M7 14l5-5 5 5z" />
           </svg>
         );
       case 'increasing':
         return (
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7 10l5 5 5-5z"/>
+            <path d="M7 10l5 5 5-5z" />
           </svg>
         );
       case 'decreasing':
         return (
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M7 14l5-5 5 5z"/>
+            <path d="M7 14l5-5 5 5z" />
           </svg>
         );
       default:
         return (
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2v20M2 12h20"/>
+            <path d="M12 2v20M2 12h20" />
           </svg>
         );
     }
@@ -194,14 +194,14 @@ export default function HealthMetricsSection() {
         {/* Filter Controls */}
         <div className="pmx-metrics-controls">
           <div className="pmx-category-filters">
-            <button 
+            <button
               className={`pmx-filter-btn ${selectedCategory === 'all' ? 'active' : ''}`}
               onClick={() => setSelectedCategory('all')}
             >
               All Metrics
             </button>
             {biomarkerCategories.map((category) => (
-              <button 
+              <button
                 key={category.title}
                 className={`pmx-filter-btn ${selectedCategory === category.title.toLowerCase() ? 'active' : ''}`}
                 onClick={() => setSelectedCategory(category.title.toLowerCase())}
@@ -211,27 +211,27 @@ export default function HealthMetricsSection() {
               </button>
             ))}
           </div>
-          
+
           <div className="pmx-time-range-selector">
-            <button 
+            <button
               className={`pmx-time-btn ${timeRange === 'day' ? 'active' : ''}`}
               onClick={() => setTimeRange('day')}
             >
               Day
             </button>
-            <button 
+            <button
               className={`pmx-time-btn ${timeRange === 'week' ? 'active' : ''}`}
               onClick={() => setTimeRange('week')}
             >
               Week
             </button>
-            <button 
+            <button
               className={`pmx-time-btn ${timeRange === 'month' ? 'active' : ''}`}
               onClick={() => setTimeRange('month')}
             >
               Month
             </button>
-            <button 
+            <button
               className={`pmx-time-btn ${timeRange === 'year' ? 'active' : ''}`}
               onClick={() => setTimeRange('year')}
             >
@@ -252,7 +252,7 @@ export default function HealthMetricsSection() {
                   {metric.status}
                 </div>
               </div>
-              
+
               <div className="pmx-metric-content">
                 <h3 className="pmx-metric-name">{metric.name}</h3>
                 <div className="pmx-metric-value">
@@ -261,7 +261,7 @@ export default function HealthMetricsSection() {
                 </div>
                 <p className="pmx-metric-description">{metric.description}</p>
               </div>
-              
+
               <div className="pmx-metric-footer">
                 <div className="pmx-metric-trend">
                   {getTrendIcon(metric.trend)}
@@ -281,7 +281,7 @@ export default function HealthMetricsSection() {
             <h3>Health Analytics Dashboard</h3>
             <p>Comprehensive view of your health trends and patterns</p>
           </div>
-          
+
           <div className="pmx-dashboard-grid">
             <div className="pmx-dashboard-card">
               <h4>Overall Health Score</h4>
@@ -293,7 +293,7 @@ export default function HealthMetricsSection() {
               </div>
               <p className="pmx-score-description">Your overall health is in good condition with room for improvement in cholesterol management.</p>
             </div>
-            
+
             <div className="pmx-dashboard-card">
               <h4>Recent Trends</h4>
               <div className="pmx-trends-list">
@@ -320,14 +320,14 @@ export default function HealthMetricsSection() {
                 </div>
               </div>
             </div>
-            
+
             <div className="pmx-dashboard-card">
               <h4>Recommendations</h4>
               <div className="pmx-recommendations">
                 <div className="pmx-recommendation-item">
                   <div className="pmx-rec-icon">
                     <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
                   </div>
                   <div className="pmx-rec-content">
@@ -338,7 +338,7 @@ export default function HealthMetricsSection() {
                 <div className="pmx-recommendation-item">
                   <div className="pmx-rec-icon">
                     <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                      <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                     </svg>
                   </div>
                   <div className="pmx-rec-content">

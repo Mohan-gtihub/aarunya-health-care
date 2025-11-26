@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './AppointmentBooking.css';
+
 
 export default function AppointmentBooking() {
   const [departments, setDepartments] = useState([]);
@@ -80,7 +80,7 @@ export default function AppointmentBooking() {
 
       const result = await response.json();
       setSuccess('Appointment booked successfully! Check your email for confirmation.');
-      
+
       // Reset form
       setSelectedDepartment('');
       setSelectedDoctor('');
@@ -110,7 +110,7 @@ export default function AppointmentBooking() {
             <div className="error-content">
               <div className="error-icon">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <span>{error}</span>
@@ -123,7 +123,7 @@ export default function AppointmentBooking() {
             <div className="success-content">
               <div className="success-icon">
                 <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <span>{success}</span>

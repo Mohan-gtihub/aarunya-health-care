@@ -1,53 +1,71 @@
 import React, { useState } from 'react';
-import './MembershipSection.css';
+import { FaHeartbeat, FaUserMd, FaRunning, FaAppleAlt, FaBrain, FaDna, FaPhoneAlt, FaEnvelope, FaTimes } from 'react-icons/fa';
 
-const membershipPlans = [
+
+const longevityPackages = [
   {
-    id: 1,
-    name: 'Basic Care',
-    price: '₹999',
-    period: 'per month',
-    description: 'Essential healthcare services for individuals and families',
+    id: 'package-a',
+    name: 'Starter / Basic Longevity',
+    duration: '3 months',
+    price: '₹8,000 – ₹15,000',
+    description: 'Essential foundation for your longevity journey.',
     features: [
-      'General consultations',
-      'Basic health checkups',
-      'Emergency care',
-      'Digital health records',
-      '24/7 phone support'
+      'Internal medicine consult',
+      'Basic baseline tests (CBC, CMP, Lipid, HbA1c, Thyroid, Vitamin D/B12, ECG)',
+      '1 Physiotherapy assessment + 3 PT sessions',
+      'Dietician consult + plan',
+      'Psychiatric screening',
+      '3-month structured plan'
     ],
     highlighted: false,
     color: 'basic'
   },
   {
-    id: 2,
-    name: 'Premium Care',
-    price: '₹2,499',
-    period: 'per month',
-    description: 'Comprehensive healthcare with advanced diagnostics',
+    id: 'package-b',
+    name: 'Standard Longevity',
+    duration: '3 months',
+    price: '₹20,000 – ₹35,000',
+    description: 'Comprehensive care with extended monitoring.',
     features: [
-      'Everything in Basic Care',
-      'Specialist consultations',
-      'Advanced diagnostics',
-      'Priority appointments',
-      'Home healthcare visits',
-      'Personal health coach'
+      'Everything in Basic',
+      'Extended lab panel + DEXA/ECG',
+      '6 Physiotherapy sessions',
+      '6 Dietician reviews',
+      '2 Psychiatry sessions if needed',
+      'Digital monitoring & exercise plan'
     ],
     highlighted: true,
     color: 'premium'
   },
   {
-    id: 3,
-    name: 'Executive Care',
-    price: '₹4,999',
-    period: 'per month',
-    description: 'Complete healthcare solution with personalized services',
+    id: 'package-c',
+    name: 'Premium Comprehensive',
+    duration: '3 months',
+    price: '₹50,000 – ₹90,000',
+    description: 'Advanced testing and intensive support.',
     features: [
-      'Everything in Premium Care',
-      'Executive health screenings',
-      'International second opinions',
-      'Dedicated care coordinator',
-      'Annual wellness programs',
-      'Family health management'
+      'Everything in Standard',
+      'Advanced tests (cardiac echo, advanced lipids, tumor markers if indicated)',
+      '12 Physiotherapy sessions + supervised exercise',
+      'Weekly dietician remote monitoring',
+      '4 Psychiatry sessions',
+      'Specialist consult (oncology/endocrine/cardiac)'
+    ],
+    highlighted: false,
+    color: 'executive'
+  },
+  {
+    id: 'package-d',
+    name: 'Executive / Tailored Longevity',
+    duration: '6–12 months',
+    price: 'Custom ₹1,50,000+',
+    description: 'Fully personalized, high-touch executive program.',
+    features: [
+      'Fully personalized program',
+      'Genetic testing, continuous monitoring',
+      'Quarterly specialist reviews',
+      'Monthly follow-ups (Internal Med + Psych + Dietician)',
+      'Physiotherapy maintenance program'
     ],
     highlighted: false,
     color: 'executive'
@@ -56,59 +74,159 @@ const membershipPlans = [
 
 const benefits = [
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-    ),
-    title: 'No Hidden Fees',
-    description: 'Transparent pricing with no surprise charges'
+    icon: <FaHeartbeat />,
+    title: 'Early Disease Risk Detection',
+    description: 'Proactive screening to identify and mitigate health risks early.'
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-    ),
-    title: '24/7 Access',
-    description: 'Round-the-clock medical support and consultations'
+    icon: <FaRunning />,
+    title: 'Structured Optimization',
+    description: 'Metabolic, physical, and mental health optimization plans.'
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-      </svg>
-    ),
-    title: 'Family Coverage',
-    description: 'Include your entire family under one plan'
+    icon: <FaAppleAlt />,
+    title: 'Personalized Plans',
+    description: 'Tailored nutrition and exercise strategies just for you.'
   },
   {
-    icon: (
-      <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-      </svg>
-    ),
-    title: 'Global Coverage',
-    description: 'Access to our network worldwide'
+    icon: <FaUserMd />,
+    title: 'Hybrid Support',
+    description: 'Convenient in-clinic visits combined with remote monitoring.'
   }
 ];
 
-export default function MembershipSection() {
-  const [selectedPlan, setSelectedPlan] = useState(2);
+const BookingModal = ({ isOpen, onClose, packageDetails }) => {
+  const [formData, setFormData] = useState({
+    phone: '',
+    email: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate API call to send to doctor
+    try {
+      // In a real app, this would be an API call
+      console.log('Sending to doctor:', { ...formData, package: packageDetails.name });
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        onClose();
+        setFormData({ phone: '', email: '' });
+      }, 2000);
+    } catch (error) {
+      console.error('Error sending booking:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <section className="pmx-membership-section">
+    <div className="pmx-modal-overlay">
+      <div className="pmx-modal-content">
+        <button
+          onClick={onClose}
+          className="pmx-modal-close"
+        >
+          <FaTimes size={24} />
+        </button>
+
+        <div className="pmx-modal-body">
+          <div className="pmx-modal-header">
+            <h3 className="pmx-modal-title">Book {packageDetails?.name}</h3>
+            <p className="pmx-modal-subtitle">Enter your details to request this package.</p>
+          </div>
+
+          {isSuccess ? (
+            <div className="pmx-success-message">
+              <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+                <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <p style={{ fontSize: '1.25rem', fontWeight: 600 }}>Request Sent Successfully!</p>
+              <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>Our team will contact you shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
+              <div className="pmx-form-group">
+                <label className="pmx-form-label">Phone Number</label>
+                <div className="pmx-input-wrapper">
+                  <div className="pmx-input-icon">
+                    <FaPhoneAlt />
+                  </div>
+                  <input
+                    type="tel"
+                    required
+                    className="pmx-form-input"
+                    placeholder="+91 98765 43210"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <div className="pmx-form-group">
+                <label className="pmx-form-label">Email Address</label>
+                <div className="pmx-input-wrapper">
+                  <div className="pmx-input-icon">
+                    <FaEnvelope />
+                  </div>
+                  <input
+                    type="email"
+                    required
+                    className="pmx-form-input"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="pmx-submit-btn"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Request to Doctor'}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default function MembershipSection() {
+  const [selectedPlan, setSelectedPlan] = useState('package-b');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalPackage, setModalPackage] = useState(null);
+
+  const handleBookClick = (pkg) => {
+    setModalPackage(pkg);
+    setIsModalOpen(true);
+  };
+
+  return (
+    <section className="pmx-membership-section" id="longevity-packages">
       <div className="pmx-container">
         {/* Section Header */}
         <div className="pmx-section-header text-center">
           <div className="pmx-badge">
-            <span>Membership Plans</span>
+            <span>Longevity & Comprehensive Health</span>
           </div>
           <h2 className="pmx-section-title">
-            Choose Your Healthcare Journey
+            Your Journey to Better Health Starts Here
           </h2>
           <p className="pmx-section-subtitle">
-            Flexible membership plans designed to meet your unique healthcare needs with comprehensive coverage and personalized care
+            Personalized, evidence-led longevity programs integrating Internal Medicine, Psychiatry, Oncology, and Physiotherapy.
           </p>
         </div>
 
@@ -127,7 +245,7 @@ export default function MembershipSection() {
 
         {/* Pricing Cards */}
         <div className="pmx-pricing-grid">
-          {membershipPlans.map((plan) => (
+          {longevityPackages.map((plan) => (
             <div
               key={plan.id}
               className={`pmx-pricing-card ${plan.highlighted ? 'highlighted' : ''} ${plan.color}`}
@@ -135,16 +253,16 @@ export default function MembershipSection() {
             >
               {plan.highlighted && (
                 <div className="pmx-popular-badge">
-                  <span>Most Popular</span>
+                  <span>Recommended</span>
                 </div>
               )}
-              
+
               <div className="pmx-card-header">
                 <h3 className="pmx-plan-name">{plan.name}</h3>
                 <div className="pmx-plan-price">
-                  <span className="pmx-price-amount">{plan.price}</span>
-                  <span className="pmx-price-period">{plan.period}</span>
+                  <span className="pmx-price-amount pmx-text-2xl">{plan.price}</span>
                 </div>
+                <span className="pmx-price-period pmx-block-mb-2">{plan.duration}</span>
                 <p className="pmx-plan-description">{plan.description}</p>
               </div>
 
@@ -153,7 +271,7 @@ export default function MembershipSection() {
                   {plan.features.map((feature, index) => (
                     <li key={index} className="pmx-feature-item">
                       <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M5 13l4 4L19 7"/>
+                        <path d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{feature}</span>
                     </li>
@@ -162,33 +280,56 @@ export default function MembershipSection() {
               </div>
 
               <div className="pmx-card-footer">
-                <button className={`pmx-btn pmx-btn-${plan.highlighted ? 'primary' : 'outline'} w-full`}>
-                  {selectedPlan === plan.id ? 'Selected' : 'Choose Plan'}
+                <button
+                  className={`pmx-btn pmx-btn-${plan.highlighted ? 'primary' : 'outline'} w-full`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleBookClick(plan);
+                  }}
+                >
+                  Book / Enquire Now
                 </button>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA Section */}
+        {/* Clinic Info & CTA */}
         <div className="pmx-membership-cta">
           <div className="pmx-cta-content">
-            <h3>Not sure which plan is right for you?</h3>
-            <p>Our healthcare advisors are here to help you choose the perfect membership plan based on your needs.</p>
+            <h3>Aarunya Health Care Clinics</h3>
+            <p className="pmx-cta-focus-areas">Clinic Focus Areas: Internal Medicine • Psychiatry • Oncology • Physiotherapy</p>
+            <p className="pmx-cta-targeting">Targeting: IT professionals, Affluent families, Middle/older adults, Cancer survivors</p>
+
+            <div className="pmx-contact-grid">
+              <div>
+                <h4 className="pmx-contact-title">Contact Us</h4>
+                <p className="pmx-contact-item"><FaPhoneAlt /> +91 7893231999</p>
+                <p className="pmx-contact-item"><FaPhoneAlt /> +91 8186028641</p>
+              </div>
+              <div>
+                <h4 className="pmx-contact-title">Location</h4>
+                <p>Manikonda, Hyderabad</p>
+              </div>
+            </div>
+
             <div className="pmx-cta-actions">
-              <button className="pmx-btn pmx-btn-primary">
-                <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                </svg>
-                Talk to Advisor
-              </button>
-              <button className="pmx-btn pmx-btn-outline">
-                Compare Plans
+              <button
+                className="pmx-btn pmx-btn-primary"
+                onClick={() => handleBookClick({ name: 'General Inquiry' })}
+              >
+                Get in Touch
               </button>
             </div>
           </div>
         </div>
       </div>
+
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        packageDetails={modalPackage}
+      />
     </section>
   );
 }

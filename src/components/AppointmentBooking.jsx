@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './AppointmentBooking.css';
+
 import API_URL from '../config/api';
 
 export default function AppointmentBooking() {

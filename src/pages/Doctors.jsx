@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import DoctorCard from '../components/DoctorCard';
-import './Doctors.css';
+
 
 const allDoctors = [
   // SR Nagar Clinic

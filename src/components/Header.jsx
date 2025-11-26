@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import './Header.css';
+import { useRouter } from 'next/router';
+
 
 const navLinks = [
-  { label: 'Team', hash: '#team' },
+  { label: 'Services', route: '/services' },
   { label: 'FAQ', hash: '#faq' },
   { label: 'About', route: '/about' },
   { label: 'Doctors', route: '/doctors' },
@@ -14,7 +14,6 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
   const router = useRouter();
 
   const scrollToTarget = useCallback((hash) => {
@@ -24,16 +23,20 @@ export default function Header() {
     }
   }, []);
 
-  const handleNavClick = (event, hash) => {
-    event.preventDefault();
+  const handleNavClick = (event, link) => {
     setMenuOpen(false);
 
-    if (pathname !== '/') {
-      router.push('/');
-      setTimeout(() => scrollToTarget(hash), 120);
-    } else {
-      scrollToTarget(hash);
+    if (link.hash) {
+      event.preventDefault();
+      if (router.pathname !== '/') {
+        router.push('/').then(() => {
+          setTimeout(() => scrollToTarget(link.hash), 120);
+        });
+      } else {
+        scrollToTarget(link.hash);
+      }
     }
+    // Link component handles route navigation
   };
 
   useEffect(() => {
@@ -94,12 +97,16 @@ export default function Header() {
                   <a
                     href={link.hash}
                     className="thrive-nav__link"
-                    onClick={(event) => handleNavClick(event, link.hash)}
+                    onClick={(event) => handleNavClick(event, link)}
                   >
                     {link.label}
                   </a>
                 ) : (
-                  <Link className="thrive-nav__link" href={link.route} onClick={() => setMenuOpen(false)}>
+                  <Link
+                    className="thrive-nav__link"
+                    href={link.route}
+                    onClick={() => setMenuOpen(false)}
+                  >
                     {link.label}
                   </Link>
                 )}

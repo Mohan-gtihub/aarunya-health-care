@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import './DoctorModal.css';
+
 
 export default function DoctorModal({ doctor, isOpen, onClose }) {
   if (!isOpen || !doctor) return null;

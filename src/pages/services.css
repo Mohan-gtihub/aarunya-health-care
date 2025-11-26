@@ -1,0 +1,23 @@
+.services-page {
+    padding-top: 100px;
+    background: var(--bg-primary);
+    min-height: 100vh;
+}
+
+.services-header {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-secondary);
+    margin-bottom: 40px;
+}
+
+.services-header h1 {
+    font-size: 3rem;
+    color: var(--brand-purple);
+    margin-bottom: 1rem;
+}
+
+.services-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}

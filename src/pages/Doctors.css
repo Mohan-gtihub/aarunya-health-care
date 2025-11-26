@@ -1,13 +1,13 @@
-/* Doctors Page - Premium Dark Theme */
+/* Doctors Page - Light Theme */
 .doctors-page {
-  background: var(--bg-dark);
+  background: var(--bg-primary);
   min-height: 100vh;
 }
 
 /* Page Hero Section */
 .page-hero {
   padding: 8rem 0 4rem;
-  background: var(--bg-dark);
+  background: linear-gradient(135deg, rgba(91, 30, 166, 0.05) 0%, rgba(255, 140, 0, 0.05) 100%);
   position: relative;
   overflow: hidden;
 }
@@ -17,8 +17,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 20%, rgba(225, 182, 59, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 70% 80%, rgba(91, 30, 166, 0.15) 0%, transparent 50%);
+    radial-gradient(circle at 30% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 70% 80%, rgba(91, 30, 166, 0.1) 0%, transparent 50%);
   pointer-events: none;
   animation: gradientPulse 8s ease-in-out infinite;
 }
@@ -44,26 +44,9 @@
 .page-hero h1 {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 50%, var(--brand-gold-light) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--brand-purple);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
-  animation: gradientFlow 8s ease-in-out infinite;
-  background-size: 200% 200%;
-}
-
-@keyframes gradientFlow {
-
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
 }
 
 .page-hero p {
@@ -78,17 +61,15 @@
 .doctors-filter-section {
   padding: 4rem 0;
   position: relative;
+  background: var(--bg-primary);
 }
 
 .filter-controls {
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   padding: 2.5rem;
   border-radius: 32px;
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(40px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(91, 30, 166, 0.1);
   margin-bottom: 3rem;
   position: relative;
   overflow: hidden;
@@ -101,24 +82,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg,
-      transparent,
-      var(--brand-gold),
-      #FFD700,
-      var(--brand-gold),
-      transparent);
-  background-size: 200% 100%;
-  animation: shimmerFlow 3s linear infinite;
-}
-
-@keyframes shimmerFlow {
-  0% {
-    background-position: 200% 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
+  background: linear-gradient(90deg, var(--brand-purple), var(--brand-gold));
 }
 
 /* Search Box */
@@ -133,7 +97,7 @@
   left: 1.5rem;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--brand-gold);
+  color: var(--brand-purple);
   pointer-events: none;
   z-index: 1;
 }
@@ -141,34 +105,22 @@
 .search-box input {
   width: 100%;
   padding: 1.25rem 1.5rem 1.25rem 3.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(91, 30, 166, 0.1);
   border-radius: 16px;
   font-size: 1rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: #ffffff;
   color: var(--text-primary);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
 }
 
 .search-box input::placeholder {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.search-box input:hover {
-  border-color: rgba(225, 182, 59, 0.3);
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  color: var(--text-tertiary);
 }
 
 .search-box input:focus {
   outline: none;
-  border-color: var(--brand-gold);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 0 0 4px rgba(225, 182, 59, 0.15),
-    0 12px 32px rgba(0, 0, 0, 0.3);
-  transform: translateY(-2px);
+  border-color: var(--brand-purple);
+  box-shadow: 0 0 0 4px rgba(91, 30, 166, 0.1);
 }
 
 /* Specialty Filters */
@@ -187,7 +139,7 @@
 
 .filter-group label {
   font-weight: 700;
-  color: var(--brand-gold);
+  color: var(--brand-purple);
   margin-right: 1rem;
   min-width: 100px;
   text-transform: uppercase;
@@ -196,74 +148,49 @@
 }
 
 .filter-btn {
-  padding: 0.875rem 1.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid rgba(91, 30, 166, 0.2);
   border-radius: 50px;
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text-primary);
+  background: #ffffff;
+  color: var(--text-secondary);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-
-.filter-btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transform: translateX(-100%);
-  transition: transform 0.6s ease;
-}
-
-.filter-btn:hover::before {
-  transform: translateX(100%);
 }
 
 .filter-btn:hover {
-  border-color: var(--brand-gold);
-  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--brand-purple);
+  color: var(--brand-purple);
+  background: rgba(91, 30, 166, 0.05);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(225, 182, 59, 0.2);
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 100%);
-  color: var(--bg-dark);
-  border-color: var(--brand-gold);
-  box-shadow:
-    0 12px 32px rgba(225, 182, 59, 0.4),
-    0 0 20px rgba(225, 182, 59, 0.3);
+  background: var(--brand-purple);
+  color: #ffffff;
+  border-color: var(--brand-purple);
+  box-shadow: 0 4px 12px rgba(91, 30, 166, 0.3);
   transform: translateY(-2px);
-  font-weight: 800;
 }
 
 /* Results Info */
 .results-info {
   margin-bottom: 2.5rem;
   padding: 1.25rem 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(91, 30, 166, 0.05);
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(91, 30, 166, 0.1);
 }
 
 .results-info p {
-  color: var(--text-secondary);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.results-info p::before {
-  content: '📊';
-  font-size: 1.25rem;
 }
 
 /* Doctors Grid */
@@ -280,29 +207,16 @@
 .no-results {
   text-align: center;
   padding: 5rem 2rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   border-radius: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  border: 1px solid rgba(91, 30, 166, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .no-results svg {
   margin: 0 auto 2rem;
-  color: var(--brand-gold);
+  color: var(--brand-purple);
   opacity: 0.5;
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .no-results h3 {
@@ -359,43 +273,12 @@
   }
 
   .filter-btn {
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
   }
 
   .grid-3 {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .no-results {
-    padding: 4rem 1.5rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .filter-controls {
-    padding: 1.75rem 1.25rem;
-  }
-
-  .search-box input {
-    padding: 1.125rem 1.25rem 1.125rem 3.25rem;
-  }
-
-  .filter-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 }

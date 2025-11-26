@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import './AppointmentForm.css';
+
 
 export default function AppointmentForm({ onSuccess }) {
   const [formData, setFormData] = useState({
@@ -109,7 +109,7 @@ export default function AppointmentForm({ onSuccess }) {
     try {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       // In production, replace with actual API call:
       // const response = await fetch('/api/appointments', {
       //   method: 'POST',
@@ -163,7 +163,7 @@ export default function AppointmentForm({ onSuccess }) {
         {success && (
           <div className="form-success" role="alert">
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span>Appointment request submitted successfully! We'll contact you shortly to confirm.</span>
           </div>
@@ -340,8 +340,8 @@ export default function AppointmentForm({ onSuccess }) {
           />
         </label>
 
-        <button 
-          type="submit" 
+        <button
+          type="submit"
           className="btn btn-primary btn-block"
           disabled={loading}
           aria-busy={loading}
@@ -358,7 +358,7 @@ export default function AppointmentForm({ onSuccess }) {
 
         <p className="form-note">
           <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           We'll contact you within 24 hours to confirm your appointment.
         </p>

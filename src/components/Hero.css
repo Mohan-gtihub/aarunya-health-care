@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: var(--bg-dark);
+  background: var(--bg-primary);
   padding: 8rem 0 4rem;
 }
 
@@ -21,8 +21,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 30% 50%, rgba(91, 30, 166, 0.25) 0%, transparent 60%),
-    radial-gradient(circle at 70% 50%, rgba(225, 182, 59, 0.15) 0%, transparent 60%);
+    radial-gradient(circle at 30% 50%, rgba(75, 0, 130, 0.1) 0%, transparent 60%),
+    radial-gradient(circle at 70% 50%, rgba(244, 197, 66, 0.1) 0%, transparent 60%);
   animation: gradientShift 20s ease-in-out infinite;
   transition: transform 0.3s ease-out;
 }
@@ -43,8 +43,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(45deg, transparent 30%, rgba(225, 182, 59, 0.03) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 30%, rgba(91, 30, 166, 0.03) 50%, transparent 70%);
+    linear-gradient(45deg, transparent 30%, rgba(244, 197, 66, 0.05) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(75, 0, 130, 0.05) 50%, transparent 70%);
   background-size: 200% 200%;
   animation: meshMove 15s ease infinite;
 }
@@ -76,7 +76,7 @@
   border-radius: 50%;
   opacity: 0;
   animation: particleFloat 10s infinite;
-  box-shadow: 0 0 10px rgba(225, 182, 59, 0.5);
+  box-shadow: 0 0 10px rgba(244, 197, 66, 0.5);
 }
 
 @keyframes particleFloat {
@@ -115,22 +115,24 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.875rem 1.75rem;
-  background: rgba(225, 182, 59, 0.1);
-  border: 2px solid rgba(225, 182, 59, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid var(--brand-gold);
   border-radius: 50px;
   font-size: 0.9rem;
   font-weight: 700;
-  color: var(--brand-gold);
+  color: var(--brand-purple);
   margin-bottom: 2rem;
   backdrop-filter: blur(20px);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  box-shadow: 0 4px 15px rgba(75, 0, 130, 0.1);
 }
 
 .badge-icon {
   font-size: 1.25rem;
+  color: var(--brand-red);
   animation: sparkle 2s ease-in-out infinite;
 }
 
@@ -152,7 +154,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
   animation: badgeShine 3s infinite;
 }
 
@@ -176,16 +178,16 @@
 .specialties-scroll {
   display: flex;
   gap: 1rem;
-  color: var(--text-secondary);
+  color: var(--brand-purple);
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   animation: scrollSpecialties 20s linear infinite;
   white-space: nowrap;
 }
 
 .specialty-dot {
   color: var(--brand-gold);
-  opacity: 0.5;
+  opacity: 1;
 }
 
 @keyframes scrollSpecialties {
@@ -205,7 +207,7 @@
   line-height: 1.1;
   margin-bottom: 2rem;
   letter-spacing: -0.03em;
-  color: var(--text-primary);
+  color: var(--brand-purple);
 }
 
 .thrive-hero__title-gradient {
@@ -215,7 +217,7 @@
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 50%, var(--brand-gold-light) 100%);
+  background: linear-gradient(135deg, var(--brand-purple) 0%, #6A0DAD 50%, var(--brand-purple-dark) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -274,7 +276,7 @@
   left: 0;
   right: 0;
   font-size: 1.25rem;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   line-height: 1.6;
   opacity: 0;
   transform: translateY(20px);
@@ -323,9 +325,9 @@
 }
 
 .thrive-btn--primary {
-  background: linear-gradient(135deg, var(--brand-gold) 0%, #FFD700 100%);
-  color: var(--bg-dark);
-  box-shadow: 0 12px 40px rgba(225, 182, 59, 0.4);
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+  color: white;
+  box-shadow: 0 12px 40px rgba(75, 0, 130, 0.3);
 }
 
 .btn-glow {
@@ -338,7 +340,7 @@
 
 .thrive-btn--primary:hover {
   transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 16px 50px rgba(225, 182, 59, 0.5);
+  box-shadow: 0 16px 50px rgba(75, 0, 130, 0.4);
 }
 
 .thrive-btn--primary:hover .btn-glow {
@@ -346,18 +348,18 @@
 }
 
 .thrive-btn--ghost {
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid var(--brand-purple);
+  color: var(--brand-purple);
   backdrop-filter: blur(10px);
 }
 
 .thrive-btn--ghost:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--brand-gold);
-  color: var(--brand-gold);
+  background: var(--brand-purple);
+  border-color: var(--brand-purple);
+  color: white;
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(75, 0, 130, 0.2);
 }
 
 /* Stats Section - Simple Text Design */
@@ -397,22 +399,18 @@
 .stat-value {
   font-size: 1.75rem;
   font-weight: 900;
-  color: #FFD700;
+  color: var(--brand-purple);
   line-height: 1.1;
-  text-shadow:
-    0 0 30px rgba(255, 215, 0, 0.6),
-    0 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: -0.02em;
 }
 
 .stat-label {
   font-size: 1rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   line-height: 1.2;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .stat-helper {
@@ -451,23 +449,28 @@
 }
 
 /* Biomarker Visualization */
+/* Biomarker Visualization */
 .thrive-hero__biomarker {
   position: absolute;
   right: 2rem;
   top: 50%;
   transform: translateY(-50%);
   width: 300px;
-  opacity: 0.7;
+  opacity: 1;
   pointer-events: none;
+  filter: drop-shadow(0 20px 40px rgba(75, 0, 130, 0.15));
 }
 
 .biomarker-container {
   position: relative;
   padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(225, 182, 59, 0.2);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  box-shadow:
+    0 10px 30px rgba(75, 0, 130, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .biomarker-header {
@@ -476,13 +479,13 @@
   align-items: center;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(75, 0, 130, 0.08);
 }
 
 .biomarker-title {
   font-size: 0.75rem;
   font-weight: 700;
-  color: var(--brand-gold);
+  color: var(--brand-purple);
   letter-spacing: 0.1em;
   display: flex;
   align-items: center;
@@ -492,9 +495,10 @@
 .pulse-indicator {
   width: 8px;
   height: 8px;
-  background: var(--brand-gold);
+  background: var(--brand-red);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(210, 31, 60, 0.4);
 }
 
 @keyframes pulse {
@@ -515,17 +519,19 @@
   font-size: 0.75rem;
   color: var(--text-tertiary);
   font-family: 'Courier New', monospace;
+  font-weight: 600;
 }
 
 .biomarker-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.1;
+  opacity: 0.05;
+  pointer-events: none;
 }
 
 .grid-line {
   position: absolute;
-  background: var(--brand-gold);
+  background: var(--brand-purple);
 }
 
 .grid-line.horizontal {

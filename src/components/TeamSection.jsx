@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+
 const TeamSection = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -63,11 +64,7 @@ const TeamSection = () => {
 
   if (loading) {
     return (
-      <section style={{
-        padding: '80px 20px',
-        textAlign: 'center',
-        background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)'
-      }}>
+      <section className="team-section loading">
         <div>Loading doctors...</div>
       </section>
     );
@@ -75,12 +72,7 @@ const TeamSection = () => {
 
   if (error) {
     return (
-      <section style={{
-        padding: '80px 20px',
-        textAlign: 'center',
-        background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)',
-        color: '#ff6b6b'
-      }}>
+      <section className="team-section error">
         <div>Error loading doctors: {error}</div>
       </section>
     );
@@ -89,31 +81,24 @@ const TeamSection = () => {
   return (
     <section
       id="team"
-      style={{
-        padding: '80px 0',
-        background: 'linear-gradient(180deg, #0a0a1a 0%, #1a1a2e 100%)'
-      }}
+      className="team-section"
     >
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 20px'
-      }}>
+      <div className="team-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          style={{ textAlign: 'center', marginBottom: '60px' }}
+          className="team-header"
         >
-          <span style={styles.eyebrow}>Our Team</span>
-          <h2 style={styles.heading}>Meet Our Expert Doctors</h2>
-          <p style={styles.subHeading}>
+          <span className="team-eyebrow">Our Team</span>
+          <h2 className="team-heading">Meet Our Expert Doctors</h2>
+          <p className="team-subheading">
             Dedicated healthcare professionals committed to your well-being
           </p>
         </motion.div>
 
-        <div style={styles.grid}>
+        <div className="team-grid">
           {doctors.map((doctor, index) => (
             <motion.div
               key={doctor.id}
@@ -121,25 +106,25 @@ const TeamSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              style={styles.card}
+              className="team-card"
               onClick={() => setActiveDoctor(doctor)}
             >
-              <div style={styles.imageContainer}>
+              <div className="team-image-container">
                 <img
                   src={doctor.image}
                   alt={doctor.name}
-                  style={styles.image}
+                  className="team-image"
                   loading="lazy"
                 />
-                <div style={styles.specialtyBadge}>
+                <div className="team-specialty-badge">
                   {doctor.specialty}
                 </div>
               </div>
-              <div style={styles.info}>
-                <h3 style={styles.name}>{doctor.name}</h3>
-                <p style={styles.role}>{doctor.role}</p>
-                <p style={styles.experience}>{doctor.experience} experience</p>
-                <p style={styles.location}><span>📍</span> {doctor.location}</p>
+              <div className="team-info">
+                <h3 className="team-name">{doctor.name}</h3>
+                <p className="team-role">{doctor.role}</p>
+                <p className="team-experience">{doctor.experience} experience</p>
+                <p className="team-location"><span>📍</span> {doctor.location}</p>
               </div>
             </motion.div>
           ))}
@@ -152,45 +137,45 @@ const TeamSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={styles.modalOverlay}
+            className="team-modal-overlay"
             onClick={() => setActiveDoctor(null)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              style={styles.modalContent}
+              className="team-modal-content"
               onClick={e => e.stopPropagation()}
             >
               <button
-                style={styles.closeButton}
+                className="team-close-button"
                 onClick={() => setActiveDoctor(null)}
                 aria-label="Close"
               >
                 &times;
               </button>
 
-              <div style={styles.modalGrid}>
-                <div style={styles.modalImageContainer}>
+              <div className="team-modal-grid">
+                <div className="team-modal-image-container">
                   <img
                     src={activeDoctor.image}
                     alt={activeDoctor.name}
-                    style={styles.modalImage}
+                    className="team-modal-image"
                   />
                 </div>
 
-                <div style={styles.modalInfo}>
-                  <h3 style={styles.modalName}>{activeDoctor.name}</h3>
-                  <p style={styles.modalRole}>{activeDoctor.role}</p>
-                  <p style={styles.modalSpecialty}>{activeDoctor.specialty} • {activeDoctor.location}</p>
+                <div className="team-modal-info">
+                  <h3 className="team-modal-name">{activeDoctor.name}</h3>
+                  <p className="team-modal-role">{activeDoctor.role}</p>
+                  <p className="team-modal-specialty">{activeDoctor.specialty} • {activeDoctor.location}</p>
 
-                  <div style={styles.modalSection}>
-                    <h4 style={styles.sectionTitle}>About</h4>
+                  <div className="team-modal-section">
+                    <h4 className="team-section-title">About</h4>
                     <p>{activeDoctor.bio}</p>
                   </div>
 
-                  <div style={styles.modalSection}>
-                    <h4 style={styles.sectionTitle}>Experience</h4>
+                  <div className="team-modal-section">
+                    <h4 className="team-section-title">Experience</h4>
                     <p>{activeDoctor.experience} of experience</p>
                   </div>
                 </div>
@@ -201,212 +186,6 @@ const TeamSection = () => {
       </AnimatePresence>
     </section>
   );
-};
-
-// Styles
-const styles = {
-  eyebrow: {
-    display: 'inline-block',
-    color: 'var(--brand-purple-light)',
-    fontSize: '1rem',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    letterSpacing: '2px',
-    marginBottom: '15px',
-    position: 'relative',
-    paddingLeft: '15px',
-  },
-  heading: {
-    fontSize: '2.5rem',
-    fontWeight: 700,
-    color: 'var(--neutral-50)',
-    margin: '15px 0 20px',
-    background: 'linear-gradient(90deg, var(--brand-purple), var(--brand-gold))',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-    backgroundClip: 'text',
-  },
-  subHeading: {
-    color: 'var(--neutral-300)',
-    fontSize: '1.1rem',
-    maxWidth: '700px',
-    margin: '0 auto',
-    lineHeight: 1.7
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-    gap: '30px',
-    marginTop: '40px'
-  },
-  card: {
-    background: 'rgba(255, 255, 255, 0.03)',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    borderRadius: '16px',
-    overflow: 'hidden',
-    transition: 'all 0.3s ease',
-    cursor: 'pointer',
-    '&:hover': {
-      transform: 'translateY(-5px)',
-      boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
-      borderColor: 'rgba(124, 77, 255, 0.3)'
-    }
-  },
-  imageContainer: {
-    position: 'relative',
-    width: '100%',
-    paddingTop: '100%',
-    overflow: 'hidden'
-  },
-  image: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    transition: 'transform 0.5s ease'
-  },
-  specialtyBadge: {
-    position: 'absolute',
-    bottom: '15px',
-    left: '15px',
-    background: 'rgba(124, 77, 255, 0.9)',
-    color: 'white',
-    padding: '5px 15px',
-    borderRadius: '20px',
-    fontSize: '0.8rem',
-    fontWeight: 600
-  },
-  info: {
-    padding: '20px'
-  },
-  name: {
-    fontSize: '1.3rem',
-    fontWeight: 600,
-    color: 'var(--neutral-50)',
-    margin: '0 0 5px'
-  },
-  role: {
-    color: 'var(--brand-gold)',
-    fontSize: '0.9rem',
-    margin: '0 0 10px'
-  },
-  experience: {
-    color: 'var(--neutral-300)',
-    fontSize: '0.9rem',
-    margin: '0 0 5px'
-  },
-  location: {
-    color: 'var(--neutral-400)',
-    fontSize: '0.9rem',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '5px',
-    margin: 0
-  },
-  modalOverlay: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 1000,
-    padding: '20px',
-    backdropFilter: 'blur(5px)'
-  },
-  modalContent: {
-    background: '#0f0f1a',
-    borderRadius: '16px',
-    maxWidth: '900px',
-    width: '100%',
-    maxHeight: '90vh',
-    overflowY: 'auto',
-    position: 'relative',
-    border: '1px solid rgba(255, 255, 255, 0.1)',
-    boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)'
-  },
-  closeButton: {
-    position: 'absolute',
-    top: '20px',
-    right: '20px',
-    background: 'rgba(255, 255, 255, 0.1)',
-    border: 'none',
-    color: 'white',
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    fontSize: '1.5rem',
-    zIndex: 10,
-    '&:hover': {
-      background: 'rgba(255, 255, 255, 0.2)'
-    }
-  },
-  modalGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1.5fr',
-    gap: '30px',
-    padding: '40px'
-  },
-  modalImageContainer: {
-    borderRadius: '12px',
-    overflow: 'hidden',
-    aspectRatio: '1/1'
-  },
-  modalImage: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover'
-  },
-  modalInfo: {
-    color: 'var(--neutral-50)'
-  },
-  modalName: {
-    fontSize: '2rem',
-    fontWeight: 700,
-    margin: '0 0 5px',
-    color: 'white'
-  },
-  modalRole: {
-    color: 'var(--brand-gold)',
-    fontSize: '1.1rem',
-    margin: '0 0 10px'
-  },
-  modalSpecialty: {
-    color: 'var(--brand-purple-light)',
-    fontSize: '1rem',
-    margin: '0 0 20px'
-  },
-  modalSection: {
-    marginBottom: '25px'
-  },
-  sectionTitle: {
-    fontSize: '1.1rem',
-    fontWeight: 600,
-    color: 'white',
-    margin: '0 0 10px',
-    position: 'relative',
-    paddingLeft: '15px',
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      left: 0,
-      top: '50%',
-      transform: 'translateY(-50%)',
-      width: '5px',
-      height: '18px',
-      background: 'var(--brand-gold)',
-      borderRadius: '3px'
-    }
-  }
 };
 
 export default TeamSection;

@@ -1,5 +1,5 @@
 import React from 'react';
-import './WhyChooseSection.css';
+
 
 const WhyChooseSection = () => {
   const advantages = [
@@ -13,25 +13,25 @@ const WhyChooseSection = () => {
   const isOddCount = advantages.length % 2 !== 0;
 
   return (
-    <section className="why-choose-section" id="why-choose" style={{ 
+    <section className="why-choose-section" id="why-choose" style={{
       background: 'var(--neutral-900)',
       color: 'var(--neutral-50)',
       padding: '80px 0',
       position: 'relative',
       overflow: 'hidden'
     }}>
-      <div className="container" style={{ 
+      <div className="container" style={{
         maxWidth: '1200px',
         margin: '0 auto',
         padding: '0 20px',
         position: 'relative',
         zIndex: 2
       }}>
-        <div className="section-header" style={{ 
+        <div className="section-header" style={{
           textAlign: 'center',
           marginBottom: '50px'
         }}>
-          <h2 className="section-title" style={{ 
+          <h2 className="section-title" style={{
             fontSize: '3.5rem',
             fontWeight: 800,
             marginBottom: '1rem',
@@ -41,7 +41,7 @@ const WhyChooseSection = () => {
             backgroundClip: 'text',
             textShadow: '0 0 10px rgba(124, 77, 255, 0.3)'
           }}>
-            <span className="title-highlight" style={{ 
+            <span className="title-highlight" style={{
               color: 'var(--brand-gold-light)'
             }}>Why Choose</span> Aarunya
           </h2>
@@ -58,11 +58,11 @@ const WhyChooseSection = () => {
             {advantages.map((advantage, index) => {
               // Check if this is the last item and total count is odd
               const isLastOddItem = isOddCount && index === advantages.length - 1;
-              
+
               return (
-                <div 
-                  key={index} 
-                  className="advantage-item" 
+                <div
+                  key={index}
+                  className="advantage-item"
                   style={{
                     display: 'flex',
                     alignItems: 'center',

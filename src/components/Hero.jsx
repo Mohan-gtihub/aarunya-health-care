@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
-import './Hero.css';
+
 
 const bannerTaglines = [
   "Where medical excellence meets compassionate care.",
@@ -242,7 +242,7 @@ export default function Hero() {
             <svg viewBox="0 0 400 100" className="ecg-wave">
               <path
                 d="M0,50 L50,50 L60,20 L70,80 L80,50 L130,50 L140,20 L150,80 L160,50 L210,50 L220,20 L230,80 L240,50 L290,50 L300,20 L310,80 L320,50 L370,50 L380,20 L390,80 L400,50"
-                stroke="var(--brand-gold)"
+                stroke="var(--brand-red)"
                 strokeWidth="2"
                 fill="none"
                 className="ecg-path"

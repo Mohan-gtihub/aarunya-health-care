@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .contact-info h2 {
@@ -34,7 +34,7 @@
 .contact-method {
   display: flex;
   gap: 1.5rem;
-  align-items: start;
+  align-items: flex-start;
   padding: 1.5rem;
   background: white;
   border-radius: 12px;

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './CalendarPicker.css';
+
 
 export default function CalendarPicker({ selectedDate, setSelectedDate }) {
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -36,15 +36,15 @@ export default function CalendarPicker({ selectedDate, setSelectedDate }) {
   const isSelected = (day) => {
     if (!selectedDate) return false;
     return selectedDate.getDate() === day &&
-           selectedDate.getMonth() === currentMonth.getMonth() &&
-           selectedDate.getFullYear() === currentMonth.getFullYear();
+      selectedDate.getMonth() === currentMonth.getMonth() &&
+      selectedDate.getFullYear() === currentMonth.getFullYear();
   };
 
   const isToday = (day) => {
     const today = new Date();
     return today.getDate() === day &&
-           today.getMonth() === currentMonth.getMonth() &&
-           today.getFullYear() === currentMonth.getFullYear();
+      today.getMonth() === currentMonth.getMonth() &&
+      today.getFullYear() === currentMonth.getFullYear();
   };
 
   return (
@@ -84,11 +84,11 @@ export default function CalendarPicker({ selectedDate, setSelectedDate }) {
 
       {selectedDate && (
         <p className="selected-date-display">
-          Selected: {selectedDate.toLocaleDateString('en-US', { 
-            weekday: 'long', 
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
+          Selected: {selectedDate.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
           })}
         </p>
       )}
