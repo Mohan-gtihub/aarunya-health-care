@@ -165,7 +165,7 @@ export default function AppointmentForm({ onSuccess }) {
             <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
-            <span>Appointment request submitted successfully! We'll contact you shortly to confirm.</span>
+            <span>Appointment request submitted successfully! We&apos;ll contact you shortly to confirm.</span>
           </div>
         )}
 
@@ -360,7 +360,7 @@ export default function AppointmentForm({ onSuccess }) {
           <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
             <path d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          We'll contact you within 24 hours to confirm your appointment.
+          We&apos;ll contact you within 24 hours to confirm your appointment.
         </p>
       </form>
     </motion.div>

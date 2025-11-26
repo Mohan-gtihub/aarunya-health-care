@@ -49,7 +49,7 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
             >
               <h2>Get in Touch</h2>
-              <p>We're here to help and answer any question you might have. We look forward to hearing from you. Fill out the form and we'll respond within 24 hours.</p>
+              <p>We&apos;re here to help and answer any question you might have. We look forward to hearing from you. Fill out the form and we&apos;ll respond within 24 hours.</p>
 
               <div className="contact-methods">
                 <div className="contact-method">
@@ -144,7 +144,7 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="contact-form card">
                 <h2>Send us a Message</h2>
                 <p style={{ marginBottom: '2rem', color: 'var(--text-light)' }}>
-                  Fill out the form below and we'll get back to you as soon as possible.
+                  Fill out the form below and we&apos;ll get back to you as soon as possible.
                 </p>
 
                 <label htmlFor="name">

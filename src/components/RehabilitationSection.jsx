@@ -36,7 +36,7 @@ const RehabilitationSection = () => {
 
         <div className="rehab-intro">
           <p className="rehab-description">
-            We believe recovery doesn't end with treatment. Our physiotherapy and rehabilitative care focus on:
+            We believe recovery doesn&apos;t end with treatment. Our physiotherapy and rehabilitative care focus on:
           </p>
         </div>
 

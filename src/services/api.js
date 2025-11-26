@@ -21,12 +21,12 @@ async function fetchAPI(endpoint, options = {}) {
 
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
-    
+
     if (!response.ok) {
       const error = await response.json().catch(() => ({}));
       throw new Error(error.message || `HTTP error! status: ${response.status}`);
     }
-    
+
     return await response.json();
   } catch (error) {
     console.error('API Error:', error);
@@ -55,7 +55,7 @@ export const appointmentsAPI = {
         });
       }, 1000);
     });
-    
+
     // Actual implementation:
     // return fetchAPI('/appointments', {
     //   method: 'POST',
@@ -226,10 +226,12 @@ export const authAPI = {
   },
 };
 
-export default {
+const api = {
   appointments: appointmentsAPI,
   doctors: doctorsAPI,
   departments: departmentsAPI,
   contact: contactAPI,
   auth: authAPI,
 };
+
+export default api;

@@ -44,7 +44,7 @@ export default function ActionPlanJourney() {
       <div className="container">
         <div className="section-head">
           <p className="section-eyebrow">From Prevention to Recovery to Longevity</p>
-          <h2 id="plan-heading">Aarunya's Complete Care Journey</h2>
+          <h2 id="plan-heading">Aarunya&apos;s Complete Care Journey</h2>
           <p className="section-subcopy">
             Our care philosophy centers on strengthening the body from within through early screening, comprehensive treatment, targeted therapies, rehabilitation, and long-term health optimization.
           </p>

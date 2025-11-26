@@ -43,7 +43,7 @@ const AboutUs = () => {
               Redefining Healthcare with <span className="highlight">Compassion</span> & <span className="highlight">Excellence</span>
             </h1>
             <p className="hero-subtitle">
-              Aarunya Health Care is more than a clinic; it's a sanctuary for healing and longevity. We are dedicated to providing comprehensive, multidimensional care that strengthens your health from within.
+              Aarunya Health Care is more than a clinic; it&apos;s a sanctuary for healing and longevity. We are dedicated to providing comprehensive, multidimensional care that strengthens your health from within.
             </p>
           </motion.div>
         </div>
@@ -83,7 +83,7 @@ const AboutUs = () => {
                 <div className="founder-quote-box">
                   <FaQuoteLeft className="quote-icon" />
                   <p className="founder-quote">
-                    "At Aarunya, we believe that true healthcare goes beyond treating symptoms. It's about understanding the whole person, their lifestyle, and their long-term goals. Our mission is to empower every patient with the knowledge and care they need to lead a healthier, more vibrant life."
+                    &quot;At Aarunya, we believe that true healthcare goes beyond treating symptoms. It&apos;s about understanding the whole person, their lifestyle, and their long-term goals. Our mission is to empower every patient with the knowledge and care they need to lead a healthier, more vibrant life.&quot;
                   </p>
                 </div>
 

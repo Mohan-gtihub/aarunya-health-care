@@ -60,7 +60,7 @@ const TeamSection = () => {
     // For now, use the sample data
     setDoctors(sampleDoctors);
     setLoading(false);
-  }, []);
+  }, [sampleDoctors]);
 
   if (loading) {
     return (

@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 
 export default function DoctorModal({ doctor, isOpen, onClose }) {
@@ -141,18 +142,18 @@ export default function DoctorModal({ doctor, isOpen, onClose }) {
                     </svg>
                     <h3>Philosophy</h3>
                   </div>
-                  <p className="philosophy-quote">"{doctor.philosophy}"</p>
+                  <p className="philosophy-quote">&quot;{doctor.philosophy}&quot;</p>
                 </div>
               )}
             </div>
 
             <div className="modal-footer">
-              <a href="/contact" className="btn btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 Contact Us
-              </a>
-              <a href="/doctors" className="btn btn-secondary">
+              </Link>
+              <Link href="/doctors" className="btn btn-secondary">
                 View All Doctors
-              </a>
+              </Link>
             </div>
           </div>
         </motion.div>
