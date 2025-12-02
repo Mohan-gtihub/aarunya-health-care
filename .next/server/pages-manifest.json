@@ -2,11 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/about": "pages/about.js",
-  "/services": "pages/services.js",
-  "/": "pages/index.js",
-  "/contact": "pages/contact.js",
-  "/appointment": "pages/appointment.js",
-  "/doctors": "pages/doctors.js",
-  "/api/departments": "pages/api/departments.js"
+  "/": "pages/index.js"
 }

@@ -81,6 +81,7 @@ export default function Hero() {
     >
       {/* Advanced Background with Parallax */}
       <div className="thrive-hero__background">
+        <div className="thrive-hero__image" />
         <motion.div
           className="thrive-hero__gradient"
           style={{
