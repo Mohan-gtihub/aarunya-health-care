@@ -99,6 +99,9 @@ export default function Hero() {
           ))}
         </div>
         <div className="thrive-hero__mesh-gradient" />
+
+        {/* Watermark Logo */}
+
       </div>
 
       {/* Main Content */}
@@ -138,18 +141,30 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="thrive-hero__title"
-          >
-            Aarunya Health Care Clinics
-            <span className="thrive-hero__title-gradient">
-              <span className="gradient-text">Best Multispeciality Clinic</span>
-              <span className="title-underline" />
-            </span>
-          </motion.h1>
+          <div className="thrive-hero__title-wrapper">
+            {/* Watermark Logo - Positioned behind text */}
+            <motion.div
+              className="thrive-hero__watermark"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.4, scale: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+            >
+              <img src="/aarunya-logo.svg" alt="" />
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.4 }}
+              className="thrive-hero__title"
+            >
+              Aarunya Health Care Clinics
+              <span className="thrive-hero__title-gradient">
+                <span className="gradient-text">Best Multispeciality Clinic</span>
+                <span className="title-underline" />
+              </span>
+            </motion.h1>
+          </div>
 
           <motion.div
             initial={{ opacity: 0 }}
