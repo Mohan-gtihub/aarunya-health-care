@@ -5,9 +5,9 @@ import { useRouter } from 'next/router';
 
 const navLinks = [
   { label: 'Services', route: '/services' },
-  { label: 'FAQ', hash: '#faq' },
   { label: 'About', route: '/about' },
   { label: 'Doctors', route: '/doctors' },
+  { label: 'Blog', route: '/blog' },
   { label: 'Contact Us', route: '/contact' }
 ];
 

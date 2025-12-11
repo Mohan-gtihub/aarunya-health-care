@@ -10,6 +10,8 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import AppointmentPage from './pages/AppointmentPage';
 import PatientPortal from './pages/PatientPortal';
+import Blog from './pages/blog';
+import Admin from './pages/admin';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/appointment" element={<AppointmentPage />} />
             <Route path="/patient-portal" element={<PatientPortal />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />

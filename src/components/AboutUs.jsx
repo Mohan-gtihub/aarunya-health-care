@@ -56,7 +56,7 @@ const AboutUs = () => {
             <div className="founder-image-col">
               <div className="image-frame">
                 <img
-                  src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&q=80"
+                  src="/images/Dr.Vaishnav.jpg"
                   alt="Dr. Vaishnav"
                   className="founder-img"
                 />

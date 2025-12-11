@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import HealthPackageBookingModal from './HealthPackageBookingModal';
 
 
 const healthPackages = [
@@ -71,6 +72,18 @@ const healthPackages = [
 
 export default function HealthPackagesSection() {
     const [selectedPackage, setSelectedPackage] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+    const [bookingPackage, setBookingPackage] = useState(null);
+
+    const handleBookNow = (pkg) => {
+        setBookingPackage({
+            ...pkg,
+            price: pkg.price,
+            type: 'wellness_package'
+        });
+        setIsBookingModalOpen(true);
+    };
 
     return (
         <section className="health-packages-section">
@@ -141,6 +154,7 @@ export default function HealthPackagesSection() {
                                 className="package-btn"
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
+                                onClick={() => handleBookNow(pkg)}
                             >
                                 Book Now
                             </motion.button>
@@ -173,6 +187,15 @@ export default function HealthPackagesSection() {
                     </div>
                 </motion.div>
             </div>
+
+            {/* Booking Modal */}
+            {bookingPackage && (
+                <HealthPackageBookingModal
+                    isOpen={isBookingModalOpen}
+                    onClose={() => setIsBookingModalOpen(false)}
+                    packageData={bookingPackage}
+                />
+            )}
         </section>
     );
 }

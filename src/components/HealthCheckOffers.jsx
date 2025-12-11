@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaCheck, FaRupeeSign, FaStar } from 'react-icons/fa';
+import HealthPackageBookingModal from './HealthPackageBookingModal';
 
 const packages = [
     {
@@ -74,6 +75,19 @@ const packages = [
 ];
 
 const HealthCheckOffers = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPackage, setSelectedPackage] = useState(null);
+
+    const handleBookNow = (pkg) => {
+        setSelectedPackage({
+            ...pkg,
+            name: pkg.title,
+            price: `₹${pkg.price}`,
+            type: 'health_check'
+        });
+        setIsModalOpen(true);
+    };
+
     return (
         <section className="health-offers-section">
             <div className="container">
@@ -122,13 +136,26 @@ const HealthCheckOffers = () => {
                                 </ul>
                             </div>
 
-                            <button className="book-btn" style={{ background: pkg.color }}>
+                            <button
+                                className="book-btn"
+                                style={{ background: pkg.color }}
+                                onClick={() => handleBookNow(pkg)}
+                            >
                                 Book Now
                             </button>
                         </motion.div>
                     ))}
                 </div>
             </div>
+
+            {/* Booking Modal */}
+            {selectedPackage && (
+                <HealthPackageBookingModal
+                    isOpen={isModalOpen}
+                    onClose={() => setIsModalOpen(false)}
+                    packageData={selectedPackage}
+                />
+            )}
         </section>
     );
 };

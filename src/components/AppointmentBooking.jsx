@@ -17,8 +17,7 @@ export default function AppointmentBooking() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const [emailTestLoading, setEmailTestLoading] = useState(false);
-  const [emailTestResult, setEmailTestResult] = useState('');
+
 
   // Calculate form completion steps
   const getCompletedSteps = () => {
@@ -95,31 +94,7 @@ export default function AppointmentBooking() {
     }
   }, [selectedDate]);
 
-  const handleEmailTest = async () => {
-    setEmailTestLoading(true);
-    setEmailTestResult('');
 
-    try {
-      const response = await fetch(`${API_URL}/api/test-email`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to send test email');
-      }
-
-      const result = await response.json();
-      setEmailTestResult('📧 Test email sent successfully to mohankilarisai@gmail.com!');
-    } catch (err) {
-      setEmailTestResult('❌ Failed to send test email: ' + err.message);
-    } finally {
-      setEmailTestLoading(false);
-      setTimeout(() => setEmailTestResult(''), 3000);
-    }
-  };
 
   const getDoctorsForDepartment = (deptId) => {
     const dept = departments.find(d => d.id === deptId);
@@ -215,13 +190,7 @@ export default function AppointmentBooking() {
           </div>
         )}
 
-        {emailTestResult && (
-          <div className={`message ${emailTestResult.includes('successfully') ? 'success' : 'error'}`}>
-            <div className="message-content">
-              <span>{emailTestResult}</span>
-            </div>
-          </div>
-        )}
+
 
         <div className="booking-container">
           <form className="booking-form" onSubmit={handleSubmit}>
@@ -445,24 +414,7 @@ export default function AppointmentBooking() {
                   </>
                 )}
               </button>
-              <button
-                type="button"
-                className="btn btn-secondary btn-large"
-                onClick={handleEmailTest}
-                disabled={emailTestLoading}
-              >
-                {emailTestLoading ? (
-                  <>
-                    <div className="loading-spinner" style={{ width: '20px', height: '20px', borderWidth: '3px' }}></div>
-                    <span>Testing...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>📧</span>
-                    <span>Test Email</span>
-                  </>
-                )}
-              </button>
+
             </div>
           </form>
         </div>

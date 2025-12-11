@@ -1,0 +1,36 @@
+/* CRITICAL FIX: Force all text to be visible and dark */
+.appointment-booking * {
+    color: inherit;
+}
+
+.appointment-booking label,
+.appointment-booking .form-label,
+.appointment-booking .form-label span {
+    color: #000000 !important;
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.appointment-booking p {
+    color: #1e293b !important;
+    font-weight: 600 !important;
+}
+
+.appointment-booking input,
+.appointment-booking select,
+.appointment-booking textarea {
+    color: #000000 !important;
+    font-weight: 600 !important;
+}
+
+.appointment-booking input::placeholder,
+.appointment-booking textarea::placeholder {
+    color: #475569 !important;
+    opacity: 1 !important;
+}
+
+.appointment-booking option {
+    color: #000000 !important;
+    background: #ffffff !important;
+}

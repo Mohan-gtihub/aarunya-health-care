@@ -31,3 +31,21 @@ pnpm-debug.log*
 *~
 
 .vercel
+
+# Next.js
+.next/
+out/
+
+# Debug
+*.log
+
+# Local env files
+.env*.local
+.env
+
+# Vercel
+.vercel
+
+# Typescript
+*.tsbuildinfo
+next-env.d.ts

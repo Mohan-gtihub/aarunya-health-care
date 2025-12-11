@@ -1,4 +1,5 @@
 ﻿import Hero from '../components/Hero';
+import VideoGallery from '../components/VideoGallery';
 import SpecialtiesSection from '../components/SpecialtiesSection';
 import HealthCheckOffers from '../components/HealthCheckOffers';
 import RehabilitationSection from '../components/RehabilitationSection';
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main className="home-page">
       <Hero />
+      <VideoGallery />
       <SpecialtiesSection />
       <HealthCheckOffers />
       <RehabilitationSection />

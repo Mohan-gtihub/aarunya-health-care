@@ -1,0 +1,32 @@
+/* Video Thumbnail */
+.video-thumbnail {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-thumbnail::before {
+    content: '▶';
+    position: absolute;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.3);
+    z-index: 0;
+}
+
+.video-thumbnail img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    z-index: 1;
+    background: #000;
+}
+
+.video-card:hover .video-thumbnail img {
+    transform: scale(1.1);
+}

@@ -1,5 +1,6 @@
 import '../index.css'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
@@ -8,6 +9,7 @@ import '../components/AboutUs.css'
 import '../components/ActionPlanJourney.css'
 import '../components/ActionPlanSection.css'
 import '../components/AppointmentBooking.css'
+import '../components/AppointmentBooking-override.css'
 import '../components/AppointmentForm.css'
 import '../components/AwardsCarousel.css'
 import '../components/CalendarPicker.css'
@@ -30,6 +32,8 @@ import '../components/RehabilitationSection.css'
 import '../components/SearchBar.css'
 import '../components/SpecialtiesSection.css'
 import '../components/TeamSection.css'
+import '../components/VideoGallery.css'
+import '../components/VideoEditModal.css'
 import '../components/WhyChooseSection.css'
 
 // Page CSS Imports
@@ -42,19 +46,30 @@ import './equipment.css'
 import './home.css'
 import './patient-portal.css'
 import './services.css'
+import './blog.css'
+import './admin.css'
+import './admin-modals.css'
+import '../styles/doctors-admin.css'
+import '../styles/video-admin.css'
 
 export default function MyApp({ Component, pageProps }) {
+    const router = useRouter();
+
+    // Check if current page is admin or admin-login
+    const isAdminPage = router.pathname === '/admin' || router.pathname === '/admin-login';
+
     return (
         <>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
             </Head>
             <div className="app">
-                <Header />
+                {/* Only show Header and Footer on non-admin pages */}
+                {!isAdminPage && <Header />}
                 <main>
                     <Component {...pageProps} />
                 </main>
-                <Footer />
+                {!isAdminPage && <Footer />}
             </div>
         </>
     )

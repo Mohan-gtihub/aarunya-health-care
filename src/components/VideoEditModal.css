@@ -1,0 +1,150 @@
+/* Video Edit Modal Specific Styles */
+.video-edit-modal {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.video-edit-modal .modal-form {
+    padding: 0;
+}
+
+.video-edit-modal .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.video-edit-modal .form-group label {
+    display: block;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.video-edit-modal .form-group input[type="text"],
+.video-edit-modal .form-group input[type="number"],
+.video-edit-modal .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.video-edit-modal .form-group input:focus,
+.video-edit-modal .form-group textarea:focus {
+    outline: none;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.video-edit-modal .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.video-edit-modal .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.video-edit-modal .checkbox-group {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+}
+
+.video-edit-modal .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #475569;
+}
+
+.video-edit-modal .checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #8b5cf6;
+}
+
+.video-edit-modal .modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f1f5f9;
+}
+
+.video-edit-modal .btn-submit {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-edit-modal .btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.video-edit-modal .btn-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.video-edit-modal .btn-cancel {
+    flex: 1;
+    padding: 0.875rem 1.5rem;
+    background: white;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-edit-modal .btn-cancel:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.video-edit-modal .btn-cancel:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .video-edit-modal {
+        max-width: 95%;
+        margin: 1rem;
+    }
+
+    .video-edit-modal .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .video-edit-modal .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .video-edit-modal .btn-submit,
+    .video-edit-modal .btn-cancel {
+        width: 100%;
+    }
+}

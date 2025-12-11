@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import { addAppointment, getAppointments } from '../../../lib/storage';
+import { supabase } from '../../../lib/supabase';
 
 // Departments data (duplicated from departments API for validation)
 const departments = [
@@ -60,15 +61,6 @@ function getDepartmentById(deptId) {
     return dept ? dept.name : deptId;
 }
 
-// Email transporter configuration
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
-
 export default async function handler(req, res) {
     if (req.method === 'POST') {
         try {
@@ -97,7 +89,7 @@ export default async function handler(req, res) {
             // Get department name
             const departmentName = getDepartmentById(department);
 
-            // Check if time slot is still available
+            // Check if time slot is still available (check both in-memory and Supabase)
             const appointments = getAppointments();
             const isSlotAvailable = !appointments.some(apt =>
                 apt.date === date && apt.time === time && apt.doctorId === parseInt(doctor) && apt.status !== 'cancelled'
@@ -107,8 +99,24 @@ export default async function handler(req, res) {
                 return res.status(409).json({ error: 'This time slot is already booked for the selected doctor' });
             }
 
-            // Create appointment
+            // Create appointment data
             const appointmentData = {
+                patient_name: patientName,
+                patient_email: patientEmail,
+                patient_phone: patientPhone,
+                department: departmentName,
+                department_id: department,
+                doctor: doctorDetails.name,
+                doctor_id: parseInt(doctor),
+                doctor_email: doctorDetails.email,
+                date,
+                time,
+                reason: reason || 'General consultation',
+                status: 'confirmed'
+            };
+
+            // Save to in-memory storage (for backward compatibility)
+            const newAppointment = addAppointment({
                 department: departmentName,
                 departmentId: department,
                 doctor: doctorDetails.name,
@@ -120,12 +128,26 @@ export default async function handler(req, res) {
                 patientEmail,
                 patientPhone,
                 reason: reason || 'General consultation'
-            };
+            });
 
-            const newAppointment = addAppointment(appointmentData);
+            // Save to Supabase for persistence
+            const { data: supabaseAppointment, error: supabaseError } = await supabase
+                .from('appointments')
+                .insert([appointmentData])
+                .select()
+                .single();
+
+            if (supabaseError) {
+                console.error('Supabase save error:', supabaseError);
+                // Continue anyway - at least we have in-memory storage
+            } else {
+                console.log('✅ Appointment saved to Supabase:', supabaseAppointment.id);
+            }
 
             // Send confirmation emails (non-blocking)
-            sendConfirmationEmails(newAppointment).catch(console.error);
+            sendConfirmationEmails(newAppointment).catch(err => {
+                console.error('Email sending failed:', err);
+            });
 
             res.status(201).json({
                 message: 'Appointment booked successfully',
@@ -143,27 +165,71 @@ export default async function handler(req, res) {
 }
 
 async function sendConfirmationEmails(appointment) {
-    // Only send if credentials are provided
+    // Check if credentials are provided
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-        console.log('Email credentials missing, skipping email sending');
+        console.error('❌ EMAIL CONFIGURATION ERROR: EMAIL_USER or EMAIL_PASS not found in environment variables');
+        console.log('Current EMAIL_USER:', process.env.EMAIL_USER ? 'Set' : 'Not set');
+        console.log('Current EMAIL_PASS:', process.env.EMAIL_PASS ? 'Set' : 'Not set');
         return;
     }
 
+    console.log('📧 Attempting to send email to:', appointment.patientEmail);
+    console.log('Using email account:', process.env.EMAIL_USER);
+
+    // Create transporter inside the function to ensure env vars are loaded
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+
+    // IMPORTANT: Gmail requires the 'from' address to match the authenticated account
     const patientEmailOptions = {
-        from: 'Aarunya Health Care <noreply@aarunyahealthcare.com>',
+        from: `"Aarunya Health Care" <${process.env.EMAIL_USER}>`,
         to: appointment.patientEmail,
         subject: 'Appointment Confirmation - Aarunya Health Care',
         html: `
-      <h1>Appointment Confirmed</h1>
-      <p>Dear ${appointment.patientName},</p>
-      <p>Your appointment with ${appointment.doctor} on ${appointment.date} at ${appointment.time} is confirmed.</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h1 style="color: #2c5282;">Appointment Confirmed ✅</h1>
+        <p>Dear ${appointment.patientName},</p>
+        <p>Your appointment has been successfully booked!</p>
+        
+        <div style="background-color: #f7fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h2 style="color: #2d3748; margin-top: 0;">Appointment Details:</h2>
+          <p><strong>Doctor:</strong> ${appointment.doctor}</p>
+          <p><strong>Department:</strong> ${appointment.department}</p>
+          <p><strong>Date:</strong> ${appointment.date}</p>
+          <p><strong>Time:</strong> ${appointment.time}</p>
+          <p><strong>Reason:</strong> ${appointment.reason}</p>
+        </div>
+        
+        <p>Please arrive 15 minutes before your scheduled time.</p>
+        <p>If you need to reschedule or cancel, please contact us at least 24 hours in advance.</p>
+        
+        <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 30px 0;">
+        
+        <p style="color: #718096; font-size: 14px;">
+          <strong>Aarunya Health Care</strong><br>
+          Excellence in Healthcare, Compassion in Service<br>
+          📞 +91 (555) 123-4567<br>
+          📧 info@aarunyahealthcare.com
+        </p>
+      </div>
     `
     };
 
     try {
-        await transporter.sendMail(patientEmailOptions);
-        console.log('Confirmation email sent');
+        const info = await transporter.sendMail(patientEmailOptions);
+        console.log('✅ Confirmation email sent successfully!');
+        console.log('Message ID:', info.messageId);
+        console.log('Response:', info.response);
     } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('❌ ERROR SENDING EMAIL:');
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Full error:', error);
+        throw error; // Re-throw to be caught by the .catch() in the handler
     }
 }

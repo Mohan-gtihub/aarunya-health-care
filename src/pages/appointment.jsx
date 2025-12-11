@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import AppointmentBooking from '../components/AppointmentBooking';
+import AppointmentBookingEnhanced from '../components/AppointmentBookingEnhanced';
 
 
 export default function AppointmentPage() {
@@ -45,7 +45,7 @@ export default function AppointmentPage() {
       </section>
 
       {/* Appointment Booking Section */}
-      <AppointmentBooking />
+      <AppointmentBookingEnhanced />
     </div>
   );
 }
