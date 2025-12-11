@@ -105,6 +105,21 @@ export default function AppointmentBookingEnhanced() {
             const doctor = doctors.find(d => d.id === selectedDoctor);
             if (!doctor) throw new Error('Doctor not found');
 
+            // IMPORTANT: Check one more time if slot is still available (prevent race conditions)
+            const { data: existingAppointments, error: checkError } = await supabase
+                .from('appointments')
+                .select('id')
+                .eq('doctor', doctor.name)
+                .eq('date', selectedDate)
+                .eq('time', selectedTime)
+                .in('status', ['confirmed', 'pending']);
+
+            if (checkError) throw checkError;
+
+            if (existingAppointments && existingAppointments.length > 0) {
+                throw new Error('Sorry, this time slot was just booked by someone else. Please select another time.');
+            }
+
             const appointmentData = {
                 department: doctor.department,
                 doctor: doctor.name,
@@ -140,6 +155,12 @@ export default function AppointmentBookingEnhanced() {
         } catch (err) {
             console.error('Error booking appointment:', err);
             setError(err.message || 'Failed to book appointment. Please try again.');
+
+            // Reload booked slots to show updated availability
+            if (selectedDoctor && selectedDate) {
+                loadBookedSlots();
+            }
+
             setTimeout(() => setError(''), 7000);
         } finally {
             setIsSubmitting(false);

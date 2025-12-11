@@ -700,3 +700,136 @@
     filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
     transform: scale(1.05);
 }
+/* Blog Posts Admin Section - Fixed Styling */
+.blogs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.blog-admin-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.blog-admin-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.blog-admin-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-admin-content {
+    padding: 1.25rem;
+}
+
+.blog-admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.blog-admin-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--admin-text);
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+.publish-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.publish-badge.published {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--admin-success);
+    border: 1px solid var(--admin-success);
+}
+
+.publish-badge.draft {
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--admin-warning);
+    border: 1px solid var(--admin-warning);
+}
+
+.blog-admin-meta {
+    font-size: 0.85rem;
+    color: var(--admin-text-secondary);
+    margin: 0.5rem 0;
+}
+
+.blog-admin-author {
+    font-size: 0.85rem;
+    color: var(--admin-text-secondary);
+    margin: 0.25rem 0 0.75rem 0;
+    font-style: italic;
+}
+
+.blog-admin-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blog-admin-actions button {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-edit {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+}
+
+.btn-toggle {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.btn-edit:hover,
+.btn-toggle:hover,
+.btn-delete:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .blogs-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .blog-admin-actions {
+        flex-direction: column;
+    }
+}
