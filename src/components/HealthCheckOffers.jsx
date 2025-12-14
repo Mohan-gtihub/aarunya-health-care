@@ -9,10 +9,25 @@ const HealthCheckOffers = () => {
     const [selectedPackage, setSelectedPackage] = useState(null);
     const [packages, setPackages] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [sectionVisible, setSectionVisible] = useState(true);
 
     useEffect(() => {
-        const fetchPackages = async () => {
+        const checkVisibilityAndFetch = async () => {
             try {
+                // Check visibility first
+                const { data: settingsData } = await supabase
+                    .from('admin_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'health_offers_visible')
+                    .single();
+
+                if (settingsData && (settingsData.setting_value === 'false' || settingsData.setting_value === false)) {
+                    setSectionVisible(false);
+                    setLoading(false);
+                    return; // Don't fetch packages if hidden
+                }
+
+                // Fetch packages if visible
                 const { data, error } = await supabase
                     .from('health_packages')
                     .select('*')
@@ -23,19 +38,16 @@ const HealthCheckOffers = () => {
                 if (data && data.length > 0) {
                     setPackages(data);
                 } else {
-                    // Fallback or empty state handling
                     setPackages([]);
                 }
             } catch (error) {
-                console.error('Error fetching health packages:', error);
-                // Ideally keep existing fallback data here if fetch fails, 
-                // but for now we assume the table exists or will be created.
+                console.error('Error fetching health data:', error);
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchPackages();
+        checkVisibilityAndFetch();
     }, []);
 
     const handleBookNow = (pkg) => {
@@ -49,6 +61,8 @@ const HealthCheckOffers = () => {
         });
         setIsModalOpen(true);
     };
+
+    if (!sectionVisible) return null;
 
     return (
         <section className="health-offers-section">
