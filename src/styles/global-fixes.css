@@ -43,3 +43,36 @@
         padding: 0 15px !important;
     }
 }
+
+/* Container Centering Fix */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* Grid Centering Fix */
+.grid,
+.doctors-grid,
+.grid-3 {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Admin Panel Form Width Fix */
+.admin-content .form-group input,
+.admin-content .form-group select,
+.admin-content .form-group textarea {
+    min-width: 300px;
+    max-width: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

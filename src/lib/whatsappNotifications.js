@@ -149,25 +149,37 @@ Please review and confirm this appointment.
  */
 export async function sendAppointmentWhatsAppNotifications(appointment, doctorWhatsApp, adminWhatsApp) {
     try {
-        // Send to patient
+        console.log('📱 Sending WhatsApp notifications...');
+        console.log('Patient phone:', appointment.phone);
+        console.log('Doctor WhatsApp:', doctorWhatsApp);
+        console.log('Admin WhatsApp:', adminWhatsApp);
+
+        // Send to patient immediately
         if (appointment.phone) {
-            setTimeout(() => {
-                sendPatientAppointmentConfirmation(appointment);
-            }, 500);
+            console.log('✅ Opening patient WhatsApp...');
+            sendPatientAppointmentConfirmation(appointment);
+        } else {
+            console.log('❌ No patient phone number');
         }
 
-        // Send to doctor
+        // Send to doctor after short delay
         if (doctorWhatsApp) {
             setTimeout(() => {
+                console.log('✅ Opening doctor WhatsApp...');
                 sendDoctorAppointmentNotification(appointment, doctorWhatsApp);
-            }, 1500);
+            }, 1000);
+        } else {
+            console.log('❌ No doctor WhatsApp number');
         }
 
-        // Send to admin
+        // Send to admin after short delay
         if (adminWhatsApp) {
             setTimeout(() => {
+                console.log('✅ Opening admin WhatsApp...');
                 sendAdminAppointmentNotification(appointment, adminWhatsApp);
-            }, 2500);
+            }, 2000);
+        } else {
+            console.log('❌ No admin WhatsApp number');
         }
 
         return true;

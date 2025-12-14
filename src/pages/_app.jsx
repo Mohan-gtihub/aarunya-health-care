@@ -50,6 +50,7 @@ import '../styles/doctors-admin.css'
 import '../styles/video-admin.css'
 import '../components/admin/AdminComponents.css'
 import '../styles/global-fixes.css'
+import '../components/AppointmentBookingEnhanced.css'
 
 export default function MyApp({ Component, pageProps }) {
     const router = useRouter();

@@ -3,8 +3,9 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/about": "pages/about.js",
-  "/api/departments": "pages/api/departments.js",
-  "/appointment": "pages/appointment.js",
   "/admin": "pages/admin.js",
-  "/api/appointments/notify": "pages/api/appointments/notify.js"
+  "/doctors": "pages/doctors.js",
+  "/contact": "pages/contact.js",
+  "/": "pages/index.js",
+  "/services": "pages/services.js"
 }

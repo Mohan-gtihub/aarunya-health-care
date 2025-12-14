@@ -164,46 +164,43 @@ export default function AppointmentBookingEnhanced() {
                 // Don't fail the booking if email fails
             });
 
-            // Send WhatsApp notifications
+            // Send WhatsApp notification ONLY to admin
             try {
-                // Get doctor and admin WhatsApp numbers
-                const { data: doctorData } = await supabase
-                    .from('doctors')
-                    .select('whatsapp_number')
-                    .eq('name', doctor.name)
-                    .single();
-
                 const { data: adminSettings } = await supabase
                     .from('admin_settings')
                     .select('setting_value')
                     .eq('setting_key', 'admin_whatsapp_number')
                     .single();
 
-                // Import WhatsApp notification functions dynamically
-                const { sendAppointmentWhatsAppNotifications } = await import('../lib/whatsappNotifications');
+                if (adminSettings?.setting_value) {
+                    // Import WhatsApp notification function
+                    const { sendAdminAppointmentNotification } = await import('../lib/whatsappNotifications');
 
-                // Send notifications
-                await sendAppointmentWhatsAppNotifications(
-                    {
-                        name: patientName,
-                        phone: patientPhone,
-                        email: patientEmail,
-                        doctor: doctor.name,
-                        date: selectedDate,
-                        time: selectedTime,
-                        reason: reason || 'General consultation',
-                        message: '',
-                        status: 'confirmed'
-                    },
-                    doctorData?.whatsapp_number,
-                    adminSettings?.setting_value
-                );
+                    // Send only to admin
+                    sendAdminAppointmentNotification(
+                        {
+                            name: patientName,
+                            phone: patientPhone,
+                            email: patientEmail,
+                            doctor: doctor.name,
+                            date: selectedDate,
+                            time: selectedTime,
+                            reason: reason || 'General consultation',
+                            message: '',
+                            status: 'confirmed'
+                        },
+                        adminSettings.setting_value
+                    );
+                    console.log('✅ WhatsApp notification sent to admin');
+                } else {
+                    console.log('⚠️ Admin WhatsApp number not configured');
+                }
             } catch (whatsappErr) {
                 console.error('WhatsApp notification failed:', whatsappErr);
                 // Don't fail the booking if WhatsApp fails
             }
 
-            setSuccess('🎉 Appointment booked successfully! WhatsApp notifications sent.');
+            setSuccess('🎉 Appointment booked successfully! Confirmation email sent.');
 
             // Reset form
             setSelectedDoctor('');

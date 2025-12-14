@@ -983,3 +983,284 @@
         text-align: left;
     }
 }
+
+/* ========================================= */
+/* FIXES FOR ADMIN LAYOUT & DOCTORS GRID */
+/* ========================================= */
+
+/* Fix for Create Blog Section - Full Width - SCOPED */
+.admin-content .create-blog-section {
+    width: 100%;
+    max-width: 100%;
+    /* Allow full width */
+    margin: 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-content .blog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.admin-content .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.admin-content .blog-form .form-group {
+    width: 100%;
+}
+
+.admin-content .blog-form textarea {
+    width: 100%;
+    min-height: 150px;
+    resize: vertical;
+}
+
+/* FINAL POLISHED DOCTOR CARD COMPONENT v3 - SCOPED */
+
+/* Ensure these styles ONLY apply within the Admin Panel Content */
+.admin-content .doctors-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+}
+
+.admin-content .doctor-card {
+    width: 100% !important;
+    background: #1e293b !important;
+    /* Dark Slate */
+    border: 1px solid #334155 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem !important;
+    margin-bottom: 0 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 2rem !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+}
+
+.admin-content .doctor-card:hover {
+    background: #334155 !important;
+    transform: translateY(-2px);
+    border-color: #64748b !important;
+}
+
+.admin-content .doctor-image {
+    width: 220px !important;
+    height: 220px !important;
+    min-width: 220px !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    border-radius: 12px !important;
+    background-color: #0f172a !important;
+    border: 2px solid #475569 !important;
+    margin: 0 !important;
+}
+
+.admin-content .doctor-info {
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+}
+
+/* Typography */
+.admin-content .doctor-info h3 {
+    font-size: 1.75rem !important;
+    font-weight: 800 !important;
+    color: #f8fafc !important;
+    /* White */
+    margin: 0 0 0.5rem 0 !important;
+}
+
+.admin-content .doctor-specialization {
+    display: inline-block !important;
+    padding: 0.5rem 1.25rem !important;
+    background: #4f46e5 !important;
+    /* Solid Indigo */
+    color: #ffffff !important;
+    /* White Text */
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    margin-bottom: 1rem !important;
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3) !important;
+    letter-spacing: 0.5px !important;
+}
+
+.admin-content .doctor-department,
+.admin-content .doctor-qualification,
+.admin-content .doctor-experience {
+    color: #cbd5e1 !important;
+    font-size: 0.95rem !important;
+    margin: 0.25rem 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+.admin-content .doctor-about {
+    margin: 1.25rem 0 !important;
+    color: #94a3b8 !important;
+    line-height: 1.6 !important;
+    font-size: 0.95rem !important;
+    background: rgba(15, 23, 42, 0.5) !important;
+    /* Dark semi-transparent */
+    padding: 1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid #334155 !important;
+}
+
+/* Fix Contact Info Box - Force Transparent */
+.admin-content .doctor-contact {
+    margin-top: 1rem !important;
+    padding-top: 1rem !important;
+    border-top: 1px solid #334155 !important;
+    display: flex !important;
+    gap: 1.5rem !important;
+    flex-wrap: wrap !important;
+    background: transparent !important;
+    /* Override white box */
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.admin-content .doctor-contact p {
+    color: #e2e8f0 !important;
+    font-weight: 500 !important;
+    background: rgba(51, 65, 85, 0.5) !important;
+    /* Small pill bg for items */
+    padding: 0.4rem 0.8rem !important;
+    border-radius: 6px !important;
+    border: 1px solid #475569 !important;
+    margin: 0 !important;
+}
+
+.admin-content .doctor-actions {
+    margin-top: 1.5rem !important;
+    display: flex !important;
+    gap: 1rem !important;
+}
+
+.admin-content .doctor-actions button {
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+}
+
+.admin-content .btn-edit {
+    background: #3b82f6 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.admin-content .btn-toggle {
+    background: #6366f1 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.admin-content .btn-delete {
+    background: #ef4444 !important;
+    color: white !important;
+    border: none !important;
+    margin-left: auto !important;
+}
+
+@media (max-width: 768px) {
+    .admin-content .doctor-card {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    .admin-content .doctor-image {
+        width: 100% !important;
+        height: 250px !important;
+    }
+
+    .admin-content .doctor-contact {
+        flex-direction: column !important;
+        background: transparent !important;
+    }
+
+    .admin-content .doctor-contact p {
+        width: 100% !important;
+    }
+
+    .admin-content .btn-delete {
+        margin-left: 0 !important;
+    }
+}
+
+.btn-edit:hover {
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    transition: all 0.2s !important;
+}
+
+.btn-edit {
+    background: #3b82f6 !important;
+    color: white !important;
+}
+
+.btn-edit:hover {
+    background: #2563eb !important;
+}
+
+.btn-toggle {
+    background: #6366f1 !important;
+    color: white !important;
+}
+
+.btn-toggle:hover {
+    background: #4f46e5 !important;
+}
+
+.btn-delete {
+    background: #ef4444 !important;
+    color: white !important;
+    margin-left: auto !important;
+    /* Push to right */
+}
+
+.btn-delete:hover {
+    background: #dc2626 !important;
+}
+
+@media (max-width: 768px) {
+    .doctor-card {
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    .doctor-image {
+        width: 100% !important;
+        height: 300px !important;
+        max-width: 100% !important;
+    }
+
+    .doctor-actions {
+        flex-direction: column !important;
+    }
+
+    .btn-delete {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+}
