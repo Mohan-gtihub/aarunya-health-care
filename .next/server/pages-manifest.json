@@ -1,1 +1,23 @@
-{"/_app":"pages/_app.js","/_error":"pages/_error.js","/_document":"pages/_document.js","/about":"pages/about.html","/api/appointments/notify":"pages/api/appointments/notify.js","/api/appointments":"pages/api/appointments.js","/admin-login":"pages/admin-login.html","/api/packages/notify":"pages/api/packages/notify.js","/api/departments":"pages/api/departments.js","/api/time-slots/[date]":"pages/api/time-slots/[date].js","/api/test-email":"pages/api/test-email.js","/appointment":"pages/appointment.html","/blog":"pages/blog.html","/contact":"pages/contact.html","/admin":"pages/admin.html","/departments":"pages/departments.html","/doctors":"pages/doctors.html","/equipment":"pages/equipment.html","/":"pages/index.html","/patient-portal":"pages/patient-portal.html","/services":"pages/services.html","/404":"pages/404.html"}
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/about": "pages/about.js",
+  "/api/appointments": "pages/api/appointments.js",
+  "/admin-login": "pages/admin-login.js",
+  "/api/appointments/notify": "pages/api/appointments/notify.js",
+  "/api/departments": "pages/api/departments.js",
+  "/api/packages/notify": "pages/api/packages/notify.js",
+  "/api/test-email": "pages/api/test-email.js",
+  "/api/time-slots/[date]": "pages/api/time-slots/[date].js",
+  "/admin": "pages/admin.js",
+  "/appointment": "pages/appointment.js",
+  "/blog": "pages/blog.js",
+  "/contact": "pages/contact.js",
+  "/departments": "pages/departments.js",
+  "/doctors": "pages/doctors.js",
+  "/equipment": "pages/equipment.js",
+  "/": "pages/index.js",
+  "/services": "pages/services.js",
+  "/patient-portal": "pages/patient-portal.js"
+}

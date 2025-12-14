@@ -158,9 +158,9 @@ export default function Hero() {
               transition={{ duration: 1, delay: 0.4 }}
               className="thrive-hero__title"
             >
-              Aarunya Health Care Clinics
+              Aarunya Health Care
               <span className="thrive-hero__title-gradient">
-                <span className="gradient-text">Best Multispeciality Clinic</span>
+                <span className="gradient-text">Advanced Care & Longevity</span>
                 <span className="title-underline" />
               </span>
             </motion.h1>
@@ -192,17 +192,17 @@ export default function Hero() {
               href="/appointment"
               className="thrive-btn thrive-btn--primary"
             >
-              <span className="btn-text">Start Your Health Journey</span>
-              <span className="btn-icon">→</span>
+              <span className="btn-text">Book Appointment</span>
+              <span className="btn-icon">📅</span>
               <span className="btn-glow" />
             </Link>
-            <button
+            <Link
+              href="/services"
               className="thrive-btn thrive-btn--ghost"
-              onClick={() => scrollToTarget('#clinic-info')}
             >
-              <span className="btn-text">Explore Our Services</span>
-              <span className="btn-icon">↓</span>
-            </button>
+              <span className="btn-text">Longevity Services</span>
+              <span className="btn-icon">🧬</span>
+            </Link>
           </motion.div>
 
           {/* Stats Section */}

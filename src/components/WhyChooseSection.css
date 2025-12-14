@@ -1,62 +1,90 @@
 .why-choose-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #fff9e6 0%, #fff3cc 100%);
+  background: linear-gradient(135deg, #FFFAF0 0%, #FFFFFF 100%);
+  /* Cleaner Floral White/White */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background Pattern */
+.why-choose-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .why-choose-section .section-header {
   text-align: center;
   margin-bottom: 60px;
+  position: relative;
+  z-index: 1;
 }
 
 .why-choose-section .section-title {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #2c3e50;
+  font-weight: 800;
+  color: #1e293b;
   margin-bottom: 20px;
 }
 
 .why-choose-section .title-highlight {
-  color: #f39c12;
-  background: linear-gradient(135deg, #f39c12, #f1c40f);
+  color: var(--brand-purple);
+  /* Updated to Brand Purple for consistency */
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-purple-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .why-choose-content {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .advantages-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
 .advantage-item {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 25px 30px;
+  gap: 25px;
+  padding: 30px 40px;
   background: white;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(243, 156, 18, 0.1);
-  border: 1px solid rgba(243, 156, 18, 0.15);
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  /* Softer shadow */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-left: 6px solid var(--brand-gold);
+  /* Gold Accent */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .advantage-item:hover {
-  transform: translateX(10px);
-  box-shadow: 0 8px 25px rgba(243, 156, 18, 0.2);
+  transform: translateX(10px) translateY(-5px);
+  box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+  border-left-width: 10px;
 }
 
 .advantage-check {
-  background: linear-gradient(135deg, #f39c12, #f1c40f);
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+  background: rgba(243, 156, 18, 0.1);
+  /* Light Gold Bg */
+  color: var(--brand-gold);
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  /* Soft Square */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,26 +105,26 @@
   .why-choose-section {
     padding: 60px 0;
   }
-  
+
   .why-choose-section .section-title {
     font-size: 2rem;
   }
-  
+
   .advantages-list {
     padding: 0 20px;
   }
-  
+
   .advantage-item {
     padding: 20px;
     gap: 15px;
   }
-  
+
   .advantage-check {
     width: 28px;
     height: 28px;
     font-size: 14px;
   }
-  
+
   .advantage-text {
     font-size: 1.1rem;
   }

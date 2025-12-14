@@ -95,6 +95,40 @@ export default function HealthPackageBookingModal({ isOpen, onClose, packageData
                 text: 'Failed to submit booking. Please try again.'
             });
         } finally {
+
+            // Send WhatsApp Notification to Admin
+            try {
+                const { data: adminSettings } = await supabase
+                    .from('admin_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'admin_whatsapp_number')
+                    .single();
+
+                if (adminSettings?.setting_value) {
+                    const { sendAdminPackageNotification } = await import('../lib/whatsappNotifications');
+
+                    const bookingDetails = {
+                        package_name: packageData.name || packageData.title,
+                        customer_name: formData.customer_name,
+                        customer_phone: formData.customer_phone,
+                        customer_email: formData.customer_email,
+                        customer_age: formData.customer_age,
+                        customer_address: formData.customer_address,
+                        preferred_date: formData.preferred_date,
+                        preferred_time: formData.preferred_time,
+                        medical_history: formData.medical_history,
+                        current_medications: formData.current_medications,
+                        special_requirements: formData.special_requirements,
+                        created_at: new Date().toISOString(),
+                        status: 'pending'
+                    };
+
+                    sendAdminPackageNotification(bookingDetails, adminSettings.setting_value);
+                }
+            } catch (waError) {
+                console.error('WhatsApp notification failed:', waError);
+            }
+
             setLoading(false);
         }
     };

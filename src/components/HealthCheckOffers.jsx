@@ -138,7 +138,6 @@ const HealthCheckOffers = () => {
 
                             <button
                                 className="book-btn"
-                                style={{ background: pkg.color }}
                                 onClick={() => handleBookNow(pkg)}
                             >
                                 Book Now

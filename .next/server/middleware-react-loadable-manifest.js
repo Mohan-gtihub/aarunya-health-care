@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST='{"components\\\\AppointmentBookingEnhanced.jsx -> ../lib/whatsappNotifications":{"id":5610,"files":["static/chunks/610.3ce0ab8838625bf0.js"]}}';
