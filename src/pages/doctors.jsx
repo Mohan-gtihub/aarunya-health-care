@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import DoctorCard from '../components/DoctorCard';
 import { supabase } from '../lib/supabase';
@@ -48,6 +49,10 @@ export default function Doctors() {
 
   return (
     <div className="doctors-page">
+      <Head>
+        <title>Our Doctors - Expert Medical Specialists | Aarunya Health Care</title>
+        <meta name="description" content="Meet our team of board-certified physicians, diabetologists, and oncologists. Expert care with compassion at Aarunya Health Care." />
+      </Head>
       {/* Hero Section */}
       <section className="page-hero">
         <div className="container">

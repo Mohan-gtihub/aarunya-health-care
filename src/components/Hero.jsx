@@ -149,7 +149,7 @@ export default function Hero() {
               animate={{ opacity: 0.4, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <img src="/aarunya-logo.svg" alt="" />
+              <img src="/aarunya-logo.svg" alt="Aarunya Health Care Watermark" />
             </motion.div>
 
             <motion.h1

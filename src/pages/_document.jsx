@@ -14,6 +14,9 @@ export default function Document() {
                     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
                     rel="stylesheet"
                 />
+                <link rel="icon" href="/aarunya-logo.svg" type="image/svg+xml" />
+                <link rel="apple-touch-icon" href="/aarunya-logo.svg" />
+                <meta name="theme-color" content="#7c4dff" />
             </Head>
             <body>
                 <Main />

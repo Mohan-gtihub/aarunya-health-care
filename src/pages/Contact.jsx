@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 
 
@@ -25,6 +26,10 @@ export default function Contact() {
 
   return (
     <div className="contact-page">
+      <Head>
+        <title>Contact Us - Aarunya Health Care | Appointment & Location</title>
+        <meta name="description" content="Get in touch with Aarunya Health Care. Visit our clinics in SR Nagar or Bachupally, Hyderabad. Call 24/7 for appointments." />
+      </Head>
       <section className="page-hero">
         <div className="container">
           <motion.div
