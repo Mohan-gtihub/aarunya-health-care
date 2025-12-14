@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
+import SpecialtyDetailsModal from './SpecialtyDetailsModal';
 
 const specialties = [
   {
     id: 1,
     title: 'Oncology',
     description: 'Comprehensive cancer care utilizing advanced therapies and a multidisciplinary approach for diagnosis, treatment, and survivorship.',
+    longDescription: 'Our Oncology department provides state-of-the-art cancer care with a focus on personalized treatment plans. We utilize the latest technology in chemotherapy, immunotherapy, and targeted therapy to ensure the best possible outcomes for our patients.',
+    features: ['Chemotherapy & Immunotherapy', 'Advanced Cancer Screening', 'Palliative & Supportive Care', 'Multidisciplinary Tumor Board', 'Genetic Counseling'],
     icon: '🎗️',
     category: 'Cancer Care',
     color: '#FF4500' // Orange-red
@@ -15,6 +18,8 @@ const specialties = [
     id: 2,
     title: 'Internal Medicine',
     description: 'Primary care focusing on prevention, diagnosis, and treatment of common and complex diseases to promote long-term health.',
+    longDescription: 'Our Internal Medicine specialists are dedicated to the comprehensive management of adult diseases. From chronic condition management like diabetes and hypertension to preventive health screenings, we ensure your long-term well-being.',
+    features: ['Diabetes Management', 'Hypertension & Cardiac Care', 'Thyroid Disorder Treatment', 'Infectious Disease Management', 'Geriatric Health Services'],
     icon: '🩺',
     category: 'Adult Health',
     color: '#1E90FF' // Dodger Blue
@@ -23,6 +28,8 @@ const specialties = [
     id: 3,
     title: 'Psychiatry',
     description: 'Specialized mental health care offering therapy, medication management, and support for emotional and behavioral well-being.',
+    longDescription: 'We offer compassionate mental health services tailored to individual needs. Our team treats a wide range of conditions including depression, anxiety, and bipolar disorder through evidence-based therapies and medication management.',
+    features: ['CBT & Psychotherapy', 'Depression & Anxiety Care', 'Stress Management', 'Bipolar & Mood Disorders', 'De-addiction Services'],
     icon: '🧠',
     category: 'Mental Health',
     color: '#8A2BE2' // Blue Violet
@@ -31,6 +38,8 @@ const specialties = [
     id: 4,
     title: 'Physiotherapy',
     description: 'Rehabilitation services to restore movement, reduce pain, and prevent disability through manual therapy and education.',
+    longDescription: 'Our rehabilitation center helps you regain mobility and strength. Whether recovering from surgery, a sports injury, or managing chronic pain, our expert physiotherapists design personalized recovery programs to get you back to your best.',
+    features: ['Sports Injury Rehabilitation', 'Post-Surgical Recovery', 'Chronic Pain Management', 'Manual Therapy Techniques', 'Ergonomic Consulting'],
     icon: '🚶',
     category: 'Rehabilitation',
     color: '#32CD32' // Lime Green
@@ -38,6 +47,19 @@ const specialties = [
 ];
 
 const SpecialtiesSection = () => {
+  const [selectedSpecialty, setSelectedSpecialty] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (specialty) => {
+    setSelectedSpecialty(specialty);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedSpecialty(null), 300); // Wait for animation
+  };
+
   return (
     <section className="specialties-section">
       <div className="container">
@@ -93,6 +115,7 @@ const SpecialtiesSection = () => {
                 <button
                   className="action-btn"
                   style={{ color: specialty.color }}
+                  onClick={() => openModal(specialty)}
                 >
                   <span className="btn-text">Explore</span>
                   <span className="btn-icon" style={{ background: `${specialty.color}15` }}>
@@ -104,6 +127,12 @@ const SpecialtiesSection = () => {
           ))}
         </div>
       </div>
+
+      <SpecialtyDetailsModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        specialty={selectedSpecialty}
+      />
     </section>
   );
 };
