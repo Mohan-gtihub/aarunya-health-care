@@ -167,7 +167,15 @@
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.founder-title-text {
+  font-size: 1.1rem;
+  color: var(--brand-purple);
+  font-weight: 600;
   margin-bottom: 2rem;
+  display: block;
 }
 
 .founder-quote-box {
@@ -198,21 +206,128 @@
   color: var(--text-secondary);
   line-height: 1.8;
   font-size: 1.05rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .signature-text {
   font-family: 'Dancing Script', cursive;
-  /* Assuming you might add this font, or fallback */
   font-size: 2rem;
   color: var(--brand-purple);
   font-weight: 700;
 }
 
+/* Clinical Focus Summary (In Founder Section) */
+.clinical-focus-summary {
+  margin-top: 2rem;
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.clinical-focus-summary h3 {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.clinical-focus-summary ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.clinical-focus-summary ul li {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.clinical-focus-summary ul li::before {
+  content: '•';
+  color: var(--brand-purple);
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+/* --- Clinical Expertise Section --- */
+.clinical-expertise-section {
+  padding: 6rem 0;
+  background: #f8faff;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.expertise-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.expertise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px -2px rgba(91, 30, 166, 0.1);
+  border-color: rgba(91, 30, 166, 0.1);
+}
+
+.expertise-icon {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(91, 30, 166, 0.1), rgba(255, 140, 0, 0.1));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: var(--brand-purple);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.expertise-card:hover .expertise-icon {
+  background: linear-gradient(135deg, var(--brand-purple), var(--brand-gold));
+  color: white;
+  transform: rotate(5deg);
+}
+
+.expertise-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.expertise-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+
 /* --- Core Values Section --- */
 .core-values-section {
-  padding: 7rem 0;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 7rem 0 5rem;
+  background: white;
   position: relative;
   overflow: hidden;
 }
@@ -394,7 +509,8 @@
     font-size: 2rem;
   }
 
-  .values-grid {
+  .values-grid,
+  .expertise-grid {
     grid-template-columns: 1fr;
   }
 }

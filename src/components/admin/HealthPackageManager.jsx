@@ -15,6 +15,7 @@ const HealthPackageManager = () => {
         subtitle: '',
         price: '',
         color: '#7c4dff',
+        icon: '',
         popular: false,
         status: 'active',
         features: ''
@@ -94,6 +95,7 @@ const HealthPackageManager = () => {
             subtitle: formData.subtitle,
             price: formData.price,
             color: formData.color,
+            icon: formData.icon,
             popular: formData.popular,
             status: formData.status,
             features: featuresArray
@@ -130,6 +132,7 @@ const HealthPackageManager = () => {
             subtitle: pkg.subtitle || '',
             price: pkg.price || '',
             color: pkg.color || '#7c4dff',
+            icon: pkg.icon || '',
             popular: pkg.popular || false,
             status: pkg.status || 'active',
             features: pkg.features ? pkg.features.join('\n') : ''
@@ -162,6 +165,7 @@ const HealthPackageManager = () => {
             subtitle: '',
             price: '',
             color: '#7c4dff',
+            icon: '',
             popular: false,
             status: 'active',
             features: ''
@@ -213,7 +217,19 @@ const HealthPackageManager = () => {
                             </div>
 
                             <div className="form-row">
-                                <div className="form-group">
+                                <div className="form-group" style={{ maxWidth: '80px' }}>
+                                    <label>Icon</label>
+                                    <input
+                                        type="text"
+                                        name="icon"
+                                        value={formData.icon}
+                                        onChange={handleInputChange}
+                                        placeholder="💓"
+                                        className="modern-input"
+                                        style={{ textAlign: 'center', fontSize: '1.25rem' }}
+                                    />
+                                </div>
+                                <div className="form-group" style={{ flex: 1 }}>
                                     <label>Subtitle / Category</label>
                                     <input
                                         type="text"
@@ -224,6 +240,9 @@ const HealthPackageManager = () => {
                                         className="modern-input"
                                     />
                                 </div>
+                            </div>
+
+                            <div className="form-row">
                                 <div className="form-group">
                                     <label>Price</label>
                                     <input
@@ -235,9 +254,6 @@ const HealthPackageManager = () => {
                                         className="modern-input"
                                     />
                                 </div>
-                            </div>
-
-                            <div className="form-row">
                                 <div className="form-group">
                                     <label>Status</label>
                                     <select
@@ -250,24 +266,25 @@ const HealthPackageManager = () => {
                                         <option value="coming_soon">⏳ Coming Soon</option>
                                     </select>
                                 </div>
-                                <div className="form-group">
-                                    <label>Accent Color</label>
-                                    <div className="color-picker-wrapper">
-                                        <input
-                                            type="color"
-                                            name="color"
-                                            value={formData.color}
-                                            onChange={handleInputChange}
-                                            className="color-input"
-                                        />
-                                        <input
-                                            type="text"
-                                            name="color"
-                                            value={formData.color}
-                                            onChange={handleInputChange}
-                                            className="color-text-input"
-                                        />
-                                    </div>
+                            </div>
+
+                            <div className="form-group">
+                                <label>Accent Color</label>
+                                <div className="color-picker-wrapper">
+                                    <input
+                                        type="color"
+                                        name="color"
+                                        value={formData.color}
+                                        onChange={handleInputChange}
+                                        className="color-input"
+                                    />
+                                    <input
+                                        type="text"
+                                        name="color"
+                                        value={formData.color}
+                                        onChange={handleInputChange}
+                                        className="color-text-input"
+                                    />
                                 </div>
                             </div>
 
@@ -327,6 +344,7 @@ const HealthPackageManager = () => {
                                     >
                                         <div className="pkg-content">
                                             <div className="pkg-header">
+                                                {pkg.icon && <span style={{ fontSize: '1.2rem' }}>{pkg.icon}</span>}
                                                 <span className="pkg-title" style={{ color: pkg.color }}>{pkg.title}</span>
                                                 {pkg.popular && <span className="badge-popular"><FaStar /> Popular</span>}
                                                 {pkg.status === 'coming_soon' && <span className="badge-soon">Coming Soon</span>}
@@ -425,7 +443,7 @@ const HealthPackageManager = () => {
                     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
                 }
                 .form-group { margin-bottom: 1.25rem; }
-                .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+                .form-row { display: flex; gap: 1rem; }
                 .modern-input, .modern-select, .modern-textarea {
                     width: 100%;
                     padding: 0.75rem;

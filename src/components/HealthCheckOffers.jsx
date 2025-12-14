@@ -100,7 +100,10 @@ const HealthCheckOffers = () => {
                                 )}
 
                                 <div className="offer-header">
-                                    <h3 className="offer-title">{pkg.title}</h3>
+                                    <h3 className="offer-title">
+                                        {pkg.icon && <span style={{ marginRight: '0.5rem' }}>{pkg.icon}</span>}
+                                        {pkg.title}
+                                    </h3>
                                     {pkg.subtitle && <span className="offer-subtitle">{pkg.subtitle}</span>}
 
                                     <div className="offer-price">
