@@ -5,6 +5,7 @@ import { getAppointments } from '../lib/storage';
 import VideoEditModal from '../components/VideoEditModal';
 import TeamManagement from '../components/admin/TeamManagement';
 import FounderManagement from '../components/admin/FounderManagement';
+import HealthPackageManager from '../components/admin/HealthPackageManager';
 
 export default function Admin() {
     const router = useRouter();
@@ -1312,6 +1313,12 @@ export default function Admin() {
                     📦 Package Bookings
                 </button>
                 <button
+                    className={`admin-tab ${activeTab === 'manage-packages' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('manage-packages')}
+                >
+                    💊 Manage Packages
+                </button>
+                <button
                     className={`admin-tab ${activeTab === 'doctors' ? 'active' : ''}`}
                     onClick={() => setActiveTab('doctors')}
                 >
@@ -2601,6 +2608,11 @@ export default function Admin() {
                             </ul>
                         </div>
                     </div>
+                )}
+
+                {/* Manage Packages Tab */}
+                {activeTab === 'manage-packages' && (
+                    <HealthPackageManager />
                 )}
 
                 {/* Package Booking View Modal */}

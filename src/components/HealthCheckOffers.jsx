@@ -1,88 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheck, FaRupeeSign, FaStar } from 'react-icons/fa';
+import { FaCheck, FaRupeeSign, FaStar, FaClock } from 'react-icons/fa';
 import HealthPackageBookingModal from './HealthPackageBookingModal';
-
-const packages = [
-    {
-        id: 1,
-        title: "Aarunya Health Check",
-        subtitle: "Premium",
-        price: "3,999",
-        color: "#7c4dff", // Brand Purple
-        popular: true,
-        features: [
-            "CBP (Complete Blood Picture)",
-            "Sr. Iron",
-            "Lipid Profile",
-            "Thyroid Profile",
-            "BUN (Blood Urea Nitrogen)",
-            "Sr. Creatinine",
-            "Sr. Electrolytes",
-            "Uric Acid",
-            "HbA1c",
-            "Liver Function Test"
-        ]
-    },
-    {
-        id: 2,
-        title: "Aarunya Health Check",
-        subtitle: "Standard",
-        price: "2,499",
-        color: "#ff8c00", // Brand Orange
-        popular: false,
-        features: [
-            "CBP (Complete Blood Picture)",
-            "Lipid Profile",
-            "Thyroid Profile",
-            "Kidney Function Test",
-            "FBS (Fasting Blood Sugar)",
-            "PBS (Post Prandial Blood Sugar)",
-            "LFT (Liver Function Test)",
-            "Sr. Uric Acid"
-        ]
-    },
-    {
-        id: 3,
-        title: "Diabetic Screen",
-        subtitle: "Essential",
-        price: "1,250",
-        color: "#32CD32", // Lime Green
-        popular: false,
-        features: [
-            "FBS (Fasting Blood Sugar)",
-            "PBS (Post Prandial Blood Sugar)",
-            "HbA1c",
-            "Micro Albumin Acid"
-        ]
-    },
-    {
-        id: 4,
-        title: "Kidney Basic Screen",
-        subtitle: "Essential",
-        price: "1,299",
-        color: "#1E90FF", // Dodger Blue
-        popular: false,
-        features: [
-            "Urea",
-            "BUN",
-            "Sr. Creatinine",
-            "Sr. Sodium & Potassium",
-            "Sr. Chloride",
-            "Sr. Calcium"
-        ]
-    }
-];
+import { supabase } from '../lib/supabase';
 
 const HealthCheckOffers = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPackage, setSelectedPackage] = useState(null);
+    const [packages, setPackages] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchPackages = async () => {
+            try {
+                const { data, error } = await supabase
+                    .from('health_packages')
+                    .select('*')
+                    .order('created_at', { ascending: true });
+
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    setPackages(data);
+                } else {
+                    // Fallback or empty state handling
+                    setPackages([]);
+                }
+            } catch (error) {
+                console.error('Error fetching health packages:', error);
+                // Ideally keep existing fallback data here if fetch fails, 
+                // but for now we assume the table exists or will be created.
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPackages();
+    }, []);
 
     const handleBookNow = (pkg) => {
+        if (pkg.status === 'coming_soon') return;
+
         setSelectedPackage({
             ...pkg,
             name: pkg.title,
-            price: `₹${pkg.price}`,
+            price: pkg.price ? (pkg.price.includes('onwards') ? `₹${pkg.price}` : `₹${pkg.price}`) : 'Custom',
             type: 'health_check'
         });
         setIsModalOpen(true);
@@ -97,54 +59,79 @@ const HealthCheckOffers = () => {
                     <p>Comprehensive health screening packages designed for your well-being.</p>
                 </div>
 
-                <div className="offers-grid">
-                    {packages.map((pkg, index) => (
-                        <motion.div
-                            key={pkg.id}
-                            className={`offer-card ${pkg.popular ? 'popular' : ''}`}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            style={{ '--accent-color': pkg.color }}
-                        >
-                            {pkg.popular && (
-                                <div className="popular-badge">
-                                    <FaStar className="star-icon" /> Most Popular
-                                </div>
-                            )}
-
-                            <div className="offer-header">
-                                <h3 className="offer-title">{pkg.title}</h3>
-                                {pkg.subtitle && <span className="offer-subtitle">{pkg.subtitle}</span>}
-                                <div className="offer-price">
-                                    <FaRupeeSign className="rupee-icon" />
-                                    <span className="amount">{pkg.price}</span>
-                                </div>
-                            </div>
-
-                            <div className="offer-features">
-                                <ul>
-                                    {pkg.features.map((feature, idx) => (
-                                        <li key={idx}>
-                                            <div className="check-icon-wrapper" style={{ background: `${pkg.color}20` }}>
-                                                <FaCheck className="check-icon" style={{ color: pkg.color }} />
-                                            </div>
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            <button
-                                className="book-btn"
-                                onClick={() => handleBookNow(pkg)}
+                {loading ? (
+                    <div style={{ textAlign: 'center', padding: '2rem' }}>Loading packages...</div>
+                ) : (
+                    <div className="offers-grid">
+                        {packages.map((pkg, index) => (
+                            <motion.div
+                                key={pkg.id}
+                                className={`offer-card ${pkg.popular ? 'popular' : ''} ${pkg.status === 'coming_soon' ? 'coming-soon' : ''}`}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                style={{ '--accent-color': pkg.color }}
                             >
-                                Book Now
-                            </button>
-                        </motion.div>
-                    ))}
-                </div>
+                                {pkg.popular && pkg.status !== 'coming_soon' && (
+                                    <div className="popular-badge">
+                                        <FaStar className="star-icon" /> Most Popular
+                                    </div>
+                                )}
+
+                                {pkg.status === 'coming_soon' && (
+                                    <div className="popular-badge" style={{ background: '#6c757d' }}>
+                                        <FaClock className="star-icon" /> Coming Soon
+                                    </div>
+                                )}
+
+                                <div className="offer-header">
+                                    <h3 className="offer-title">{pkg.title}</h3>
+                                    {pkg.subtitle && <span className="offer-subtitle">{pkg.subtitle}</span>}
+
+                                    <div className="offer-price">
+                                        {pkg.status === 'coming_soon' ? (
+                                            <span className="amount coming-soon-text">Stay Tuned</span>
+                                        ) : (
+                                            <>
+                                                <FaRupeeSign className="rupee-icon" />
+                                                <span className="amount">{pkg.price}</span>
+                                            </>
+                                        )}
+                                    </div>
+                                </div>
+
+                                <div className="offer-features">
+                                    <ul>
+                                        {pkg.features && pkg.features.map((feature, idx) => (
+                                            <li key={idx}>
+                                                <div className="check-icon-wrapper" style={{ background: `${pkg.color}20` }}>
+                                                    <FaCheck className="check-icon" style={{ color: pkg.color }} />
+                                                </div>
+                                                <span>{feature}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <button
+                                    className="book-btn"
+                                    onClick={() => handleBookNow(pkg)}
+                                    disabled={pkg.status === 'coming_soon'}
+                                    style={pkg.status === 'coming_soon' ? { opacity: 0.7, cursor: 'not-allowed', background: '#ccc' } : {}}
+                                >
+                                    {pkg.status === 'coming_soon' ? 'Coming Soon' : 'Book Now'}
+                                </button>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
+
+                {!loading && packages.length === 0 && (
+                    <div style={{ textAlign: 'center', padding: '2rem' }}>
+                        <p>No health packages currently available. Please check back soon.</p>
+                    </div>
+                )}
             </div>
 
             {/* Booking Modal */}
