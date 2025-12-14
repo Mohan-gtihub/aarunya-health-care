@@ -1,8 +1,12 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaQuoteLeft, FaUserMd, FaHeartbeat, FaHandHoldingMedical, FaDna } from 'react-icons/fa';
+import { supabase } from '../lib/supabase';
 
 const AboutUs = () => {
+  const [founderInfo, setFounderInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
   const values = [
     {
       icon: <FaHeartbeat />,
@@ -25,6 +29,39 @@ const AboutUs = () => {
       description: "A team of dedicated professionals who care deeply about your well-being."
     }
   ];
+
+  useEffect(() => {
+    loadFounderInfo();
+  }, []);
+
+  const loadFounderInfo = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('founder_info')
+        .select('*')
+        .single();
+
+      if (error) throw error;
+      setFounderInfo(data);
+    } catch (error) {
+      console.error('Error loading founder info:', error);
+      // Fallback to default data
+      setFounderInfo({
+        name: 'Mr. Vaishnav',
+        title: 'Founder & Director',
+        quote: 'At Aarunya, we believe that true healthcare goes beyond treating symptoms. It\'s about understanding the whole person, their lifestyle, and their long-term goals.',
+        bio: 'With over two decades of experience in healthcare management and a vision to transform medical services in the region.',
+        image_url: '/images/Dr.Vaishnav.jpg',
+        years_experience: 20
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return <div className="about-us-wrapper loading">Loading...</div>;
+  }
 
   return (
     <div className="about-us-wrapper">
@@ -49,58 +86,62 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Founder Section */}
-      <section className="founder-showcase-section">
-        <div className="container">
-          <div className="founder-card">
-            <div className="founder-image-col">
-              <div className="image-frame">
-                <img
-                  src="/images/Dr.Vaishnav.jpg"
-                  alt="Dr. Vaishnav"
-                  className="founder-img"
-                />
-                <div className="founder-floating-badge">
-                  <span className="badge-icon">👨‍⚕️</span>
-                  <div className="badge-text">
-                    <span className="badge-title">Dr. Vaishnav</span>
-                    <span className="badge-role">Founder & CEO</span>
+      {/* Founder Section - Now Dynamic */}
+      {founderInfo && (
+        <section className="founder-showcase-section">
+          <div className="container">
+            <div className="founder-card">
+              <div className="founder-image-col">
+                <div className="image-frame">
+                  <img
+                    src={founderInfo.image_url || '/images/Dr.Vaishnav.jpg'}
+                    alt={founderInfo.name}
+                    className="founder-img"
+                  />
+                  <div className="founder-floating-badge">
+                    <span className="badge-icon">👨‍⚕️</span>
+                    <div className="badge-text">
+                      <span className="badge-title">{founderInfo.name}</span>
+                      <span className="badge-role">{founderInfo.title}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="founder-content-col">
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="section-tag">Visionary Leadership</div>
-                <h2 className="founder-heading">Leading with Purpose</h2>
+              <div className="founder-content-col">
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <div className="section-tag">Visionary Leadership</div>
+                  <h2 className="founder-heading">Leading with Purpose</h2>
 
-                <div className="founder-quote-box">
-                  <FaQuoteLeft className="quote-icon" />
-                  <p className="founder-quote">
-                    &quot;At Aarunya, we believe that true healthcare goes beyond treating symptoms. It&apos;s about understanding the whole person, their lifestyle, and their long-term goals. Our mission is to empower every patient with the knowledge and care they need to lead a healthier, more vibrant life.&quot;
-                  </p>
-                </div>
+                  {founderInfo.quote && (
+                    <div className="founder-quote-box">
+                      <FaQuoteLeft className="quote-icon" />
+                      <p className="founder-quote">
+                        &quot;{founderInfo.quote}&quot;
+                      </p>
+                    </div>
+                  )}
 
-                <div className="founder-bio-text">
-                  <p>
-                    Dr. Vaishnav is a distinguished medical professional with over 15 years of experience in healthcare management and clinical practice. His vision for Aarunya Health Care stems from a deep commitment to making world-class healthcare accessible and patient-centric. Under his leadership, Aarunya has grown into a center of excellence known for its compassionate care and clinical precision.
-                  </p>
-                </div>
+                  {founderInfo.bio && (
+                    <div className="founder-bio-text">
+                      <p>{founderInfo.bio}</p>
+                    </div>
+                  )}
 
-                <div className="signature-area">
-                  <span className="signature-text">Dr. Vaishnav</span>
-                </div>
-              </motion.div>
+                  <div className="signature-area">
+                    <span className="signature-text">{founderInfo.name}</span>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Core Values Section */}
       <section className="core-values-section">

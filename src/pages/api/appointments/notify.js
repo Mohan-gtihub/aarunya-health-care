@@ -23,11 +23,61 @@ export default async function handler(req, res) {
             }
         });
 
+
         let subject, htmlContent;
         const patientName = appointment.patient_name || appointment.patientName;
         const patientEmail = appointment.patient_email || appointment.patientEmail;
 
-        if (action === 'updated' || action === 'rescheduled') {
+        if (action === 'confirmed') {
+            subject = '✅ Appointment Confirmed - Aarunya Health Care';
+            htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                        .header { background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+                        .info-box { background: white; padding: 20px; border-left: 4px solid #10B981; margin: 20px 0; }
+                        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>✅ Appointment Confirmed</h1>
+                        </div>
+                        <div class="content">
+                            <p>Dear ${patientName},</p>
+                            <p>Your appointment has been successfully confirmed! Here are the details:</p>
+                            
+                            <div class="info-box">
+                                <p><strong>📅 Date:</strong> ${appointment.date}</p>
+                                <p><strong>🕐 Time:</strong> ${appointment.time}</p>
+                                <p><strong>👨‍⚕️ Doctor:</strong> ${appointment.doctor}</p>
+                                <p><strong>🏥 Department:</strong> ${appointment.department}</p>
+                                <p><strong>📝 Reason:</strong> ${appointment.reason}</p>
+                            </div>
+
+                            <p><strong>Important Information:</strong></p>
+                            <ul>
+                                <li>Please arrive 15 minutes before your scheduled time</li>
+                                <li>Bring your ID proof and any previous medical records</li>
+                                <li>If you need to cancel, please inform us at least 24 hours in advance</li>
+                            </ul>
+                            
+                            <p>Thank you for choosing Aarunya Health Care!</p>
+                        </div>
+                        <div class="footer">
+                            <p>Aarunya Health Care | Empathy · Expertise · Excellence</p>
+                            <p>This is an automated message. Please do not reply to this email.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+        } else if (action === 'updated' || action === 'rescheduled') {
             subject = '🔄 Your Appointment Has Been Rescheduled - Aarunya Health Care';
             htmlContent = `
                 <!DOCTYPE html>
@@ -118,7 +168,7 @@ export default async function handler(req, res) {
         // Send email
         const info = await transporter.sendMail({
             from: `"Aarunya Health Care" <${process.env.EMAIL_USER}>`,
-            to: patientEmail,
+            to: [patientEmail, process.env.EMAIL_USER], // Send to patient and admin
             subject: subject,
             html: htmlContent
         });

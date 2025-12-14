@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabase';
 import { getAppointments } from '../lib/storage';
 import VideoEditModal from '../components/VideoEditModal';
+import TeamManagement from '../components/admin/TeamManagement';
+import FounderManagement from '../components/admin/FounderManagement';
 
 export default function Admin() {
     const router = useRouter();
@@ -48,6 +50,7 @@ export default function Admin() {
         name: '',
         email: '',
         phone: '',
+        whatsapp_number: '',
         specialization: '',
         department: '',
         qualification: '',
@@ -56,6 +59,42 @@ export default function Admin() {
         image_url: '',
         available: true,
         consultation_fee: ''
+    });
+
+    // Team members state
+    const [teamMembers, setTeamMembers] = useState([]);
+    const [teamForm, setTeamForm] = useState({
+        name: '',
+        role: '',
+        department: '',
+        bio: '',
+        image_url: '',
+        email: '',
+        linkedin_url: '',
+        display_order: 0,
+        active: true
+    });
+    const [editingTeamMember, setEditingTeamMember] = useState(null);
+    const [showTeamEditModal, setShowTeamEditModal] = useState(false);
+
+    // Founder info state
+    const [founderInfo, setFounderInfo] = useState(null);
+    const [founderForm, setFounderForm] = useState({
+        name: '',
+        title: '',
+        quote: '',
+        bio: '',
+        image_url: '',
+        years_experience: ''
+    });
+
+    // Package booking view modal state
+    const [viewingBooking, setViewingBooking] = useState(null);
+    const [showBookingViewModal, setShowBookingViewModal] = useState(false);
+
+    // Admin settings state
+    const [adminSettings, setAdminSettings] = useState({
+        admin_whatsapp_number: ''
     });
 
     useEffect(() => {
@@ -70,6 +109,12 @@ export default function Admin() {
             loadVideoSettings();
         } else if (activeTab === 'package-bookings') {
             loadHealthPackageBookings();
+        } else if (activeTab === 'team') {
+            loadTeamMembers();
+        } else if (activeTab === 'founder') {
+            loadFounderInfo();
+        } else if (activeTab === 'settings') {
+            loadAdminSettings();
         }
     }, [activeTab]);
 
@@ -898,6 +943,326 @@ export default function Admin() {
         }
     };
 
+    // Team Members Management Functions
+    const loadTeamMembers = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('team_members')
+                .select('*')
+                .order('display_order', { ascending: true });
+
+            if (error) throw error;
+            setTeamMembers(data || []);
+        } catch (error) {
+            console.error('Error loading team members:', error);
+            showMessage('error', 'Failed to load team members');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleTeamSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('team_members')
+                .insert([teamForm])
+                .select();
+
+            if (error) throw error;
+
+            showMessage('success', 'Team member added successfully!');
+            setTeamForm({
+                name: '',
+                role: '',
+                department: '',
+                bio: '',
+                image_url: '',
+                email: '',
+                linkedin_url: '',
+                display_order: 0,
+                active: true
+            });
+            loadTeamMembers();
+        } catch (error) {
+            console.error('Error adding team member:', error);
+            showMessage('error', 'Failed to add team member');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const updateTeamMember = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+            const { error } = await supabase
+                .from('team_members')
+                .update({
+                    name: editingTeamMember.name,
+                    role: editingTeamMember.role,
+                    department: editingTeamMember.department,
+                    bio: editingTeamMember.bio,
+                    image_url: editingTeamMember.image_url,
+                    email: editingTeamMember.email,
+                    linkedin_url: editingTeamMember.linkedin_url,
+                    display_order: editingTeamMember.display_order,
+                    active: editingTeamMember.active
+                })
+                .eq('id', editingTeamMember.id);
+
+            if (error) throw error;
+
+            showMessage('success', 'Team member updated successfully!');
+            setShowTeamEditModal(false);
+            setEditingTeamMember(null);
+            loadTeamMembers();
+        } catch (error) {
+            console.error('Error updating team member:', error);
+            showMessage('error', 'Failed to update team member');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const deleteTeamMember = async (id) => {
+        if (!confirm('Are you sure you want to delete this team member?')) return;
+
+        try {
+            const { error } = await supabase
+                .from('team_members')
+                .delete()
+                .eq('id', id);
+
+            if (error) throw error;
+
+            showMessage('success', 'Team member deleted successfully!');
+            loadTeamMembers();
+        } catch (error) {
+            console.error('Error deleting team member:', error);
+            showMessage('error', 'Failed to delete team member');
+        }
+    };
+
+    const handleTeamImageUpload = async (e, isEditing = false) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            showMessage('error', 'Please upload an image file');
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            showMessage('error', 'Image size should be less than 5MB');
+            return;
+        }
+
+        try {
+            setUploadingImage(true);
+            const fileExt = file.name.split('.').pop();
+            const fileName = `team-${Date.now()}.${fileExt}`;
+            const filePath = `team/${fileName}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from('blog-media')
+                .upload(filePath, file);
+
+            if (uploadError) throw uploadError;
+
+            const { data } = supabase.storage
+                .from('blog-media')
+                .getPublicUrl(filePath);
+
+            const imageUrl = data.publicUrl;
+
+            if (isEditing) {
+                setEditingTeamMember({ ...editingTeamMember, image_url: imageUrl });
+            } else {
+                setTeamForm({ ...teamForm, image_url: imageUrl });
+            }
+
+            showMessage('success', 'Image uploaded successfully!');
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            showMessage('error', 'Failed to upload image');
+        } finally {
+            setUploadingImage(false);
+        }
+    };
+
+    // Founder Info Management Functions
+    const loadFounderInfo = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('founder_info')
+                .select('*')
+                .single();
+
+            if (error) throw error;
+            setFounderInfo(data);
+            setFounderForm({
+                name: data.name || '',
+                title: data.title || '',
+                quote: data.quote || '',
+                bio: data.bio || '',
+                image_url: data.image_url || '',
+                years_experience: data.years_experience || ''
+            });
+        } catch (error) {
+            console.error('Error loading founder info:', error);
+            showMessage('error', 'Failed to load founder information');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleFounderSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            setLoading(true);
+
+            if (founderInfo && founderInfo.id) {
+                // Update existing
+                const { error } = await supabase
+                    .from('founder_info')
+                    .update({
+                        name: founderForm.name,
+                        title: founderForm.title,
+                        quote: founderForm.quote,
+                        bio: founderForm.bio,
+                        image_url: founderForm.image_url,
+                        years_experience: parseInt(founderForm.years_experience) || 0
+                    })
+                    .eq('id', founderInfo.id);
+
+                if (error) throw error;
+                showMessage('success', 'Founder information updated successfully!');
+            } else {
+                // Create new
+                const { error } = await supabase
+                    .from('founder_info')
+                    .insert([{
+                        name: founderForm.name,
+                        title: founderForm.title,
+                        quote: founderForm.quote,
+                        bio: founderForm.bio,
+                        image_url: founderForm.image_url,
+                        years_experience: parseInt(founderForm.years_experience) || 0
+                    }]);
+
+                if (error) throw error;
+                showMessage('success', 'Founder information created successfully!');
+            }
+
+            loadFounderInfo();
+        } catch (error) {
+            console.error('Error saving founder info:', error);
+            showMessage('error', 'Failed to save founder information');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleFounderImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            showMessage('error', 'Please upload an image file');
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            showMessage('error', 'Image size should be less than 5MB');
+            return;
+        }
+
+        try {
+            setUploadingImage(true);
+            const fileExt = file.name.split('.').pop();
+            const fileName = `founder-${Date.now()}.${fileExt}`;
+            const filePath = `founder/${fileName}`;
+
+            const { error: uploadError } = await supabase.storage
+                .from('blog-media')
+                .upload(filePath, file);
+
+            if (uploadError) throw uploadError;
+
+            const { data } = supabase.storage
+                .from('blog-media')
+                .getPublicUrl(filePath);
+
+            setFounderForm({ ...founderForm, image_url: data.publicUrl });
+            showMessage('success', 'Image uploaded successfully!');
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            showMessage('error', 'Failed to upload image');
+        } finally {
+            setUploadingImage(false);
+        }
+    };
+
+    // Admin Settings Functions
+    const loadAdminSettings = async () => {
+        try {
+            setLoading(true);
+            const { data, error } = await supabase
+                .from('admin_settings')
+                .select('*');
+
+            if (error) throw error;
+
+            // Convert array to object
+            const settings = {};
+            if (data && data.length > 0) {
+                data.forEach(setting => {
+                    settings[setting.setting_key] = setting.setting_value;
+                });
+            }
+
+            setAdminSettings({
+                admin_whatsapp_number: settings.admin_whatsapp_number || ''
+            });
+        } catch (error) {
+            console.error('Error loading admin settings:', error);
+            showMessage('error', 'Failed to load settings');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const saveAdminSettings = async () => {
+        try {
+            setLoading(true);
+
+            // Update or insert admin WhatsApp number
+            const { error } = await supabase
+                .from('admin_settings')
+                .upsert({
+                    setting_key: 'admin_whatsapp_number',
+                    setting_value: adminSettings.admin_whatsapp_number,
+                    updated_at: new Date().toISOString()
+                }, {
+                    onConflict: 'setting_key'
+                });
+
+            if (error) throw error;
+
+            showMessage('success', 'Settings saved successfully!');
+        } catch (error) {
+            console.error('Error saving settings:', error);
+            showMessage('error', 'Failed to save settings');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+
     // Show loading while checking authentication
     if (!isAuthenticated) {
         return (
@@ -987,6 +1352,24 @@ export default function Admin() {
                     onClick={() => setActiveTab('video-settings')}
                 >
                     ⚙️ Video Settings
+                </button>
+                <button
+                    className={`admin-tab ${activeTab === 'team' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('team')}
+                >
+                    👥 Team Members
+                </button>
+                <button
+                    className={`admin-tab ${activeTab === 'founder' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('founder')}
+                >
+                    👤 Founder Info
+                </button>
+                <button
+                    className={`admin-tab ${activeTab === 'settings' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('settings')}
+                >
+                    ⚙️ Settings
                 </button>
             </div>
 
@@ -1167,18 +1550,8 @@ export default function Admin() {
                                                         <button
                                                             className="btn-view-small"
                                                             onClick={() => {
-                                                                alert(`
-Package: ${booking.package_name}
-Customer: ${booking.customer_name}
-Email: ${booking.customer_email}
-Phone: ${booking.customer_phone}
-Age: ${booking.customer_age || 'N/A'}
-Address: ${booking.customer_address || 'N/A'}
-
-Medical History: ${booking.medical_history || 'None provided'}
-Current Medications: ${booking.current_medications || 'None'}
-Special Requirements: ${booking.special_requirements || 'None'}
-                                                                `);
+                                                                setViewingBooking(booking);
+                                                                setShowBookingViewModal(true);
                                                             }}
                                                             title="View Details"
                                                         >
@@ -2095,6 +2468,265 @@ Special Requirements: ${booking.special_requirements || 'None'}
                                     }}
                                 >
                                     Save Changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Team Members Management */}
+                {activeTab === 'team' && (
+                    <TeamManagement
+                        teamMembers={teamMembers}
+                        teamForm={teamForm}
+                        setTeamForm={setTeamForm}
+                        editingTeamMember={editingTeamMember}
+                        setEditingTeamMember={setEditingTeamMember}
+                        showTeamEditModal={showTeamEditModal}
+                        setShowTeamEditModal={setShowTeamEditModal}
+                        loading={loading}
+                        uploadingImage={uploadingImage}
+                        handleTeamSubmit={handleTeamSubmit}
+                        updateTeamMember={updateTeamMember}
+                        deleteTeamMember={deleteTeamMember}
+                        handleTeamImageUpload={handleTeamImageUpload}
+                    />
+                )}
+
+                {/* Founder Information Management */}
+                {activeTab === 'founder' && (
+                    <FounderManagement
+                        founderInfo={founderInfo}
+                        founderForm={founderForm}
+                        setFounderForm={setFounderForm}
+                        loading={loading}
+                        uploadingImage={uploadingImage}
+                        handleFounderSubmit={handleFounderSubmit}
+                        handleFounderImageUpload={handleFounderImageUpload}
+                    />
+                )}
+
+                {/* Settings Tab */}
+                {activeTab === 'settings' && (
+                    <div className="settings-section">
+                        <h2>⚙️ Settings</h2>
+
+                        <div className="settings-card" style={{
+                            background: 'rgba(255, 255, 255, 0.03)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            borderRadius: '16px',
+                            padding: '2rem',
+                            marginBottom: '2rem'
+                        }}>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--admin-primary)' }}>
+                                📱 WhatsApp Notifications
+                            </h3>
+                            <p style={{ color: '#cbd5e1', marginBottom: '2rem', lineHeight: '1.6' }}>
+                                Configure WhatsApp numbers for receiving notifications when appointments and packages are booked.
+                            </p>
+
+                            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                                <label style={{
+                                    display: 'block',
+                                    marginBottom: '0.75rem',
+                                    fontWeight: '600',
+                                    color: 'var(--admin-text)'
+                                }}>
+                                    Admin WhatsApp Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    value={adminSettings.admin_whatsapp_number}
+                                    onChange={(e) => setAdminSettings({
+                                        ...adminSettings,
+                                        admin_whatsapp_number: e.target.value
+                                    })}
+                                    placeholder="+91 9876543210"
+                                    style={{
+                                        width: '100%',
+                                        padding: '0.875rem 1rem',
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        border: '2px solid rgba(255, 255, 255, 0.1)',
+                                        borderRadius: '8px',
+                                        color: 'var(--admin-text)',
+                                        fontSize: '1rem'
+                                    }}
+                                />
+                                <small style={{
+                                    color: '#94a3b8',
+                                    fontSize: '0.875rem',
+                                    marginTop: '0.5rem',
+                                    display: 'block'
+                                }}>
+                                    💡 This number will receive all appointment and package booking notifications
+                                </small>
+                            </div>
+
+                            <button
+                                className="btn-submit"
+                                onClick={saveAdminSettings}
+                                disabled={loading}
+                                style={{
+                                    padding: '0.875rem 2rem',
+                                    background: 'linear-gradient(135deg, var(--admin-primary), var(--admin-secondary))',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '10px',
+                                    fontSize: '1rem',
+                                    fontWeight: '600',
+                                    cursor: loading ? 'not-allowed' : 'pointer',
+                                    opacity: loading ? 0.6 : 1
+                                }}
+                            >
+                                {loading ? 'Saving...' : '✓ Save Settings'}
+                            </button>
+                        </div>
+
+                        <div className="settings-card" style={{
+                            background: 'rgba(255, 255, 255, 0.03)',
+                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                            borderRadius: '16px',
+                            padding: '2rem'
+                        }}>
+                            <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem', color: 'var(--admin-primary)' }}>
+                                ℹ️ How WhatsApp Notifications Work
+                            </h3>
+                            <ul style={{ lineHeight: '1.8', color: '#cbd5e1', paddingLeft: '1.5rem' }}>
+                                <li>When a patient books an appointment, WhatsApp windows will open automatically</li>
+                                <li>Patient receives a confirmation message with appointment details</li>
+                                <li>Selected doctor receives appointment notification (if WhatsApp number is added)</li>
+                                <li>Admin receives complete information about all bookings</li>
+                                <li>Make sure to add WhatsApp numbers to doctor profiles in the "Add Doctor" section</li>
+                                <li>Format: Include country code (e.g., +91 for India)</li>
+                            </ul>
+                        </div>
+                    </div>
+                )}
+
+                {/* Package Booking View Modal */}
+                {showBookingViewModal && viewingBooking && (
+                    <div className="modal-overlay" onClick={() => setShowBookingViewModal(false)}>
+                        <div className="modal-content booking-view-modal" onClick={(e) => e.stopPropagation()}>
+                            <div className="modal-header">
+                                <div className="modal-title-section">
+                                    <h3>📦 Package Booking Details</h3>
+                                    <span className={`status-badge ${viewingBooking.status}`}>
+                                        {viewingBooking.status}
+                                    </span>
+                                </div>
+                                <button className="close-btn" onClick={() => setShowBookingViewModal(false)}>×</button>
+                            </div>
+
+                            <div className="modal-body">
+                                {/* Package Name - Prominent */}
+                                <div className="booking-package-name">
+                                    <h2>{viewingBooking.package_name}</h2>
+                                </div>
+
+                                {/* Two Column Layout */}
+                                <div className="booking-info-grid">
+                                    {/* Left Column - Customer Info */}
+                                    <div className="info-column">
+                                        <h4 className="column-title">👤 Customer Information</h4>
+
+                                        <div className="info-row">
+                                            <span className="info-label">Name</span>
+                                            <span className="info-value">{viewingBooking.customer_name}</span>
+                                        </div>
+
+                                        <div className="info-row">
+                                            <span className="info-label">Email</span>
+                                            <a href={`mailto:${viewingBooking.customer_email}`} className="info-value link">
+                                                {viewingBooking.customer_email}
+                                            </a>
+                                        </div>
+
+                                        <div className="info-row">
+                                            <span className="info-label">Phone</span>
+                                            <a href={`tel:${viewingBooking.customer_phone}`} className="info-value link">
+                                                {viewingBooking.customer_phone}
+                                            </a>
+                                        </div>
+
+                                        {viewingBooking.customer_age && (
+                                            <div className="info-row">
+                                                <span className="info-label">Age</span>
+                                                <span className="info-value">{viewingBooking.customer_age} years</span>
+                                            </div>
+                                        )}
+
+                                        {viewingBooking.customer_address && (
+                                            <div className="info-row">
+                                                <span className="info-label">Address</span>
+                                                <span className="info-value">{viewingBooking.customer_address}</span>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    {/* Right Column - Booking Info */}
+                                    <div className="info-column">
+                                        <h4 className="column-title">📅 Booking Information</h4>
+
+                                        <div className="info-row">
+                                            <span className="info-label">Booking Date</span>
+                                            <span className="info-value">{formatDate(viewingBooking.created_at)}</span>
+                                        </div>
+
+                                        {viewingBooking.preferred_date && (
+                                            <div className="info-row">
+                                                <span className="info-label">Preferred Date</span>
+                                                <span className="info-value">
+                                                    {new Date(viewingBooking.preferred_date).toLocaleDateString('en-US', {
+                                                        weekday: 'short',
+                                                        year: 'numeric',
+                                                        month: 'short',
+                                                        day: 'numeric'
+                                                    })}
+                                                </span>
+                                            </div>
+                                        )}
+
+                                        {viewingBooking.preferred_time && (
+                                            <div className="info-row">
+                                                <span className="info-label">Preferred Time</span>
+                                                <span className="info-value">{viewingBooking.preferred_time}</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+
+                                {/* Medical Information - Full Width */}
+                                {(viewingBooking.medical_history || viewingBooking.current_medications || viewingBooking.special_requirements) && (
+                                    <div className="medical-info-section">
+                                        <h4 className="column-title">🏥 Medical Information</h4>
+
+                                        {viewingBooking.medical_history && (
+                                            <div className="medical-item">
+                                                <span className="medical-label">Medical History</span>
+                                                <p className="medical-text">{viewingBooking.medical_history}</p>
+                                            </div>
+                                        )}
+
+                                        {viewingBooking.current_medications && (
+                                            <div className="medical-item">
+                                                <span className="medical-label">Current Medications</span>
+                                                <p className="medical-text">{viewingBooking.current_medications}</p>
+                                            </div>
+                                        )}
+
+                                        {viewingBooking.special_requirements && (
+                                            <div className="medical-item">
+                                                <span className="medical-label">Special Requirements</span>
+                                                <p className="medical-text">{viewingBooking.special_requirements}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="modal-footer">
+                                <button className="btn-secondary" onClick={() => setShowBookingViewModal(false)}>
+                                    Close
                                 </button>
                             </div>
                         </div>

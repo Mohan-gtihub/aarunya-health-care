@@ -8,9 +8,6 @@ import Footer from '../components/Footer'
 import '../components/AboutUs.css'
 import '../components/ActionPlanJourney.css'
 import '../components/ActionPlanSection.css'
-import '../components/AppointmentBooking.css'
-import '../components/AppointmentBooking-override.css'
-import '../components/AppointmentForm.css'
 import '../components/AwardsCarousel.css'
 import '../components/CalendarPicker.css'
 import '../components/ChatWidget.css'
@@ -51,6 +48,8 @@ import './admin.css'
 import './admin-modals.css'
 import '../styles/doctors-admin.css'
 import '../styles/video-admin.css'
+import '../components/admin/AdminComponents.css'
+import '../styles/global-fixes.css'
 
 export default function MyApp({ Component, pageProps }) {
     const router = useRouter();

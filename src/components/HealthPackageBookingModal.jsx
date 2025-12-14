@@ -49,6 +49,23 @@ export default function HealthPackageBookingModal({ isOpen, onClose, packageData
 
             if (error) throw error;
 
+            // Send confirmation email (non-blocking)
+            fetch('/api/packages/notify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    booking: {
+                        ...bookingData,
+                        ...data[0]
+                    }
+                })
+            }).catch(err => {
+                console.error('Email notification failed:', err);
+                // Don't fail the booking if email fails
+            });
+
             setMessage({
                 type: 'success',
                 text: 'Booking submitted successfully! We will contact you soon.'

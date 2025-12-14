@@ -1,79 +1,65 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { supabase } from '../lib/supabase';
 
 const TeamSection = () => {
-  const [doctors, setDoctors] = useState([]);
+  const [teamMembers, setTeamMembers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [activeDoctor, setActiveDoctor] = useState(null);
-
-  // Sample data matching your Doctors.jsx
-  const sampleDoctors = [
-    {
-      id: 1,
-      name: 'Dr. Mohammed Sarfaraz Nawaz Ahmed',
-      role: 'MBBS, MD, MRCPCH',
-      specialty: 'Pediatrics',
-      experience: '10+ years',
-      location: 'SR Nagar',
-      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80',
-      bio: 'Completed MBBS from Deccan College of Medical Sciences and MD in Paediatrics from Prathima Institute. Awarded MRCPCH from Royal College of Paediatrics and Child Health, UK.'
-    },
-    {
-      id: 2,
-      name: 'Dr. C R Nagarjuna',
-      role: 'MBBS, DNB, MNAMS, FIJR, CUVIS',
-      specialty: 'Orthopedics',
-      experience: '12+ years',
-      location: 'SR Nagar',
-      image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&q=80',
-      bio: 'Associate Consultant specializing in Complex Orthopaedic Trauma, Joint Replacements, and Sports Medicine.'
-    },
-    {
-      id: 3,
-      name: 'Dr. Sruthi Reddy',
-      role: 'MBBS, MS (OBG & GYN), FMAS',
-      specialty: 'Gynecology',
-      experience: '10+ years',
-      location: 'Bachupally',
-      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80',
-      bio: 'Accomplished obstetrician and gynecologist with MS from Gandhi Medical College.'
-    }
-  ];
+  const [activeMember, setActiveMember] = useState(null);
 
   useEffect(() => {
-    // In a real app, you would fetch from your API:
-    // const fetchDoctors = async () => {
-    //   try {
-    //     const response = await fetch('/api/doctors');
-    //     const data = await response.json();
-    //     setDoctors(data);
-    //   } catch (err) {
-    //     setError(err.message);
-    //   } finally {
-    //     setLoading(false);
-    //   }
-    // };
-    // fetchDoctors();
+    loadTeamMembers();
+  }, []);
 
-    // For now, use the sample data
-    setDoctors(sampleDoctors);
-    setLoading(false);
-  }, []); // Empty dependency array - only run once on mount
+  const loadTeamMembers = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('team_members')
+        .select('*')
+        .eq('active', true)
+        .order('display_order', { ascending: true });
+
+      if (error) throw error;
+      setTeamMembers(data || []);
+    } catch (err) {
+      console.error('Error loading team members:', err);
+      setError(err.message);
+      // Fallback to sample data
+      setTeamMembers([
+        {
+          id: 1,
+          name: 'Dr. Mohammed Sarfaraz Nawaz Ahmed',
+          role: 'MBBS, MD, MRCPCH',
+          department: 'Pediatrics',
+          bio: 'Completed MBBS from Deccan College of Medical Sciences and MD in Paediatrics from Prathima Institute.',
+          image_url: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80',
+          email: null,
+          linkedin_url: null
+        }
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return (
       <section className="team-section loading">
-        <div>Loading doctors...</div>
+        <div className="team-container">
+          <div className="loading-spinner"></div>
+          <p>Loading team members...</p>
+        </div>
       </section>
     );
   }
 
-  if (error) {
+  if (teamMembers.length === 0) {
     return (
-      <section className="team-section error">
-        <div>Error loading doctors: {error}</div>
+      <section className="team-section">
+        <div className="team-container">
+          <p>No team members found.</p>
+        </div>
       </section>
     );
   }
@@ -92,39 +78,44 @@ const TeamSection = () => {
           className="team-header"
         >
           <span className="team-eyebrow">Our Team</span>
-          <h2 className="team-heading">Meet Our Expert Doctors</h2>
+          <h2 className="team-heading">Meet Our Expert Team</h2>
           <p className="team-subheading">
             Dedicated healthcare professionals committed to your well-being
           </p>
         </motion.div>
 
         <div className="team-grid">
-          {doctors.map((doctor, index) => (
+          {teamMembers.map((member, index) => (
             <motion.div
-              key={doctor.id}
+              key={member.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="team-card"
-              onClick={() => setActiveDoctor(doctor)}
+              onClick={() => setActiveMember(member)}
             >
               <div className="team-image-container">
                 <img
-                  src={doctor.image}
-                  alt={doctor.name}
+                  src={member.image_url || 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80'}
+                  alt={member.name}
                   className="team-image"
                   loading="lazy"
                 />
-                <div className="team-specialty-badge">
-                  {doctor.specialty}
-                </div>
+                {member.department && (
+                  <div className="team-specialty-badge">
+                    {member.department}
+                  </div>
+                )}
               </div>
               <div className="team-info">
-                <h3 className="team-name">{doctor.name}</h3>
-                <p className="team-role">{doctor.role}</p>
-                <p className="team-experience">{doctor.experience} experience</p>
-                <p className="team-location"><span>📍</span> {doctor.location}</p>
+                <h3 className="team-name">{member.name}</h3>
+                <p className="team-role">{member.role}</p>
+                {member.email && (
+                  <p className="team-email">
+                    <span>📧</span> {member.email}
+                  </p>
+                )}
               </div>
             </motion.div>
           ))}
@@ -132,13 +123,13 @@ const TeamSection = () => {
       </div>
 
       <AnimatePresence>
-        {activeDoctor && (
+        {activeMember && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="team-modal-overlay"
-            onClick={() => setActiveDoctor(null)}
+            onClick={() => setActiveMember(null)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -149,7 +140,7 @@ const TeamSection = () => {
             >
               <button
                 className="team-close-button"
-                onClick={() => setActiveDoctor(null)}
+                onClick={() => setActiveMember(null)}
                 aria-label="Close"
               >
                 &times;
@@ -158,26 +149,39 @@ const TeamSection = () => {
               <div className="team-modal-grid">
                 <div className="team-modal-image-container">
                   <img
-                    src={activeDoctor.image}
-                    alt={activeDoctor.name}
+                    src={activeMember.image_url || 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80'}
+                    alt={activeMember.name}
                     className="team-modal-image"
                   />
                 </div>
 
                 <div className="team-modal-info">
-                  <h3 className="team-modal-name">{activeDoctor.name}</h3>
-                  <p className="team-modal-role">{activeDoctor.role}</p>
-                  <p className="team-modal-specialty">{activeDoctor.specialty} • {activeDoctor.location}</p>
+                  <h3 className="team-modal-name">{activeMember.name}</h3>
+                  <p className="team-modal-role">{activeMember.role}</p>
+                  {activeMember.department && (
+                    <p className="team-modal-specialty">{activeMember.department}</p>
+                  )}
 
-                  <div className="team-modal-section">
-                    <h4 className="team-section-title">About</h4>
-                    <p>{activeDoctor.bio}</p>
-                  </div>
+                  {activeMember.bio && (
+                    <div className="team-modal-section">
+                      <h4 className="team-section-title">About</h4>
+                      <p>{activeMember.bio}</p>
+                    </div>
+                  )}
 
-                  <div className="team-modal-section">
-                    <h4 className="team-section-title">Experience</h4>
-                    <p>{activeDoctor.experience} of experience</p>
-                  </div>
+                  {activeMember.email && (
+                    <div className="team-modal-section">
+                      <h4 className="team-section-title">Contact</h4>
+                      <p>📧 {activeMember.email}</p>
+                      {activeMember.linkedin_url && (
+                        <p>
+                          <a href={activeMember.linkedin_url} target="_blank" rel="noopener noreferrer">
+                            LinkedIn Profile
+                          </a>
+                        </p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

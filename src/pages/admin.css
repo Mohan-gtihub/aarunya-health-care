@@ -700,6 +700,7 @@
     filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
     transform: scale(1.05);
 }
+
 /* Blog Posts Admin Section - Fixed Styling */
 .blogs-grid {
     display: grid;
@@ -828,8 +829,157 @@
     .blogs-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .blog-admin-actions {
         flex-direction: column;
+    }
+}
+
+/* Package Booking View Modal - Redesigned */
+.booking-view-modal {
+    max-width: 900px !important;
+}
+
+.modal-title-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.booking-package-name {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    border-left: 4px solid var(--admin-primary);
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.booking-package-name h2 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--admin-text);
+}
+
+.booking-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.info-column {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.column-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--admin-primary);
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.2);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--admin-text-secondary);
+    flex-shrink: 0;
+    min-width: 120px;
+}
+
+.info-value {
+    font-size: 1rem;
+    color: var(--admin-text);
+    font-weight: 500;
+    text-align: right;
+    word-break: break-word;
+}
+
+.info-value.link {
+    color: var(--admin-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.info-value.link:hover {
+    color: var(--admin-secondary);
+    text-decoration: underline;
+}
+
+.medical-info-section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.medical-item {
+    margin-bottom: 1.5rem;
+}
+
+.medical-item:last-child {
+    margin-bottom: 0;
+}
+
+.medical-label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--admin-primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.medical-text {
+    font-size: 1rem;
+    color: var(--admin-text);
+    line-height: 1.7;
+    margin: 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 3px solid rgba(102, 126, 234, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .booking-info-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .booking-package-name h2 {
+        font-size: 1.5rem;
+    }
+
+    .info-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .info-label {
+        min-width: auto;
+    }
+
+    .info-value {
+        text-align: left;
     }
 }

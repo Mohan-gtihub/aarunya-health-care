@@ -2,8 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/about": "pages/about.js",
+  "/api/departments": "pages/api/departments.js",
+  "/appointment": "pages/appointment.js",
   "/admin": "pages/admin.js",
-  "/blog": "pages/blog.js",
-  "/doctors": "pages/doctors.js",
-  "/appointment": "pages/appointment.js"
+  "/api/appointments/notify": "pages/api/appointments/notify.js"
 }

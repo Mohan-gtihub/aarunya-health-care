@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"components\\\\AppointmentBookingEnhanced.jsx -> ../lib/whatsappNotifications\":{\"id\":\"components\\\\AppointmentBookingEnhanced.jsx -> ../lib/whatsappNotifications\",\"files\":[\"static/chunks/src_lib_whatsappNotifications_js.js\"]}}"

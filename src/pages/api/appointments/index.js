@@ -149,9 +149,51 @@ export default async function handler(req, res) {
                 console.error('Email sending failed:', err);
             });
 
+            // Get doctor WhatsApp number from database
+            let doctorWhatsApp = null;
+            try {
+                const { data: doctorData } = await supabase
+                    .from('doctors')
+                    .select('whatsapp_number')
+                    .eq('name', doctorDetails.name)
+                    .single();
+                doctorWhatsApp = doctorData?.whatsapp_number;
+            } catch (err) {
+                console.log('Could not fetch doctor WhatsApp:', err.message);
+            }
+
+            // Get admin WhatsApp number from settings
+            let adminWhatsApp = null;
+            try {
+                const { data: adminSettings } = await supabase
+                    .from('admin_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'admin_whatsapp_number')
+                    .single();
+                adminWhatsApp = adminSettings?.setting_value;
+            } catch (err) {
+                console.log('Could not fetch admin WhatsApp:', err.message);
+            }
+
             res.status(201).json({
                 message: 'Appointment booked successfully',
-                appointment: newAppointment
+                appointment: newAppointment,
+                whatsappData: {
+                    patientPhone: patientPhone,
+                    doctorWhatsApp: doctorWhatsApp,
+                    adminWhatsApp: adminWhatsApp,
+                    appointmentDetails: {
+                        name: patientName,
+                        phone: patientPhone,
+                        email: patientEmail,
+                        doctor: doctorDetails.name,
+                        date: date,
+                        time: time,
+                        reason: reason || 'General consultation',
+                        message: req.body.message || '',
+                        status: 'confirmed'
+                    }
+                }
             });
 
         } catch (error) {
@@ -188,7 +230,7 @@ async function sendConfirmationEmails(appointment) {
     // IMPORTANT: Gmail requires the 'from' address to match the authenticated account
     const patientEmailOptions = {
         from: `"Aarunya Health Care" <${process.env.EMAIL_USER}>`,
-        to: appointment.patientEmail,
+        to: [appointment.patientEmail, process.env.EMAIL_USER], // Send to patient and admin
         subject: 'Appointment Confirmation - Aarunya Health Care',
         html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

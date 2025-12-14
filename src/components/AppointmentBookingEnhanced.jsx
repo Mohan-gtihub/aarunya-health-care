@@ -139,7 +139,71 @@ export default function AppointmentBookingEnhanced() {
 
             if (error) throw error;
 
-            setSuccess('🎉 Appointment booked successfully! We will contact you soon for confirmation.');
+            // Send confirmation email (non-blocking)
+            fetch('/api/appointments/notify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    appointment: {
+                        patient_name: patientName,
+                        patient_email: patientEmail,
+                        patient_phone: patientPhone,
+                        department: doctor.department,
+                        doctor: doctor.name,
+                        date: selectedDate,
+                        time: selectedTime,
+                        reason: reason || 'General consultation',
+                        status: 'confirmed'
+                    },
+                    action: 'confirmed'
+                })
+            }).catch(err => {
+                console.error('Email notification failed:', err);
+                // Don't fail the booking if email fails
+            });
+
+            // Send WhatsApp notifications
+            try {
+                // Get doctor and admin WhatsApp numbers
+                const { data: doctorData } = await supabase
+                    .from('doctors')
+                    .select('whatsapp_number')
+                    .eq('name', doctor.name)
+                    .single();
+
+                const { data: adminSettings } = await supabase
+                    .from('admin_settings')
+                    .select('setting_value')
+                    .eq('setting_key', 'admin_whatsapp_number')
+                    .single();
+
+                // Import WhatsApp notification functions dynamically
+                const { sendAppointmentWhatsAppNotifications } = await import('../lib/whatsappNotifications');
+
+                // Send notifications
+                await sendAppointmentWhatsAppNotifications(
+                    {
+                        name: patientName,
+                        phone: patientPhone,
+                        email: patientEmail,
+                        doctor: doctor.name,
+                        date: selectedDate,
+                        time: selectedTime,
+                        reason: reason || 'General consultation',
+                        message: '',
+                        status: 'confirmed'
+                    },
+                    doctorData?.whatsapp_number,
+                    adminSettings?.setting_value
+                );
+            } catch (whatsappErr) {
+                console.error('WhatsApp notification failed:', whatsappErr);
+                // Don't fail the booking if WhatsApp fails
+            }
+
+            setSuccess('🎉 Appointment booked successfully! WhatsApp notifications sent.');
 
             // Reset form
             setSelectedDoctor('');
