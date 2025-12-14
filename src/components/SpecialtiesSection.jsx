@@ -44,7 +44,7 @@ const SpecialtiesSection = () => {
         <div className="section-header">
           <span className="section-subtitle">Departments</span>
           <h2>Centers of Excellence</h2>
-          <p>World-class specialized care tailored to your needs</p>
+          <p className="section-desc">World-class specialized care tailored to your needs</p>
         </div>
 
         <div className="specialties-list">
