@@ -62,6 +62,21 @@ export default function MyApp({ Component, pageProps }) {
         <>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+
+                {/* PWA Meta Tags */}
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="theme-color" content="#667eea" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+                <meta name="apple-mobile-web-app-title" content="Aarunya Admin" />
+                <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+                <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+                <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512x512.png" />
+
+                {/* App Description */}
+                <meta name="description" content="Aarunya Health Care - Manage appointments, bookings, and healthcare services" />
+                <meta name="application-name" content="Aarunya Admin" />
             </Head>
             <div className="app">
                 {/* Only show Header and Footer on non-admin pages */}

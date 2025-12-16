@@ -290,3 +290,82 @@ export async function sendPackageBookingWhatsAppNotifications(booking, adminWhat
         return false;
     }
 }
+
+/**
+ * Send WhatsApp notification when appointment status changes
+ * @param {object} appointment - Appointment details with updated status
+ */
+export function sendWhatsAppStatusUpdate(appointment) {
+    let statusEmoji = '📋';
+    let statusText = appointment.status;
+    let additionalInfo = '';
+
+    switch (appointment.status?.toLowerCase()) {
+        case 'confirmed':
+            statusEmoji = '✅';
+            statusText = 'CONFIRMED';
+            additionalInfo = `
+📍 *Location:*
+Aarunya Health Care
+C93/+261 Shaikpet Main Rd
+Shivaji Nagar, Sri Ram Nagar Colony
+Hyderabad, Telangana 500008
+
+⚠️ *Important:*
+• Please arrive 15 minutes before your scheduled time
+• Bring your ID proof and any previous medical records
+• If you need to cancel, please inform us at least 24 hours in advance`;
+            break;
+        case 'cancelled':
+            statusEmoji = '❌';
+            statusText = 'CANCELLED';
+            additionalInfo = `
+We apologize for any inconvenience. If you would like to reschedule, please contact us.`;
+            break;
+        case 'completed':
+            statusEmoji = '✔️';
+            statusText = 'COMPLETED';
+            additionalInfo = `
+Thank you for visiting Aarunya Health Care! We hope you had a great experience.
+
+Please follow the doctor's advice and take prescribed medications as directed.`;
+            break;
+        case 'rescheduled':
+            statusEmoji = '🔄';
+            statusText = 'RESCHEDULED';
+            additionalInfo = `
+Your appointment has been rescheduled. Please check the new date and time above.`;
+            break;
+        default:
+            statusEmoji = '📋';
+            statusText = appointment.status?.toUpperCase() || 'UPDATED';
+            additionalInfo = `
+Your appointment status has been updated. For any queries, please contact us.`;
+    }
+
+    const message = `
+🏥 *Aarunya Health Care - Appointment ${statusText}*
+
+Dear ${appointment.name},
+
+${statusEmoji} Your appointment status has been updated to: *${statusText}*
+
+📅 *Date:* ${new Date(appointment.date).toLocaleDateString('en-IN', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })}
+⏰ *Time:* ${appointment.time}
+👨‍⚕️ *Doctor:* ${appointment.doctor}
+📝 *Reason:* ${appointment.reason || 'General Consultation'}
+${additionalInfo}
+
+For any questions, please contact us.
+
+Thank you for choosing Aarunya Health Care!
+    `.trim();
+
+    sendWhatsAppMessage(appointment.phone, message);
+}
+

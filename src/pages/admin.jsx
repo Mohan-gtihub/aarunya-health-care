@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { supabase } from '../lib/supabase';
 import { getAppointments } from '../lib/storage';
@@ -6,6 +6,9 @@ import VideoEditModal from '../components/VideoEditModal';
 import TeamManagement from '../components/admin/TeamManagement';
 import FounderManagement from '../components/admin/FounderManagement';
 import HealthPackageManager from '../components/admin/HealthPackageManager';
+import AdminNotificationSystem from '../components/admin/AdminNotificationSystem';
+import NotificationBell from '../components/admin/NotificationBell';
+import PWAInstallPrompt from '../components/PWAInstallPrompt';
 
 export default function Admin() {
     const router = useRouter();
@@ -96,6 +99,19 @@ export default function Admin() {
     // Admin settings state
     const [adminSettings, setAdminSettings] = useState({
         admin_whatsapp_number: ''
+    });
+
+    // Notification system
+    const notificationSystem = AdminNotificationSystem({
+        onNewNotification: (notification) => {
+            console.log('New notification:', notification);
+            // Optionally reload appointments/bookings when new ones arrive
+            if (notification.type === 'appointment' && activeTab === 'bookings') {
+                loadAppointments();
+            } else if (notification.type === 'package' && activeTab === 'package-bookings') {
+                loadHealthPackageBookings();
+            }
+        }
     });
 
     useEffect(() => {
@@ -701,6 +717,16 @@ export default function Admin() {
     // Appointment Management Functions
     const updateAppointmentStatus = async (id, newStatus) => {
         try {
+            // First, get the appointment details
+            const { data: appointment, error: fetchError } = await supabase
+                .from('appointments')
+                .select('*')
+                .eq('id', id)
+                .single();
+
+            if (fetchError) throw fetchError;
+
+            // Update the status in database
             const { error } = await supabase
                 .from('appointments')
                 .update({
@@ -711,7 +737,38 @@ export default function Admin() {
 
             if (error) throw error;
 
-            showMessage('success', 'Appointment status updated successfully!');
+            // Determine the action for email notification
+            let emailAction = '';
+            if (newStatus === 'confirmed') {
+                emailAction = 'confirmed';
+            } else if (newStatus === 'cancelled') {
+                emailAction = 'cancelled';
+            } else if (newStatus === 'completed') {
+                emailAction = 'completed';
+            } else {
+                emailAction = 'updated';
+            }
+
+            // Send email notification only (no WhatsApp for status changes)
+            try {
+                await fetch('/api/appointments/notify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        appointment: {
+                            ...appointment,
+                            status: newStatus
+                        },
+                        action: emailAction
+                    })
+                });
+                console.log('✅ Email notification sent for status change');
+            } catch (emailError) {
+                console.error('Email notification failed:', emailError);
+                // Don't fail the status update if email fails
+            }
+
+            showMessage('success', `Appointment ${newStatus} and patient notified via email!`);
             loadAppointments();
         } catch (error) {
             console.error('Error updating appointment status:', error);
@@ -1278,6 +1335,11 @@ export default function Admin() {
 
     return (
         <div className="admin-container">
+            {/* Hidden audio element for notification sound */}
+            <audio ref={notificationSystem.audioRef} preload="auto">
+                <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZSA0PVqzn77BfGQc+ltryxnYpBSl+zPLaizsIGGS57OihUQ0LTKXh8bllHAU2j9Xyz4IyBh1rwO/mnEoPEFes6O+zYBoGPJTY88p5KwUme8rx3I4+CRdjuOzno1QOC0yk4vK8aB8GM4/R88yAMQYeb8Dv5p1KDxBXrOjvs2AaBjyU2PPKeSsFJnvK8dyOPgkXY7js56NUDgtMpOLyvGgfBjOP0fPMgDEGHm/A7+adSg8QV6zo77NgGgY8lNjzynkrBSZ7yvHcjj4JF2O47OejVA4LTKTi8rxoHwYzj9HzzIAxBh5vwO/mnUoPEFes6O+zYBoGPJTY88p5KwUme8rx3I4+CRdjuOzno1QOC0yk4vK8aB8GM4/R88yAMQYeb8Dv5p1KDxBXrOjvs2AaBjyU2PPKeSsFJnvK8dyOPgkXY7js56NUDgtMpOLyvGgfBjOP0fPMgDEGHm/A7+adSg8QV6zo77NgGgY8lNjzynkrBSZ7yvHcjj4JF2O47OejVA4LTKTi8rxoHwYzj9HzzIAxBh5vwO/mnUoPEFes6O+zYBoGPJTY88p5KwUme8rx3I4+CRdjuOzno1QOC0yk4vK8aB8GM4/R88yAMQYeb8Dv5p1KDxBXrOjvs2AaBjyU2PPKeSsFJnvK8dyOPgkXY7js56NUDgtMpOLyvGgfBjOP0fPMgDEGHm/A7+adSg8QV6zo77NgGgY8lNjzynkrBSZ7yvHcjj4JF2O47OejVA4LTKTi8rxoHwYzj9HzzIAxBh5vwO/mnUoPEFes6O+zYBoGPJTY88p5KwUme8rx3I4+CRdjuOzno1QOC0yk4vK8aB8GM4/R88yAMQYeb8Dv" type="audio/wav" />
+            </audio>
+
             <div className="admin-header">
                 <div className="admin-header-content">
                     <div className="admin-header-left">
@@ -1287,9 +1349,12 @@ export default function Admin() {
                             <p>Manage bookings, blog posts, and media</p>
                         </div>
                     </div>
-                    <button className="logout-btn" onClick={handleLogout}>
-                        🚪 Logout
-                    </button>
+                    <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+                        <NotificationBell {...notificationSystem} />
+                        <button className="logout-btn" onClick={handleLogout}>
+                            🚪 Logout
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -1298,6 +1363,9 @@ export default function Admin() {
                     {message.type === 'success' ? '✅' : '❌'} {message.text}
                 </div>
             )}
+
+            {/* PWA Install Prompt */}
+            <PWAInstallPrompt />
 
             <div className="admin-tabs">
                 <button

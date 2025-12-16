@@ -163,6 +163,52 @@ export default async function handler(req, res) {
                 </body>
                 </html>
             `;
+        } else if (action === 'completed') {
+            subject = '✅ Appointment Completed - Thank You! - Aarunya Health Care';
+            htmlContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                        .header { background: linear-gradient(135deg, #10B981, #059669); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+                        .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+                        .info-box { background: white; padding: 20px; border-left: 4px solid #10B981; margin: 20px 0; }
+                        .footer { text-align: center; margin-top: 30px; color: #666; font-size: 14px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <h1>✅ Appointment Completed</h1>
+                        </div>
+                        <div class="content">
+                            <p>Dear ${patientName},</p>
+                            <p>Thank you for visiting Aarunya Health Care! Your appointment with ${appointment.doctor} has been completed.</p>
+                            
+                            <div class="info-box">
+                                <p><strong>Important Reminders:</strong></p>
+                                <ul>
+                                    <li>Please follow the doctor's advice and treatment plan</li>
+                                    <li>Take prescribed medications as directed</li>
+                                    <li>Schedule any recommended follow-up appointments</li>
+                                    <li>Contact us immediately if you experience any concerns</li>
+                                </ul>
+                            </div>
+
+                            <p>We hope you had a great experience with us. Your health and well-being are our top priority!</p>
+                            
+                            <p>If you have any questions or need assistance, please don't hesitate to contact us.</p>
+                        </div>
+                        <div class="footer">
+                            <p>Aarunya Health Care | Empathy · Expertise · Excellence</p>
+                            <p>This is an automated message. Please do not reply to this email.</p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
         }
 
         // Send email
