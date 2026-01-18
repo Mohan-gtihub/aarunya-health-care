@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import VideoBackground from '../components/VideoBackground';
 
 
 export default function Contact() {
@@ -25,7 +26,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="contact-page">
+    <div className="contact-page page-with-video-bg">
+      <VideoBackground videoSrc="/vid1.mp4" opacity={0.3} />
       <Head>
         <title>Contact Us - Aarunya Health Care | Appointment & Location</title>
         <meta name="description" content="Get in touch with Aarunya Health Care. Visit our clinics in SR Nagar or Bachupally, Hyderabad. Call 24/7 for appointments." />

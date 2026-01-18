@@ -1,0 +1,298 @@
+/* Appointment Popup Backdrop */
+.appointment-popup-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+}
+
+/* Appointment Popup Modal */
+.appointment-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    width: 90%;
+    max-width: 900px;
+    background: white;
+    border-radius: 12px;
+    box-shadow:
+        0 20px 60px rgba(75, 0, 130, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+/* Close Button */
+.appointment-popup__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(75, 0, 130, 0.1);
+    color: var(--brand-purple);
+    font-size: 1.25rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-weight: 300;
+    line-height: 1;
+    z-index: 10;
+}
+
+.appointment-popup__close:hover {
+    background: var(--brand-purple);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Two-Panel Container */
+.appointment-popup__container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    min-height: 500px;
+}
+
+/* Left Panel - Hospital Info */
+.appointment-popup__left {
+    background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.popup-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.popup-hospital-name {
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: white;
+}
+
+.popup-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 2rem 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.popup-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+}
+
+/* Right Panel - Form */
+.appointment-popup__right {
+    padding: 2.5rem 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-form-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--brand-purple);
+    margin: 0 0 1.5rem 0;
+}
+
+/* Form */
+.appointment-popup__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex: 1;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-row label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--brand-purple);
+}
+
+.form-row input {
+    padding: 0.875rem 1rem;
+    border: 2px solid rgba(75, 0, 130, 0.15);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: white;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-row input:focus {
+    outline: none;
+    border-color: var(--brand-purple);
+    box-shadow: 0 0 0 4px rgba(75, 0, 130, 0.1);
+}
+
+.form-row input::placeholder {
+    color: var(--text-tertiary);
+}
+
+.form-row input:disabled {
+    background: rgba(0, 0, 0, 0.05);
+    cursor: not-allowed;
+}
+
+/* Submit Messages */
+.submit-message {
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.submit-message.success {
+    background: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    border: 2px solid rgba(34, 197, 94, 0.3);
+}
+
+.submit-message.error {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border: 2px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Submit Button */
+.appointment-popup__submit {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 24px rgba(75, 0, 130, 0.3);
+    margin-top: 0.5rem;
+}
+
+.appointment-popup__submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(75, 0, 130, 0.4);
+}
+
+.appointment-popup__submit:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.appointment-popup__submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer */
+.appointment-popup__footer {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.appointment-popup__footer strong {
+    color: var(--brand-purple);
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .appointment-popup {
+        max-width: 95%;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
+
+    .appointment-popup__container {
+        grid-template-columns: 1fr;
+    }
+
+    .appointment-popup__left {
+        padding: 2rem 1.5rem;
+        min-height: auto;
+    }
+
+    .popup-logo {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1rem;
+    }
+
+    .popup-hospital-name {
+        font-size: 1.5rem;
+    }
+
+    .popup-tagline {
+        margin-bottom: 1rem;
+    }
+
+    .appointment-popup__right {
+        padding: 2rem 1.5rem;
+    }
+
+    .popup-form-title {
+        font-size: 1.25rem;
+    }
+
+    .form-row input {
+        padding: 0.75rem;
+    }
+
+    .appointment-popup__submit {
+        padding: 0.875rem 1.25rem;
+    }
+}

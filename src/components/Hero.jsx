@@ -89,7 +89,7 @@ export default function Hero() {
           }}
         />
         <div className="thrive-hero__particles">
-          {mounted && [...Array(30)].map((_, i) => (
+          {mounted && [...Array(12)].map((_, i) => (
             <div key={i} className="particle" style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -146,10 +146,10 @@ export default function Hero() {
             <motion.div
               className="thrive-hero__watermark"
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.4, scale: 1 }}
+              animate={{ opacity: 0.6, scale: 1 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <img src="/aarunya-logo.svg" alt="Aarunya Health Care Watermark" />
+              <img src="/aarunya-logo.png" alt="Aarunya Health Care Watermark" />
             </motion.div>
 
             <motion.h1

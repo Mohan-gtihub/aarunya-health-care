@@ -9,6 +9,7 @@ import HealthPackageManager from '../components/admin/HealthPackageManager';
 import AdminNotificationSystem from '../components/admin/AdminNotificationSystem';
 import NotificationBell from '../components/admin/NotificationBell';
 import PWAInstallPrompt from '../components/PWAInstallPrompt';
+import PopupAppointmentsManager from '../components/admin/PopupAppointmentsManager';
 
 export default function Admin() {
     const router = useRouter();
@@ -1399,6 +1400,12 @@ export default function Admin() {
                     📝 Blog Posts
                 </button>
                 <button
+                    className={`admin-tab ${activeTab === 'popup-appointments' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('popup-appointments')}
+                >
+                    📅 Popup Appointments
+                </button>
+                <button
                     className={`admin-tab ${activeTab === 'create-blog' ? 'active' : ''}`}
                     onClick={() => setActiveTab('create-blog')}
                 >
@@ -1816,6 +1823,12 @@ export default function Admin() {
                         </form>
                     </div>
                 )}
+
+                {/* Popup Appointments Section */}
+                {activeTab === 'popup-appointments' && (
+                    <PopupAppointmentsManager showMessage={showMessage} />
+                )}
+
                 {/* Doctors List Section */}
                 {activeTab === 'doctors' && (
                     <div className="doctors-section">

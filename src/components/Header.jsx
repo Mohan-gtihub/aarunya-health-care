@@ -73,7 +73,7 @@ export default function Header() {
     <header className={`thrive-header ${scrolled ? 'is-scrolled' : ''}`} aria-label="Primary navigation">
       <div className="thrive-header__inner">
         <Link href="/" className="thrive-logo" aria-label="Aarunya Healthcare Clinics - Best Multispeciality Clinic">
-          <img src="/aarunya-logo.svg" alt="Aarunya Healthcare Clinics - Best Healthcare Clinic with Diabetologist, Internal Medicine Specialist, Oncology Consultation" className="thrive-logo__img" />
+          <img src="/aarunya-logo copy.svg" alt="Aarunya Healthcare Clinics - Best Healthcare Clinic with Diabetologist, Internal Medicine Specialist, Oncology Consultation" className="thrive-logo__img" />
           <div className="thrive-logo__text">
             <span className="thrive-logo__title">Aarunya Healthcare Clinics</span>
             <span className="thrive-logo__tagline">Empathy · Expertise · Excellence</span>

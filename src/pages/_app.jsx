@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import AppointmentPopup from '../components/AppointmentPopup'
 
 // Global CSS Imports
 import '../components/AboutUs.css'
@@ -51,6 +52,9 @@ import '../styles/video-admin.css'
 import '../components/admin/AdminComponents.css'
 import '../styles/global-fixes.css'
 import '../components/AppointmentBookingEnhanced.css'
+import '../components/AppointmentPopup.css'
+import '../components/VideoBackground.css'
+import '../components/admin/PopupAppointments.css'
 
 export default function MyApp({ Component, pageProps }) {
     const router = useRouter();
@@ -85,6 +89,8 @@ export default function MyApp({ Component, pageProps }) {
                     <Component {...pageProps} />
                 </main>
                 {!isAdminPage && <Footer />}
+                {/* Appointment Popup - shows on all non-admin pages */}
+                {!isAdminPage && <AppointmentPopup />}
             </div>
         </>
     )

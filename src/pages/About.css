@@ -1,7 +1,7 @@
 /* About Page - Light Theme */
 .about-page {
   min-height: 100vh;
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 .about-hero {
